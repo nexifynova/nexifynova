@@ -17,10 +17,9 @@
 
     <style>
         /* ============================================================
-                   1. ROOT VARIABLES — RELAY DARK THEME (with Light Mode support)
+                   1. ROOT VARIABLES
                    ============================================================ */
         :root {
-            /* Dark palette (default) */
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
             --bg-card: #181820;
@@ -47,11 +46,9 @@
             --radius-xl: 32px;
 
             --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
             --scroll-progress: 0%;
         }
 
-        /* LIGHT MODE VARIABLES */
         body.light-mode {
             --bg-primary: #f5f5f0;
             --bg-secondary: #eae8e0;
@@ -94,11 +91,21 @@
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
             transition: background 0.4s ease, color 0.4s ease;
+            cursor: none;
         }
 
         ::selection {
             background: var(--accent-gold);
             color: var(--bg-primary);
+        }
+
+        a,
+        button,
+        .btn,
+        .logo-wrapper,
+        .project-card a,
+        .nav-links a {
+            cursor: none;
         }
 
         a {
@@ -160,7 +167,7 @@
             font-weight: 600;
             font-size: 0.95rem;
             border: none;
-            cursor: pointer;
+            cursor: none;
             transition: all var(--transition);
             text-align: center;
             line-height: 1.4;
@@ -211,7 +218,7 @@
             font-family: 'Inter', sans-serif;
             font-weight: 600;
             font-size: 0.82rem;
-            cursor: pointer;
+            cursor: none;
             transition: all var(--transition);
         }
         .btn-filter:hover {
@@ -225,7 +232,155 @@
         }
 
         /* ============================================================
-                   5. NAVBAR
+                   5. CUSTOM CURSOR (BATCH 3)
+                   ============================================================ */
+        .custom-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            top: 0;
+            left: 0;
+            transition: transform 0.06s ease, opacity 0.3s ease;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+        }
+
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid rgba(212, 160, 43, 0.4);
+            border-radius: 50%;
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .custom-cursor.hover .cursor-dot {
+            width: 12px;
+            height: 12px;
+            top: -6px;
+            left: -6px;
+            background: var(--accent-gold-light);
+        }
+
+        .custom-cursor.hover .cursor-ring {
+            width: 56px;
+            height: 56px;
+            top: -28px;
+            left: -28px;
+            border-color: var(--accent-gold);
+            border-width: 2px;
+            opacity: 0.8;
+        }
+
+        .custom-cursor.hidden {
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            .custom-cursor {
+                display: none;
+            }
+            body {
+                cursor: auto;
+            }
+            a,
+            button,
+            .btn,
+            .logo-wrapper,
+            .project-card a,
+            .nav-links a {
+                cursor: pointer;
+            }
+        }
+
+        /* ============================================================
+                   6. LOADING SKELETON (BATCH 3)
+                   ============================================================ */
+        #loadingSkeleton {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #loadingSkeleton.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--border-subtle);
+            border-top-color: var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 24px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .loader-text span {
+            color: var(--accent-gold);
+        }
+
+        .loader-progress {
+            width: 200px;
+            height: 2px;
+            background: var(--border-subtle);
+            border-radius: 4px;
+            margin-top: 16px;
+            overflow: hidden;
+        }
+
+        .loader-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
+            border-radius: 4px;
+            animation: loadProgress 1.8s ease forwards;
+        }
+
+        @keyframes loadProgress {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* ============================================================
+                   7. NAVBAR
                    ============================================================ */
         .navbar {
             position: sticky;
@@ -255,7 +410,7 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            cursor: pointer;
+            cursor: none;
         }
 
         .logo-img {
@@ -301,6 +456,7 @@
             color: var(--text-secondary);
             transition: all var(--transition);
             border-radius: 30px;
+            cursor: none;
         }
         .nav-links a:hover {
             color: var(--text-primary);
@@ -334,7 +490,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            cursor: none;
             color: var(--text-secondary);
             font-size: 1rem;
             transition: all var(--transition);
@@ -353,7 +509,7 @@
             gap: 5px;
             background: none;
             border: none;
-            cursor: pointer;
+            cursor: none;
             padding: 4px;
         }
         .hamburger span {
@@ -375,7 +531,7 @@
         }
 
         /* ============================================================
-                   6. HERO
+                   8. HERO with PARTICLE BACKGROUND (BATCH 3)
                    ============================================================ */
         .hero {
             padding: 100px 0 80px;
@@ -383,6 +539,15 @@
             position: relative;
             overflow: hidden;
             transition: background 0.4s ease;
+        }
+
+        #particleCanvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .hero::before {
@@ -395,6 +560,7 @@
             background: radial-gradient(circle, rgba(212, 160, 43, 0.06) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
+            z-index: 1;
         }
 
         .hero::after {
@@ -407,11 +573,12 @@
             background: radial-gradient(circle, rgba(212, 160, 43, 0.04) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
+            z-index: 1;
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 860px;
             margin: 0 auto;
             text-align: center;
@@ -478,7 +645,7 @@
         }
 
         /* ============================================================
-                   7. TRUST BAR
+                   9. TRUST BAR
                    ============================================================ */
         .trust-bar {
             padding: 44px 0;
@@ -516,7 +683,7 @@
         }
 
         /* ============================================================
-                   8. SECTION TITLES
+                   10. SECTION TITLES
                    ============================================================ */
         .section-title {
             font-size: clamp(2rem, 3.5vw, 2.8rem);
@@ -550,7 +717,7 @@
         }
 
         /* ============================================================
-                   9. SERVICES
+                   11. SERVICES
                    ============================================================ */
         .services {
             padding: 80px 0;
@@ -601,7 +768,7 @@
         }
 
         /* ============================================================
-                   10. PROJECTS — with FILTER
+                   12. PROJECTS
                    ============================================================ */
         .projects-section {
             padding: 80px 0;
@@ -717,7 +884,7 @@
         }
 
         /* ============================================================
-                   11. SHOWCASE
+                   13. SHOWCASE
                    ============================================================ */
         .showcase {
             padding: 80px 0;
@@ -772,7 +939,7 @@
         }
 
         /* ============================================================
-                   12. TESTIMONIALS (BATCH 2)
+                   14. TESTIMONIALS
                    ============================================================ */
         .testimonials {
             padding: 80px 0;
@@ -840,7 +1007,119 @@
         }
 
         /* ============================================================
-                   13. CONTACT
+                   15. BLOG / NEWS SECTION (BATCH 3)
+                   ============================================================ */
+        .blog-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+            transition: background 0.4s ease;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+            margin-top: 8px;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all var(--transition);
+            border: 1px solid var(--border-subtle);
+        }
+        .blog-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212, 160, 43, 0.2);
+            box-shadow: var(--shadow-card);
+            background: var(--bg-card-hover);
+        }
+
+        .blog-card .blog-image {
+            height: 200px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-card .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .blog-card:hover .blog-image img {
+            transform: scale(1.04);
+        }
+
+        .blog-card .blog-image .blog-category {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .blog-card .blog-content {
+            padding: 20px 24px 24px;
+        }
+
+        .blog-card .blog-meta {
+            display: flex;
+            gap: 14px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .blog-card .blog-meta i {
+            margin-right: 4px;
+        }
+
+        .blog-card .blog-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            transition: color 0.4s ease;
+            line-height: 1.4;
+        }
+        .blog-card .blog-title a:hover {
+            color: var(--accent-gold);
+        }
+
+        .blog-card .blog-excerpt {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            transition: color 0.4s ease;
+            margin-bottom: 12px;
+        }
+
+        .blog-card .blog-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all var(--transition);
+        }
+        .blog-card .blog-link:hover {
+            color: var(--accent-gold-light);
+            gap: 10px;
+        }
+
+        /* ============================================================
+                   16. CONTACT
                    ============================================================ */
         .contact-section {
             padding: 80px 0;
@@ -969,7 +1248,7 @@
         }
 
         /* ============================================================
-                   14. CTA SECTION
+                   17. CTA SECTION
                    ============================================================ */
         .cta-section {
             padding: 60px 0;
@@ -1019,7 +1298,7 @@
         }
 
         /* ============================================================
-                   15. FOOTER
+                   18. FOOTER
                    ============================================================ */
         .footer {
             background: var(--bg-primary);
@@ -1080,7 +1359,7 @@
         }
 
         /* ============================================================
-                   16. FULL PAGE MODALS (CEO, Vision, Hierarchy)
+                   19. FULL PAGE MODALS
                    ============================================================ */
         .page-modal {
             display: none;
@@ -1109,7 +1388,7 @@
             top: 20px;
             right: 30px;
             font-size: 2rem;
-            cursor: pointer;
+            cursor: none;
             color: var(--text-muted);
             transition: all var(--transition);
             background: rgba(10, 10, 15, 0.8);
@@ -1246,7 +1525,7 @@
         }
 
         /* ============================================================
-                   17. ADMIN PANEL
+                   20. ADMIN PANEL
                    ============================================================ */
         .admin-panel {
             display: none;
@@ -1298,7 +1577,7 @@
             font-family: 'Inter', sans-serif;
             font-weight: 600;
             font-size: 0.85rem;
-            cursor: pointer;
+            cursor: none;
             transition: all var(--transition);
             color: var(--text-secondary);
         }
@@ -1346,7 +1625,7 @@
             border-radius: 30px;
             font-size: 0.75rem;
             font-weight: 600;
-            cursor: pointer;
+            cursor: none;
             transition: all var(--transition);
             margin-top: 8px;
         }
@@ -1362,7 +1641,7 @@
             border-radius: 50px;
             font-weight: 600;
             font-size: 0.85rem;
-            cursor: pointer;
+            cursor: none;
             transition: all var(--transition);
         }
         .logout-btn:hover {
@@ -1391,7 +1670,7 @@
             position: absolute;
             inset: 0;
             opacity: 0;
-            cursor: pointer;
+            cursor: none;
         }
         .file-input-wrapper .file-label {
             display: block;
@@ -1414,7 +1693,7 @@
         }
 
         /* ============================================================
-                   18. SCROLL PROGRESS BAR
+                   21. SCROLL PROGRESS BAR
                    ============================================================ */
         .scroll-progress {
             position: fixed;
@@ -1436,7 +1715,7 @@
         }
 
         /* ============================================================
-                   19. BACK TO TOP BUTTON
+                   22. BACK TO TOP
                    ============================================================ */
         .back-to-top {
             position: fixed;
@@ -1450,7 +1729,7 @@
             color: var(--bg-primary);
             border: none;
             font-size: 1.2rem;
-            cursor: pointer;
+            cursor: none;
             box-shadow: 0 4px 20px rgba(212, 160, 43, 0.3);
             transition: all var(--transition);
             opacity: 0;
@@ -1472,7 +1751,7 @@
         }
 
         /* ============================================================
-                   20. FLOATING WHATSAPP BUTTON
+                   23. FLOATING WHATSAPP
                    ============================================================ */
         .whatsapp-float {
             position: fixed;
@@ -1486,7 +1765,7 @@
             color: #fff;
             border: none;
             font-size: 2rem;
-            cursor: pointer;
+            cursor: none;
             box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
             transition: all var(--transition);
             display: flex;
@@ -1518,7 +1797,7 @@
         }
 
         /* ============================================================
-                   21. SCROLL-TRIGGERED FADE-IN (Smooth Page Transitions)
+                   24. FADE-IN
                    ============================================================ */
         .fade-in {
             opacity: 0;
@@ -1552,7 +1831,7 @@
         }
 
         /* ============================================================
-                   22. RESPONSIVE
+                   25. RESPONSIVE
                    ============================================================ */
         @media (max-width: 992px) {
             .contact-wrapper {
@@ -1562,6 +1841,9 @@
                 padding: 28px 24px;
             }
             .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+            .blog-grid {
                 grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             }
             .modal-page-hero {
@@ -1626,6 +1908,9 @@
             .testimonials-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .blog-grid {
+                grid-template-columns: 1fr 1fr;
+            }
             .hierarchy-grid {
                 grid-template-columns: 1fr;
             }
@@ -1667,6 +1952,9 @@
                 grid-template-columns: 1fr;
             }
             .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .blog-grid {
                 grid-template-columns: 1fr;
             }
             .hero h1 {
@@ -1720,6 +2008,25 @@
 <body>
 
     <!-- ============================================================
+    LOADING SKELETON (BATCH 3)
+    ============================================================ -->
+    <div id="loadingSkeleton">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">NEXIFY <span>NOVA</span></div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    CUSTOM CURSOR (BATCH 3)
+    ============================================================ -->
+    <div class="custom-cursor" id="customCursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- ============================================================
     SCROLL PROGRESS BAR
     ============================================================ -->
     <div class="scroll-progress" id="scrollProgress">
@@ -1753,6 +2060,7 @@
                 <li><a href="#showcase">Solutions</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact" class="nav-cta">Contact</a></li>
                 <li>
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -1764,9 +2072,10 @@
     </nav>
 
     <!-- ============================================================
-    HERO
+    HERO with PARTICLE BACKGROUND (BATCH 3)
     ============================================================ -->
     <section class="hero" id="home">
+        <canvas id="particleCanvas"></canvas>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge"><i class="fas fa-star" style="margin-right:6px;"></i> Trusted by 50+ businesses</div>
@@ -1846,7 +2155,7 @@
     </section>
 
     <!-- ============================================================
-    PROJECTS — with FILTER (BATCH 2)
+    PROJECTS
     ============================================================ -->
     <section class="projects-section" id="projects">
         <div class="container">
@@ -1854,7 +2163,6 @@
             <p class="section-desc">Explore the digital solutions we've built for real businesses.</p>
             <div class="section-divider"></div>
 
-            <!-- Filter Bar -->
             <div class="filter-bar">
                 <button class="btn-filter active" data-filter="all">All</button>
                 <button class="btn-filter" data-filter="erp">ERP</button>
@@ -1865,7 +2173,6 @@
 
             <div class="projects-grid" id="projectsGrid">
 
-                <!-- Project 1: Abbas Store (ERP) -->
                 <div class="project-card fade-in" data-category="erp">
                     <a href="https://abbasstore.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1881,7 +2188,6 @@
                     </a>
                 </div>
 
-                <!-- Project 2: JP Store ERP (ERP) -->
                 <div class="project-card fade-in" data-category="erp">
                     <a href="https://jpstoreerp.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1897,7 +2203,6 @@
                     </a>
                 </div>
 
-                <!-- Project 3: Apex Grocers (Retail) -->
                 <div class="project-card fade-in" data-category="retail">
                     <a href="https://apexstore.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1913,7 +2218,6 @@
                     </a>
                 </div>
 
-                <!-- Project 4: Nayyer Medical (Healthcare) -->
                 <div class="project-card fade-in" data-category="healthcare">
                     <a href="https://nayyarms.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1929,7 +2233,6 @@
                     </a>
                 </div>
 
-                <!-- Project 5: Kitchen Noir (E-Commerce) -->
                 <div class="project-card fade-in" data-category="ecommerce">
                     <a href="https://knoir.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1945,7 +2248,6 @@
                     </a>
                 </div>
 
-                <!-- Project 6: Samina Store (Retail) -->
                 <div class="project-card fade-in" data-category="retail">
                     <a href="https://saminastore.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1966,7 +2268,7 @@
     </section>
 
     <!-- ============================================================
-    TESTIMONIALS (BATCH 2)
+    TESTIMONIALS
     ============================================================ -->
     <section class="testimonials" id="testimonials">
         <div class="container">
@@ -1998,6 +2300,78 @@
                     <div class="author">Mike Johnson</div>
                     <div class="role">CTO, HealthPlus</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    BLOG / NEWS SECTION (BATCH 3)
+    ============================================================ -->
+    <section class="blog-section" id="blog">
+        <div class="container">
+            <h2 class="section-title">Latest <span>Insights</span></h2>
+            <p class="section-desc">Stay updated with our latest news, tips, and industry insights.</p>
+            <div class="section-divider"></div>
+
+            <div class="blog-grid">
+
+                <!-- Blog Post 1 -->
+                <article class="blog-card fade-in">
+                    <a href="#" onclick="alert('Blog post coming soon!')">
+                        <div class="blog-image">
+                            <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Digital Transformation" />
+                            <span class="blog-category">Digitalization</span>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar-alt"></i> 1 Sep 2026</span>
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3 class="blog-title">How Digital Transformation is Reshaping UK Businesses</h3>
+                            <p class="blog-excerpt">Discover how UK businesses are leveraging digital tools to streamline operations, boost productivity, and stay competitive in a rapidly evolving market.</p>
+                            <span class="blog-link">Read More <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-card fade-in">
+                    <a href="#" onclick="alert('Blog post coming soon!')">
+                        <div class="blog-image">
+                            <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600" alt="ERP Systems" />
+                            <span class="blog-category">ERP</span>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar-alt"></i> 28 Aug 2026</span>
+                                <span><i class="far fa-clock"></i> 4 min read</span>
+                            </div>
+                            <h3 class="blog-title">Why Modern ERP Systems Are the Backbone of Business Growth</h3>
+                            <p class="blog-excerpt">From inventory management to financial reporting, learn how a modern ERP system can unify your operations and drive sustainable growth.</p>
+                            <span class="blog-link">Read More <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-card fade-in">
+                    <a href="#" onclick="alert('Blog post coming soon!')">
+                        <div class="blog-image">
+                            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600" alt="E-Commerce" />
+                            <span class="blog-category">E-Commerce</span>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar-alt"></i> 20 Aug 2026</span>
+                                <span><i class="far fa-clock"></i> 6 min read</span>
+                            </div>
+                            <h3 class="blog-title">Building a Luxury E-Commerce Brand: Lessons from Kitchen Noir</h3>
+                            <p class="blog-excerpt">How Kitchen Noir built a premium online presence with stunning design, seamless UX, and a powerful backend that handles everything from orders to customer data.</p>
+                            <span class="blog-link">Read More <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </article>
+
             </div>
         </div>
     </section>
@@ -2236,7 +2610,7 @@
     ============================================================ -->
     <div id="adminLoginModal" class="page-modal" style="background:rgba(0,0,0,0.9);backdrop-filter:blur(12px);display:none;justify-content:center;align-items:center;">
         <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:40px 36px;max-width:420px;width:100%;border:1px solid var(--border-subtle);position:relative;">
-            <button class="modal-close-btn" style="position:absolute;top:12px;right:16px;font-size:1.6rem;background:transparent;border:none;color:var(--text-muted);cursor:pointer;width:auto;height:auto;" onclick="closePageModal('adminLoginModal')">&times;</button>
+            <button class="modal-close-btn" style="position:absolute;top:12px;right:16px;font-size:1.6rem;background:transparent;border:none;color:var(--text-muted);cursor:none;width:auto;height:auto;" onclick="closePageModal('adminLoginModal')">&times;</button>
             <h2 style="font-weight:800;font-size:1.4rem;margin-bottom:4px;"><i class="fas fa-lock" style="color:var(--accent-gold);"></i> Admin Login</h2>
             <div style="width:48px;height:2px;background:var(--accent-gold);margin:8px 0 20px;border-radius:4px;"></div>
             <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%;padding:14px 16px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-size:1rem;font-family:'Inter',sans-serif;color:var(--text-primary);margin-bottom:16px;outline:none;" />
@@ -2316,11 +2690,149 @@
     </a>
 
     <!-- ============================================================
-    JAVASCRIPT (BATCH 2 + ALL PREVIOUS)
+    JAVASCRIPT (BATCH 3 + ALL PREVIOUS)
     ============================================================ -->
     <script>
         // ============================================================
-        // 1. NAVBAR — HAMBURGER TOGGLE
+        // 0. LOADING SKELETON (BATCH 3)
+        // ============================================================
+        window.addEventListener('load', function() {
+            const skeleton = document.getElementById('loadingSkeleton');
+            setTimeout(function() {
+                skeleton.classList.add('hidden');
+            }, 600);
+        });
+
+        // ============================================================
+        // 1. CUSTOM CURSOR (BATCH 3)
+        // ============================================================
+        const cursor = document.getElementById('customCursor');
+        const dot = cursor.querySelector('.cursor-dot');
+        const ring = cursor.querySelector('.cursor-ring');
+
+        let mouseX = 0,
+            mouseY = 0;
+        let ringX = 0,
+            ringY = 0;
+
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dot.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px)';
+            ringX += (mouseX - ringX) * 0.08;
+            ringY += (mouseY - ringY) * 0.08;
+            ring.style.transform = 'translate(' + ringX + 'px, ' + ringY + 'px)';
+        });
+
+        // Hover effect for interactive elements
+        const hoverElements = document.querySelectorAll('a, button, .btn, .logo-wrapper, .project-card a, .nav-links a, .theme-toggle, .hamburger, .btn-filter, .delete-btn, .logout-btn, .modal-close-btn');
+
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', function() {
+                cursor.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', function() {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', function() {
+            cursor.classList.add('hidden');
+        });
+        document.addEventListener('mouseenter', function() {
+            cursor.classList.remove('hidden');
+        });
+
+        // ============================================================
+        // 2. PARTICLE BACKGROUND (BATCH 3)
+        // ============================================================
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationId;
+
+        function resizeCanvas() {
+            const hero = canvas.parentElement;
+            const rect = hero.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.3 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(212, 160, 43, ' + this.opacity + ')';
+                ctx.fill();
+
+                // Draw connections
+                for (let i = 0; i < particles.length; i++) {
+                    const dx = this.x - particles[i].x;
+                    const dy = this.y - particles[i].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(this.x, this.y);
+                        ctx.lineTo(particles[i].x, particles[i].y);
+                        ctx.strokeStyle = 'rgba(212, 160, 43, ' + (0.06 * (1 - distance / 120)) + ')';
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function initParticles() {
+            const count = Math.min(Math.floor((canvas.width * canvas.height) / 8000), 120);
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            animationId = requestAnimationFrame(animateParticles);
+        }
+
+        function startParticles() {
+            resizeCanvas();
+            initParticles();
+            animateParticles();
+        }
+
+        window.addEventListener('resize', function() {
+            resizeCanvas();
+            initParticles();
+        });
+
+        // Start particles after loading
+        setTimeout(startParticles, 100);
+
+        // ============================================================
+        // 3. NAVBAR — HAMBURGER TOGGLE
         // ============================================================
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
@@ -2338,14 +2850,14 @@
         });
 
         // ============================================================
-        // 2. SCROLL TO TOP
+        // 4. SCROLL TO TOP
         // ============================================================
         window.scrollToTop = function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
         // ============================================================
-        // 3. FULL PAGE MODALS
+        // 5. FULL PAGE MODALS
         // ============================================================
         window.openPageModal = function(id) {
             const modal = document.getElementById(id);
@@ -2376,7 +2888,7 @@
         });
 
         // ============================================================
-        // 4. CONTACT FORM
+        // 6. CONTACT FORM
         // ============================================================
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -2400,7 +2912,7 @@
         });
 
         // ============================================================
-        // 5. ADMIN LOGIN
+        // 7. ADMIN LOGIN
         // ============================================================
         const ADMIN_PASS = "admin123";
 
@@ -2438,7 +2950,7 @@
         };
 
         // ============================================================
-        // 6. ADMIN TABS
+        // 8. ADMIN TABS
         // ============================================================
         window.switchTab = function(tab) {
             document.querySelectorAll('.admin-tabs button').forEach(btn => btn.classList.remove('active'));
@@ -2456,7 +2968,7 @@
         };
 
         // ============================================================
-        // 7. ADMIN DATA (STATIC)
+        // 9. ADMIN DATA (STATIC)
         // ============================================================
         function loadAdminProjects() {
             const list = document.getElementById('adminProjectsList');
@@ -2484,7 +2996,7 @@
         }
 
         // ============================================================
-        // 8. ADMIN IMAGE PREVIEW
+        // 10. ADMIN IMAGE PREVIEW
         // ============================================================
         window.previewProjectImage = function(event) {
             const file = event.target.files[0];
@@ -2500,7 +3012,7 @@
         };
 
         // ============================================================
-        // 9. ADMIN SAVE PROJECT
+        // 11. ADMIN SAVE PROJECT
         // ============================================================
         window.saveProject = function() {
             const name = document.getElementById('projName').value.trim();
@@ -2524,7 +3036,7 @@
         };
 
         // ============================================================
-        // 10. BACK TO TOP BUTTON
+        // 12. BACK TO TOP BUTTON
         // ============================================================
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', function() {
@@ -2539,7 +3051,7 @@
         });
 
         // ============================================================
-        // 11. SCROLL PROGRESS BAR
+        // 13. SCROLL PROGRESS BAR
         // ============================================================
         const progressBar = document.getElementById('progressBar');
         window.addEventListener('scroll', function() {
@@ -2550,7 +3062,7 @@
         });
 
         // ============================================================
-        // 12. NUMBER COUNTER ANIMATION
+        // 14. NUMBER COUNTER ANIMATION
         // ============================================================
         const counters = document.querySelectorAll('.counter-number');
         let countersAnimated = false;
@@ -2581,7 +3093,7 @@
         window.addEventListener('load', function() { setTimeout(animateCounters, 500); });
 
         // ============================================================
-        // 13. TYPING ANIMATION
+        // 15. TYPING ANIMATION
         // ============================================================
         (function typingAnimation() {
             const heading = document.getElementById('typingHeading');
@@ -2625,7 +3137,7 @@
         })();
 
         // ============================================================
-        // 14. DARK / LIGHT MODE TOGGLE
+        // 16. DARK / LIGHT MODE TOGGLE
         // ============================================================
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
@@ -2644,7 +3156,7 @@
         });
 
         // ============================================================
-        // 15. PROJECT FILTER (BATCH 2)
+        // 17. PROJECT FILTER
         // ============================================================
         const filterButtons = document.querySelectorAll('.btn-filter');
         const projectCards = document.querySelectorAll('.project-card');
@@ -2675,7 +3187,7 @@
         });
 
         // ============================================================
-        // 16. SCROLL-TRIGGERED FADE-IN (Smooth Page Transitions)
+        // 18. SCROLL-TRIGGERED FADE-IN
         // ============================================================
         const fadeElements = document.querySelectorAll('.fade-in');
 
@@ -2696,13 +3208,13 @@
         fadeElements.forEach(el => observer.observe(el));
 
         // ============================================================
-        // 17. INIT
+        // 19. INIT
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('nexify_admin') === 'true') {
                 console.log('Admin session active.');
             }
-            console.log('🚀 Nexify Nova — Batch 2 Complete: Testimonials, Filter, Smooth Transitions.');
+            console.log('🚀 Nexify Nova — Batch 3 Complete: Particle Background, Loading Skeleton, Blog/News Section, Custom Cursor.');
         });
     </script>
 </body>
