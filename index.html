@@ -9,6 +9,7 @@
     <link rel="icon" href="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Supabase Library Load (Sirf Ye Library Load Karega, Variable Nahi Banayega) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
@@ -548,15 +549,15 @@
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
-        // Supabase Configuration - SIRF EK BAAR (Yahan se DUPLICATE DELETE karein)
+        // Supabase Configuration - SIRF EK BAAR
         const supabase = window.supabase.createClient(
             'https://wsflwxtmuuauqmsfhnux.supabase.co',
             'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I'
         );
         const ADMIN_PASS = "admin123";
 
-        // --- Navbar Functions ---
-        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        // --- Navbar Functions (Window par bind - HTML attributes ke liye) ---
+        window.scrollToTop = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
         window.openModal = function(id) {
             const modal = document.getElementById(id);
@@ -580,13 +581,12 @@
         });
 
         // --- Dynamic Carousel ---
-        let carouselIndex = 0;
-
         window.moveCarousel = function(direction) {
             const carousel = document.getElementById('projectsCarousel');
             const cards = carousel.children;
             const cardWidth = cards[0].getBoundingClientRect().width;
 
+            let carouselIndex = 0; // Reset index for static cards
             carouselIndex += direction;
             if (carouselIndex < 0) carouselIndex = cards.length - 1;
             if (carouselIndex >= cards.length) carouselIndex = 0;
