@@ -20,38 +20,31 @@
                    1. ROOT VARIABLES — RELAY DARK THEME
                    ============================================================ */
         :root {
-            /* Dark palette */
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
             --bg-card: #181820;
             --bg-card-hover: #20202e;
             --bg-elevated: #1e1e2a;
 
-            /* Text */
             --text-primary: #f0f0f5;
             --text-secondary: #a0a0b8;
             --text-muted: #6a6a82;
 
-            /* Accent */
             --accent-gold: #d4a02b;
             --accent-gold-light: #e8c45a;
             --accent-gold-dark: #b8891f;
 
-            /* Borders */
             --border-subtle: rgba(255, 255, 255, 0.06);
             --border-medium: rgba(255, 255, 255, 0.10);
 
-            /* Shadows */
             --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
             --shadow-glow: 0 0 60px rgba(212, 160, 43, 0.06);
 
-            /* Radius */
             --radius-sm: 8px;
             --radius-md: 16px;
             --radius-lg: 24px;
             --radius-xl: 32px;
 
-            /* Transitions */
             --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -221,7 +214,7 @@
             height: 44px;
             object-fit: contain;
             border-radius: 50%;
-            border: 2px solid var(--accent-gold);
+            /* border: 2px solid var(--accent-gold);  <-- YEH HATAYA GAYA HAI */
         }
 
         .brand-name {
@@ -503,7 +496,7 @@
         }
 
         /* ============================================================
-                   10. PROJECTS — ECOMMERCE GRID STYLE
+                   10. PROJECTS — ECOMMERCE GRID STYLE (FIXED IMAGES)
                    ============================================================ */
         .projects-section {
             padding: 80px 0;
@@ -512,7 +505,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 28px;
             margin-top: 8px;
         }
@@ -536,15 +529,20 @@
             overflow: hidden;
             background: var(--bg-secondary);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .project-card .project-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* <-- IMAGE CROP NAHI HOGI, POORI DIKHEGI */
             transition: transform 0.5s ease;
+            background: var(--bg-secondary);
+            padding: 4px;
         }
         .project-card:hover .project-image img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .project-card .project-image .project-badge {
@@ -559,6 +557,7 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            z-index: 2;
         }
 
         .project-card .project-content {
@@ -824,6 +823,7 @@
             color: var(--text-muted);
             padding: 44px 0 32px;
             text-align: center;
+            border-top: 1px solid var(--border-subtle);
         }
         .footer .footer-brand {
             font-size: 1.6rem;
@@ -878,7 +878,6 @@
             inset: 0;
             z-index: 2000;
             background: var(--bg-primary);
-            padding: 40px 24px;
             overflow-y: auto;
             animation: pageModalIn 0.4s ease;
         }
@@ -886,7 +885,7 @@
         @keyframes pageModalIn {
             from {
                 opacity: 0;
-                transform: scale(0.97) translateY(20px);
+                transform: scale(0.98) translateY(10px);
             }
             to {
                 opacity: 1;
@@ -894,77 +893,105 @@
             }
         }
 
-        .page-modal .modal-container {
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 20px 0 60px;
-            position: relative;
-        }
-
-        .page-modal .modal-close {
-            position: sticky;
-            top: 0;
-            float: right;
-            font-size: 1.8rem;
+        .page-modal .modal-close-btn {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
             cursor: pointer;
             color: var(--text-muted);
             transition: all var(--transition);
-            background: none;
-            border: none;
-            padding: 8px 12px;
-            z-index: 10;
-            background: var(--bg-primary);
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            line-height: 1;
         }
-        .page-modal .modal-close:hover {
+        .page-modal .modal-close-btn:hover {
             color: var(--text-primary);
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            border-color: var(--accent-gold);
             transform: rotate(90deg);
         }
 
-        .page-modal .modal-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--accent-gold);
-            background: rgba(212, 160, 43, 0.08);
-            padding: 4px 16px;
-            border-radius: 50px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(212, 160, 43, 0.10);
+        /* Page Hero Image inside modal */
+        .modal-page-hero {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
-
-        .page-modal h1 {
-            font-size: clamp(2.4rem, 5vw, 3.6rem);
+        .modal-page-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+        .modal-page-hero .page-title-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.1) 100%);
+        }
+        .modal-page-hero .page-title-overlay h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
             font-weight: 800;
             letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-bottom: 6px;
+            color: var(--text-primary);
+            text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+        }
+        .modal-page-hero .page-title-overlay h1 span {
+            color: var(--accent-gold);
+        }
+        .modal-page-hero .page-title-overlay p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
         }
 
-        .page-modal .modal-divider {
-            width: 60px;
-            height: 3px;
-            background: var(--accent-gold);
-            margin: 16px 0 28px;
-            border-radius: 4px;
+        .modal-page-content {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 60px 24px 40px;
         }
 
-        .page-modal .modal-body {
+        .modal-page-content .content-text {
             font-size: 1.05rem;
             color: var(--text-secondary);
             line-height: 1.9;
         }
-
-        .page-modal .modal-body p {
+        .modal-page-content .content-text p {
             margin-bottom: 18px;
         }
-
-        .page-modal .modal-body strong {
+        .modal-page-content .content-text strong {
             color: var(--text-primary);
         }
+        .modal-page-content .content-text .highlight-quote {
+            background: var(--bg-card);
+            padding: 24px 32px;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--accent-gold);
+            margin: 24px 0;
+        }
 
-        /* Hierarchy Grid inside modal */
+        /* Hierarchy Grid inside modal page */
         .hierarchy-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -998,15 +1025,6 @@
             font-size: 0.85rem;
             color: var(--text-secondary);
             line-height: 1.5;
-        }
-
-        @media (max-width: 500px) {
-            .hierarchy-grid {
-                grid-template-columns: 1fr;
-            }
-            .page-modal {
-                padding: 20px 16px;
-            }
         }
 
         /* ============================================================
@@ -1160,6 +1178,15 @@
             font-size: 0.9rem;
         }
 
+        /* Admin Preview Image - No Crop */
+        #projImagePreview {
+            max-height: 100px;
+            object-fit: contain;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            padding: 4px;
+        }
+
         /* ============================================================
                    17. RESPONSIVE
                    ============================================================ */
@@ -1171,7 +1198,10 @@
                 padding: 28px 24px;
             }
             .projects-grid {
-                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+            .modal-page-hero {
+                height: 220px;
             }
         }
 
@@ -1222,6 +1252,19 @@
             .projects-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .hierarchy-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-page-hero .page-title-overlay h1 {
+                font-size: 2.2rem;
+            }
+            .page-modal .modal-close-btn {
+                top: 12px;
+                right: 16px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1248,6 +1291,15 @@
             }
             .admin-project-form {
                 padding: 18px 14px;
+            }
+            .modal-page-hero {
+                height: 160px;
+            }
+            .modal-page-hero .page-title-overlay h1 {
+                font-size: 1.8rem;
+            }
+            .modal-page-content {
+                padding: 30px 16px 24px;
             }
         }
 
@@ -1293,7 +1345,7 @@
 <body>
 
     <!-- ============================================================
-    NAVBAR
+    NAVBAR (MAIN)
     ============================================================ -->
     <nav class="navbar" id="navbar">
         <div class="container">
@@ -1427,7 +1479,7 @@
     </section>
 
     <!-- ============================================================
-    PROJECTS — ECOMMERCE GRID STYLE
+    PROJECTS — FIXED IMAGES & NO CROP
     ============================================================ -->
     <section class="projects-section" id="projects">
         <div class="container">
@@ -1437,11 +1489,11 @@
 
             <div class="projects-grid">
 
-                <!-- Project 1 -->
+                <!-- Project 1: Abbas Store (IMAGE SWAPPED TO FIX USER COMPLAINT) -->
                 <div class="project-card fade-in">
                     <a href="https://abbasstore.vercel.app" target="_blank">
                         <div class="project-image">
-                            <img src="https://i.ibb.co/ZRgNtjC4/Chat-GPT-Image-Sep-1-2026-08-25-07-AM.png" alt="Abbas Store" />
+                            <img src="https://i.ibb.co/CshqJYtp/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png" alt="Abbas Store" />
                             <span class="project-badge">Live</span>
                         </div>
                         <div class="project-content">
@@ -1453,7 +1505,7 @@
                     </a>
                 </div>
 
-                <!-- Project 2 -->
+                <!-- Project 2: JP Store ERP -->
                 <div class="project-card fade-in">
                     <a href="https://jpstoreerp.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1469,11 +1521,11 @@
                     </a>
                 </div>
 
-                <!-- Project 3 -->
+                <!-- Project 3: Apex Grocers (IMAGE SWAPPED TO FIX USER COMPLAINT) -->
                 <div class="project-card fade-in">
                     <a href="https://apexstore.vercel.app" target="_blank">
                         <div class="project-image">
-                            <img src="https://i.ibb.co/CshqJYtp/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png" alt="Apex Grocers" />
+                            <img src="https://i.ibb.co/ZRgNtjC4/Chat-GPT-Image-Sep-1-2026-08-25-07-AM.png" alt="Apex Grocers" />
                             <span class="project-badge">Live</span>
                         </div>
                         <div class="project-content">
@@ -1485,7 +1537,7 @@
                     </a>
                 </div>
 
-                <!-- Project 4 -->
+                <!-- Project 4: Nayyer Medical -->
                 <div class="project-card fade-in">
                     <a href="https://nayyarms.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1501,7 +1553,7 @@
                     </a>
                 </div>
 
-                <!-- Project 5 -->
+                <!-- Project 5: Kitchen Noir -->
                 <div class="project-card fade-in">
                     <a href="https://knoir.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1517,7 +1569,7 @@
                     </a>
                 </div>
 
-                <!-- Project 6 -->
+                <!-- Project 6: Samina Store -->
                 <div class="project-card fade-in">
                     <a href="https://saminastore.vercel.app" target="_blank">
                         <div class="project-image">
@@ -1610,7 +1662,7 @@
     </section>
 
     <!-- ============================================================
-    FOOTER
+    FOOTER (MAIN)
     ============================================================ -->
     <footer class="footer">
         <div class="container">
@@ -1628,63 +1680,179 @@
     </footer>
 
     <!-- ============================================================
-    FULL PAGE MODALS — CEO, Vision, Hierarchy
+    FULL PAGE MODALS (CEO, Vision, Hierarchy)
     ============================================================ -->
 
-    <!-- CEO Page -->
+    <!-- CEO PAGE -->
     <div id="ceoPage" class="page-modal">
-        <div class="modal-container">
-            <button class="modal-close" onclick="closePageModal('ceoPage')">&times;</button>
-            <span class="modal-badge"><i class="fas fa-user-tie"></i> CEO's Message</span>
-            <h1>Our Promise To You</h1>
-            <div class="modal-divider"></div>
-            <div class="modal-body">
-                <p>At Nexify Nova, we believe that every business has a unique story to tell. Our mission is to transform that story into a digital reality. We don't just build websites; we build long-term partnerships, ensuring that your online presence is as powerful as your vision.</p>
-                <p>We are not just a service provider; we are your dedicated digital growth partner. Your success is our success, and we are with you at every step of this journey.</p>
-                <p style="margin-top:24px;padding:20px 24px;background:var(--bg-card);border-radius:var(--radius-md);border-left:3px solid var(--accent-gold);">
-                    <strong style="color:var(--accent-gold);">— Zuma Lasiaf</strong><br />
-                    <span style="color:var(--text-muted);font-size:0.9rem;">Founder &amp; CEO, Nexify Nova</span>
-                </p>
+        <button class="modal-close-btn" onclick="closePageModal('ceoPage')">&times;</button>
+
+        <!-- Navbar (Duplicate) -->
+        <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
+            <div class="container">
+                <a href="#" class="logo-wrapper" onclick="closePageModal('ceoPage'); scrollToTop();">
+                    <img src="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Nexify Nova Logo" class="logo-img" />
+                    <div>
+                        <div class="brand-name">NEXIFY <span>NOVA</span></div>
+                        <div class="brand-tagline">Digital Business Solutions</div>
+                    </div>
+                </a>
+                <ul class="nav-links" style="display:flex;">
+                    <li><a href="#" onclick="closePageModal('ceoPage'); scrollToTop();"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="closePageModal('ceoPage'); openPageModal('ceoPage');"><i class="fas fa-user-tie"></i> CEO</a></li>
+                    <li><a href="#" onclick="closePageModal('ceoPage'); openPageModal('visionPage');"><i class="fas fa-eye"></i> Vision</a></li>
+                    <li><a href="#" onclick="closePageModal('ceoPage'); openPageModal('hierarchyPage');"><i class="fas fa-sitemap"></i> Team</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Image -->
+        <div class="modal-page-hero">
+            <img src="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="CEO Message" />
+            <div class="page-title-overlay">
+                <h1>CEO <span>Message</span></h1>
+                <p>Our promise to you</p>
             </div>
         </div>
+
+        <!-- Content -->
+        <div class="modal-page-content">
+            <div class="content-text">
+                <p>At Nexify Nova, we believe that every business has a unique story to tell. Our mission is to transform that story into a digital reality. We don't just build websites; we build long-term partnerships, ensuring that your online presence is as powerful as your vision.</p>
+                <div class="highlight-quote">
+                    <p style="margin-bottom:0;"><strong style="color:var(--accent-gold);font-size:1.1rem;">"Your success is our success."</strong></p>
+                </div>
+                <p>We are not just a service provider; we are your dedicated digital growth partner. We are with you at every step of this journey, from the first conversation to the final launch and beyond.</p>
+                <div style="margin-top:24px;padding:20px 24px;background:var(--bg-card);border-radius:var(--radius-md);border-left:3px solid var(--accent-gold);">
+                    <strong style="color:var(--accent-gold);">— Zuma Lasiaf</strong><br />
+                    <span style="color:var(--text-muted);font-size:0.9rem;">Founder &amp; CEO, Nexify Nova</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer (Duplicate) -->
+        <footer class="footer" style="border-top:1px solid var(--border-subtle);">
+            <div class="container">
+                <div class="footer-brand">NEXIFY <span>NOVA</span></div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
-    <!-- Vision Page -->
+    <!-- VISION PAGE -->
     <div id="visionPage" class="page-modal">
-        <div class="modal-container">
-            <button class="modal-close" onclick="closePageModal('visionPage')">&times;</button>
-            <span class="modal-badge"><i class="fas fa-eye"></i> Our Vision</span>
-            <h1>Nexify Nova's Vision</h1>
-            <div class="modal-divider"></div>
-            <div class="modal-body">
-                <p><strong style="color:var(--text-primary);font-size:1.2rem;">"To equip every business with digital power, enabling them to compete on a global level."</strong></p>
+        <button class="modal-close-btn" onclick="closePageModal('visionPage')">&times;</button>
+
+        <!-- Navbar (Duplicate) -->
+        <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
+            <div class="container">
+                <a href="#" class="logo-wrapper" onclick="closePageModal('visionPage'); scrollToTop();">
+                    <img src="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Nexify Nova Logo" class="logo-img" />
+                    <div>
+                        <div class="brand-name">NEXIFY <span>NOVA</span></div>
+                        <div class="brand-tagline">Digital Business Solutions</div>
+                    </div>
+                </a>
+                <ul class="nav-links" style="display:flex;">
+                    <li><a href="#" onclick="closePageModal('visionPage'); scrollToTop();"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="closePageModal('visionPage'); openPageModal('ceoPage');"><i class="fas fa-user-tie"></i> CEO</a></li>
+                    <li><a href="#" onclick="closePageModal('visionPage'); openPageModal('visionPage');"><i class="fas fa-eye"></i> Vision</a></li>
+                    <li><a href="#" onclick="closePageModal('visionPage'); openPageModal('hierarchyPage');"><i class="fas fa-sitemap"></i> Team</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Image -->
+        <div class="modal-page-hero">
+            <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Vision" />
+            <div class="page-title-overlay">
+                <h1>Our <span>Vision</span></h1>
+                <p>Shaping the future of digital business</p>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="modal-page-content">
+            <div class="content-text">
+                <div class="highlight-quote">
+                    <p style="margin-bottom:0;font-size:1.3rem;font-weight:600;color:var(--text-primary);">"To equip every business with digital power, enabling them to compete on a global level."</p>
+                </div>
                 <p>We envision a future where every small and large business can leverage modern technology to fully realize its potential.</p>
                 <p>We believe that technology should be accessible, beautiful, and powerful — and that's exactly what we deliver to every client who trusts us with their digital journey.</p>
                 <div style="margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                    <div style="background:var(--bg-card);padding:20px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);">
-                        <div style="font-size:2rem;color:var(--accent-gold);margin-bottom:4px;">🌍</div>
+                    <div style="background:var(--bg-card);padding:24px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);text-align:center;">
+                        <div style="font-size:2.4rem;color:var(--accent-gold);margin-bottom:4px;">🌍</div>
                         <h4 style="font-weight:700;font-size:1rem;">Global Reach</h4>
                         <p style="font-size:0.85rem;color:var(--text-muted);">Empowering businesses worldwide.</p>
                     </div>
-                    <div style="background:var(--bg-card);padding:20px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);">
-                        <div style="font-size:2rem;color:var(--accent-gold);margin-bottom:4px;">⚡</div>
+                    <div style="background:var(--bg-card);padding:24px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);text-align:center;">
+                        <div style="font-size:2.4rem;color:var(--accent-gold);margin-bottom:4px;">⚡</div>
                         <h4 style="font-weight:700;font-size:1rem;">Innovation First</h4>
                         <p style="font-size:0.85rem;color:var(--text-muted);">Always pushing the boundaries.</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Footer (Duplicate) -->
+        <footer class="footer" style="border-top:1px solid var(--border-subtle);">
+            <div class="container">
+                <div class="footer-brand">NEXIFY <span>NOVA</span></div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
-    <!-- Hierarchy Page -->
+    <!-- HIERARCHY (TEAM) PAGE -->
     <div id="hierarchyPage" class="page-modal">
-        <div class="modal-container">
-            <button class="modal-close" onclick="closePageModal('hierarchyPage')">&times;</button>
-            <span class="modal-badge"><i class="fas fa-sitemap"></i> Our Team</span>
-            <h1>Meet the Team</h1>
-            <div class="modal-divider"></div>
-            <div class="modal-body">
-                <p style="margin-bottom:20px;">The people behind Nexify Nova — dedicated professionals committed to your success.</p>
+        <button class="modal-close-btn" onclick="closePageModal('hierarchyPage')">&times;</button>
+
+        <!-- Navbar (Duplicate) -->
+        <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
+            <div class="container">
+                <a href="#" class="logo-wrapper" onclick="closePageModal('hierarchyPage'); scrollToTop();">
+                    <img src="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Nexify Nova Logo" class="logo-img" />
+                    <div>
+                        <div class="brand-name">NEXIFY <span>NOVA</span></div>
+                        <div class="brand-tagline">Digital Business Solutions</div>
+                    </div>
+                </a>
+                <ul class="nav-links" style="display:flex;">
+                    <li><a href="#" onclick="closePageModal('hierarchyPage'); scrollToTop();"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="closePageModal('hierarchyPage'); openPageModal('ceoPage');"><i class="fas fa-user-tie"></i> CEO</a></li>
+                    <li><a href="#" onclick="closePageModal('hierarchyPage'); openPageModal('visionPage');"><i class="fas fa-eye"></i> Vision</a></li>
+                    <li><a href="#" onclick="closePageModal('hierarchyPage'); openPageModal('hierarchyPage');"><i class="fas fa-sitemap"></i> Team</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Image -->
+        <div class="modal-page-hero">
+            <img src="https://images.pexels.com/photos/3182820/pexels-photo-3182820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Our Team" />
+            <div class="page-title-overlay">
+                <h1>Meet the <span>Team</span></h1>
+                <p>The people behind Nexify Nova</p>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="modal-page-content">
+            <div class="content-text">
+                <p>Dedicated professionals committed to your success. We bring together diverse expertise to deliver world-class digital solutions.</p>
                 <div class="hierarchy-grid">
                     <div class="hierarchy-card"><h4>Miss Zuma Lasiaf</h4><div class="role">Founder &amp; CEO</div><p>Leading the vision and strategy of Nexify Nova.</p></div>
                     <div class="hierarchy-card"><h4>Mr. Faisal Ilyas</h4><div class="role">Country Head — Marketing &amp; Sales</div><p>UK — Driving marketing and sales across the region.</p></div>
@@ -1696,6 +1864,21 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer (Duplicate) -->
+        <footer class="footer" style="border-top:1px solid var(--border-subtle);">
+            <div class="container">
+                <div class="footer-brand">NEXIFY <span>NOVA</span></div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
     <!-- ============================================================
@@ -1703,7 +1886,7 @@
     ============================================================ -->
     <div id="adminLoginModal" class="page-modal" style="background:rgba(0,0,0,0.9);backdrop-filter:blur(12px);display:none;justify-content:center;align-items:center;">
         <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:40px 36px;max-width:420px;width:100%;border:1px solid var(--border-subtle);position:relative;">
-            <button class="modal-close" style="position:absolute;top:12px;right:16px;font-size:1.6rem;background:transparent;border:none;color:var(--text-muted);cursor:pointer;" onclick="closePageModal('adminLoginModal')">&times;</button>
+            <button class="modal-close-btn" style="position:absolute;top:12px;right:16px;font-size:1.6rem;background:transparent;border:none;color:var(--text-muted);cursor:pointer;width:auto;height:auto;" onclick="closePageModal('adminLoginModal')">&times;</button>
             <h2 style="font-weight:800;font-size:1.4rem;margin-bottom:4px;"><i class="fas fa-lock" style="color:var(--accent-gold);"></i> Admin Login</h2>
             <div style="width:48px;height:2px;background:var(--accent-gold);margin:8px 0 20px;border-radius:4px;"></div>
             <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%;padding:14px 16px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-size:1rem;font-family:'Inter',sans-serif;color:var(--text-primary);margin-bottom:16px;outline:none;" />
@@ -1722,7 +1905,6 @@
                 <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
             </div>
 
-            <!-- Add Project Form -->
             <div class="admin-project-form">
                 <h3>➕ Add New Project</h3>
                 <div class="form-group">
@@ -1744,20 +1926,18 @@
                         <input type="file" id="projImageFile" accept="image/*" onchange="previewProjectImage(event)" />
                     </div>
                     <div style="margin-top:10px;">
-                        <img id="projImagePreview" src="" alt="Preview" style="display:none;max-width:80px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);" />
+                        <img id="projImagePreview" src="" alt="Preview" style="display:none;max-width:120px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);background:var(--bg-secondary);object-fit:contain;" />
                     </div>
                     <input type="hidden" id="projImageUrl" value="" />
                 </div>
                 <button class="btn btn-primary" onclick="saveProject()" style="width:100%;justify-content:center;"><i class="fas fa-save"></i> Save Project</button>
             </div>
 
-            <!-- Projects List -->
             <div style="margin-bottom:24px;">
                 <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:12px;">📋 All Projects</h3>
                 <div id="adminProjectsList"></div>
             </div>
 
-            <!-- Tabs -->
             <div class="admin-tabs">
                 <button class="active" onclick="switchTab('messages')">Contact Messages</button>
                 <button onclick="switchTab('clients')">Registered Clients</button>
@@ -1808,6 +1988,8 @@
             if (modal) {
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
+                // Scroll to top of modal
+                modal.scrollTop = 0;
             }
         };
 
@@ -1819,7 +2001,6 @@
             }
         };
 
-        // Close on Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 document.querySelectorAll('.page-modal').forEach(m => {
@@ -1832,11 +2013,10 @@
         });
 
         // ============================================================
-        // 4. CONTACT FORM (Static — No Database)
+        // 4. CONTACT FORM
         // ============================================================
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
             const name = document.getElementById('contactName').value.trim();
             const email = document.getElementById('contactEmail').value.trim();
             const phone = document.getElementById('contactPhone').value.trim();
@@ -1849,11 +2029,9 @@
 
             document.getElementById('successMsg').style.display = 'block';
             this.reset();
-
             setTimeout(() => {
                 document.getElementById('successMsg').style.display = 'none';
             }, 5000);
-
             console.log('Contact Form Submitted (Demo):', { name, email, phone, message });
             alert('Thank you! Your message has been received. (No database connected yet.)');
         });
@@ -1897,7 +2075,7 @@
         };
 
         // ============================================================
-        // 6. ADMIN TAB SWITCHING
+        // 6. ADMIN TABS
         // ============================================================
         window.switchTab = function(tab) {
             document.querySelectorAll('.admin-tabs button').forEach(btn => btn.classList.remove('active'));
@@ -1915,14 +2093,14 @@
         };
 
         // ============================================================
-        // 7. ADMIN — STATIC DATA
+        // 7. ADMIN DATA (STATIC)
         // ============================================================
         function loadAdminProjects() {
             const list = document.getElementById('adminProjectsList');
             list.innerHTML = `
                         <div class="admin-item"><strong>Abbas Store v7.3</strong><small>abbasstore.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
                         <div class="admin-item"><strong>JP Store ERP</strong><small>jpstoreerp.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
-                        <div class="admin-item"><strong>Kitchen Noir</strong><small>knoir.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+                        <div class="admin-item"><strong>Apex Grocers</strong><small>apexstore.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
                     `;
         }
 
@@ -1943,7 +2121,7 @@
         }
 
         // ============================================================
-        // 8. ADMIN — PROJECT IMAGE PREVIEW
+        // 8. ADMIN IMAGE PREVIEW
         // ============================================================
         window.previewProjectImage = function(event) {
             const file = event.target.files[0];
@@ -1959,7 +2137,7 @@
         };
 
         // ============================================================
-        // 9. ADMIN — SAVE PROJECT (Static Demo)
+        // 9. ADMIN SAVE PROJECT
         // ============================================================
         window.saveProject = function() {
             const name = document.getElementById('projName').value.trim();
@@ -1989,7 +2167,7 @@
             if (localStorage.getItem('nexify_admin') === 'true') {
                 console.log('Admin session active.');
             }
-            console.log('🚀 Nexify Nova — Relay Dark Theme loaded.');
+            console.log('🚀 Nexify Nova — Final Version with Full Pages & Fixed Images.');
         });
     </script>
 </body>
