@@ -10,42 +10,23 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
-        /* ---------- Reset ---------- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7fc; color: #1a2a3a; line-height: 1.7; }
         a { text-decoration: none; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* ---------- Buttons ---------- */
         .btn-primary { background: #d4a02b; color: #1a2a3a; padding: 14px 40px; border-radius: 50px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s ease; display: inline-block; box-shadow: 0 10px 25px rgba(212, 160, 43, 0.3); }
         .btn-primary:hover { background: #b8891f; transform: translateY(-3px); box-shadow: 0 15px 35px rgba(212, 160, 43, 0.4); }
         .btn-outline { background: transparent; color: #fff; padding: 14px 40px; border-radius: 50px; font-weight: 700; font-size: 1rem; border: 2px solid #fff; cursor: pointer; transition: all 0.3s ease; display: inline-block; }
         .btn-outline:hover { background: #fff; color: #1a2a3a; }
 
-        /* ---------- Navbar ---------- */
+        /* Navbar */
         .navbar { background: #1a2a3a; padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-
-        /* Logo */
         .logo-wrapper { display: flex; flex-direction: column; align-items: flex-start; }
         .logo-link { display: flex; align-items: center; gap: 14px; text-decoration: none; }
         .brand-name { font-size: 1.9rem; font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: 1px; }
         .brand-name span { color: #d4a02b; text-shadow: 0 0 30px rgba(212, 160, 43, 0.3); }
-
-        @keyframes logoZoomBurst {
-            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; filter: drop-shadow(0 0 0px rgba(212, 160, 43, 0)); }
-            20% { transform: scale(1.6) rotate(5deg); opacity: 1; filter: drop-shadow(0 0 60px rgba(212, 160, 43, 0.9)); }
-            40% { transform: scale(0.85) rotate(-3deg); filter: drop-shadow(0 0 30px rgba(212, 160, 43, 0.5)); }
-            60% { transform: scale(1.15) rotate(2deg); filter: drop-shadow(0 0 50px rgba(212, 160, 43, 0.7)); }
-            80% { transform: scale(0.95) rotate(-1deg); filter: drop-shadow(0 0 20px rgba(212, 160, 43, 0.3)); }
-            100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 15px rgba(212, 160, 43, 0.2)); }
-        }
-        @keyframes logoGlowPulse {
-            0%, 92%, 100% { filter: drop-shadow(0 0 15px rgba(212, 160, 43, 0.2)); }
-            95% { filter: drop-shadow(0 0 50px rgba(212, 160, 43, 0.9)) drop-shadow(0 0 80px rgba(212, 160, 43, 0.4)); }
-            98% { filter: drop-shadow(0 0 20px rgba(212, 160, 43, 0.3)); }
-        }
-        .animated-logo { display: inline-block; animation: logoZoomBurst 2.5s ease-out forwards, logoGlowPulse 5s ease-in-out 2.8s infinite; transform-origin: center center; }
 
         /* Navigation */
         .nav-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
@@ -55,7 +36,7 @@
         .navbar .nav-cta { background: #d4a02b; color: #1a2a3a; padding: 6px 16px; border-radius: 30px; font-weight: 700; transition: background 0.3s; }
         .navbar .nav-cta:hover { background: #b8891f; color: #fff; }
 
-        /* ---------- Hero ---------- */
+        /* Hero */
         .hero { background: linear-gradient(135deg, #0f1a2b 0%, #1a2a3a 50%, #2a3a4a 100%); color: #fff; padding: 80px 0 70px; text-align: center; position: relative; overflow: hidden; }
         .hero::before { content: "✦"; font-size: 400px; position: absolute; right: -80px; top: -120px; color: rgba(212, 160, 43, 0.04); transform: rotate(15deg); }
         .hero h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 15px; line-height: 1.2; }
@@ -63,14 +44,14 @@
         .hero .subtitle { font-size: 1.3rem; color: #b0c0d0; max-width: 700px; margin: 0 auto 25px; }
         .hero .btn-group { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
 
-        /* ---------- Stats ---------- */
+        /* Stats */
         .trust-bar { background: #fff; padding: 40px 0; border-bottom: 1px solid #eef3f8; }
         .trust-bar .container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; }
         .trust-bar .stat h3 { font-size: 2.2rem; color: #1a2a3a; }
         .trust-bar .stat h3 span { color: #d4a02b; }
         .trust-bar .stat p { color: #6b7a8f; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; }
 
-        /* ---------- Services ---------- */
+        /* Services */
         .services { padding: 80px 0; background: #f8faff; }
         .section-title { text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; }
         .section-title span { color: #d4a02b; }
@@ -82,7 +63,7 @@
         .service-card h3 { font-size: 1.4rem; margin-bottom: 10px; }
         .service-card p { color: #5a6a7e; font-size: 0.95rem; }
 
-        /* ---------- Showcase ---------- */
+        /* Showcase */
         .showcase { padding: 80px 0; background: #fff; }
         .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-top: 30px; }
         .showcase-card { background: #f8faff; border-radius: 20px; overflow: hidden; box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06); text-align: center; transition: all 0.3s ease; }
@@ -93,27 +74,52 @@
         .showcase-card .info { padding: 20px; }
         .showcase-card .info p { color: #5a6a7e; font-size: 0.95rem; }
 
-        /* ---------- Projects ---------- */
+        /* PROJECTS WITH IMAGES */
         .our-projects { padding: 80px 0; background: linear-gradient(135deg, #0f1a2b 0%, #1a2a3a 60%, #2a3a4a 100%); color: #fff; text-align: center; position: relative; overflow: hidden; }
         .our-projects::before { content: "✦"; font-size: 300px; position: absolute; left: -100px; bottom: -120px; color: rgba(212, 160, 43, 0.03); transform: rotate(-10deg); }
         .our-projects .projects-title { font-size: 2.8rem; font-weight: 900; margin-bottom: 8px; letter-spacing: 1px; }
         .our-projects .projects-title span { color: #d4a02b; text-shadow: 0 0 40px rgba(212, 160, 43, 0.15); }
         .our-projects .projects-sub { font-size: 1.1rem; color: #b0c0d0; max-width: 600px; margin: 0 auto 40px; }
         .our-projects .projects-divider { width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #d4a02b, transparent); margin: 8px auto 32px; border-radius: 10px; }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
-        .project-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(6px); border: 1px solid rgba(212, 160, 43, 0.12); border-radius: 20px; padding: 28px 16px 22px; transition: all 0.35s ease; cursor: pointer; position: relative; overflow: hidden; }
-        .project-card::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #d4a02b, #f5d061, #d4a02b); opacity: 0; transition: opacity 0.4s ease; }
-        .project-card:hover { transform: translateY(-8px) scale(1.02); background: rgba(255, 255, 255, 0.09); border-color: #d4a02b; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
-        .project-card:hover::after { opacity: 1; }
-        .project-card .p-icon { font-size: 2.8rem; color: #d4a02b; margin-bottom: 10px; display: block; }
-        .project-card .p-name { font-size: 1.1rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
-        .project-card .p-url { font-size: 0.75rem; color: #b0c0d0; word-break: break-all; margin-top: 6px; font-weight: 400; opacity: 0.7; transition: opacity 0.3s; }
-        .project-card:hover .p-url { opacity: 1; }
-        .project-card .p-badge { display: inline-block; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; background: rgba(212, 160, 43, 0.15); color: #d4a02b; padding: 2px 14px; border-radius: 50px; margin-top: 8px; font-weight: 700; }
-        .project-card a { display: block; color: inherit; text-decoration: none; }
-        .project-card a:hover .p-name { color: #d4a02b; }
 
-        /* ---------- Contact Us (Kitchen Noir Style) ---------- */
+        /* Project Cards with Images */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(212, 160, 43, 0.12);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.35s ease;
+            position: relative;
+        }
+        .project-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4a02b, #f5d061, #d4a02b);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .project-card:hover { transform: translateY(-10px) scale(1.02); background: rgba(255, 255, 255, 0.09); border-color: #d4a02b; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
+        .project-card:hover::after { opacity: 1; }
+
+        .project-card .project-image { width: 100%; height: 200px; overflow: hidden; position: relative; }
+        .project-card .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .project-card:hover .project-image img { transform: scale(1.1); }
+
+        .project-card .project-content { padding: 25px 20px; }
+        .project-card .p-name { font-size: 1.4rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .project-card .p-desc { font-size: 0.95rem; color: #b0c0d0; line-height: 1.6; margin-bottom: 15px; }
+        .project-card .p-url { font-size: 0.75rem; color: #8e96b0; word-break: break-all; margin-bottom: 15px; opacity: 0.8; }
+        .project-card .p-badge { display: inline-block; background: #d4a02b; color: #1a2a3a; padding: 10px 25px; border-radius: 50px; font-weight: 700; font-size: 0.8rem; transition: 0.3s; }
+        .project-card a { color: inherit; text-decoration: none; }
+        .project-card .p-badge:hover { background: #f0d080; transform: scale(1.05); }
+
+        /* Contact */
         .contact-section { padding: 60px 0; background: #f8faff; }
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
         .contact-form { background: #fff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border: 1px solid #eef3f8; }
@@ -132,7 +138,7 @@
         .contact-info-box a { color: #d4a02b; text-decoration: none; font-weight: 600; }
         .contact-info-box a:hover { text-decoration: underline; }
 
-        /* ---------- CTA ---------- */
+        /* CTA */
         .cta-section { background: linear-gradient(135deg, #0f1a2b, #1a2a3a); color: #fff; padding: 80px 0; text-align: center; }
         .cta-section h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; }
         .cta-section h2 span { color: #d4a02b; }
@@ -141,7 +147,7 @@
         .cta-section .contact-info div { display: flex; align-items: center; gap: 12px; font-size: 1.1rem; color: #d0dce8; }
         .cta-section .contact-info i { color: #d4a02b; font-size: 1.4rem; }
 
-        /* ---------- Footer ---------- */
+        /* Footer */
         .footer { background: #0a1520; color: #8a9aa8; padding: 30px 0 20px; text-align: center; font-size: 0.9rem; }
         .footer .footer-brand { font-size: 1.5rem; font-weight: 700; color: #fff; }
         .footer .footer-brand span { color: #d4a02b; }
@@ -149,7 +155,7 @@
         .footer .social-links a { color: #8a9aa8; font-size: 1.3rem; transition: color 0.3s; }
         .footer .social-links a:hover { color: #d4a02b; }
 
-        /* ---------- Admin Panel ---------- */
+        /* Admin */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background: #fff; padding: 30px; border-radius: 24px; max-width: 400px; width: 90%; text-align: center; }
         .modal-content h2 { color: #d4a02b; margin-bottom: 20px; }
@@ -171,7 +177,6 @@
         .delete-btn { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; }
         .logout-btn { background: #ef4444; color: white; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-weight: 700; }
 
-        /* ---------- Responsive ---------- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .navbar .nav-links { gap: 10px; }
@@ -180,12 +185,10 @@
             .cta-section h2 { font-size: 2rem; }
             .cta-section .contact-info { flex-direction: column; align-items: center; gap: 15px; }
             .contact-wrapper { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-            .admin-content { max-width: 95%; }
+            .projects-grid { grid-template-columns: 1fr; gap: 20px; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; }
-            .projects-grid { grid-template-columns: 1fr; }
             .navbar .nav-links { flex-wrap: wrap; justify-content: flex-end; }
         }
     </style>
@@ -310,7 +313,7 @@
         </div>
     </section>
 
-    <!-- ========== PROJECTS ========== -->
+    <!-- ========== PROJECTS WITH IMAGES ========== -->
     <section class="our-projects" id="projects">
         <div class="container">
             <h2 class="projects-title">🌟 Our <span>Projects</span></h2>
@@ -318,59 +321,102 @@
             <div class="projects-divider"></div>
 
             <div class="projects-grid">
-                <div class="project-card">
-                    <a href="https://saminastore.vercel.app" target="_blank">
-                        <span class="p-icon"><i class="fas fa-store-alt"></i></span>
-                        <div class="p-name">Samina Store</div>
-                        <div class="p-url">saminastore.vercel.app</div>
-                        <span class="p-badge"><i class="fas fa-external-link-alt"></i> Visit</span>
-                    </a>
-                </div>
-                <div class="project-card">
-                    <a href="https://abbasstore.vercel.app" target="_blank">
-                        <span class="p-icon"><i class="fas fa-shopping-basket"></i></span>
-                        <div class="p-name">Abbas Store</div>
-                        <div class="p-url">abbasstore.vercel.app</div>
-                        <span class="p-badge"><i class="fas fa-external-link-alt"></i> Visit</span>
-                    </a>
-                </div>
-                <div class="project-card">
-                    <a href="https://apexstore.vercel.app" target="_blank">
-                        <span class="p-icon"><i class="fas fa-crown"></i></span>
-                        <div class="p-name">Apex Store</div>
-                        <div class="p-url">apexstore.vercel.app</div>
-                        <span class="p-badge"><i class="fas fa-external-link-alt"></i> Visit</span>
-                    </a>
-                </div>
-                <div class="project-card">
-                    <a href="https://nayyarms.vercel.app" target="_blank">
-                        <span class="p-icon"><i class="fas fa-medkit"></i></span>
-                        <div class="p-name">Nayyar Medical Store</div>
-                        <div class="p-url">nayyarms.vercel.app</div>
-                        <span class="p-badge"><i class="fas fa-external-link-alt"></i> Visit</span>
-                    </a>
-                </div>
-                <div class="project-card">
-                    <a href="https://jpstoreerp.vercel.app" target="_blank">
-                        <span class="p-icon"><i class="fas fa-chart-pie"></i></span>
-                        <div class="p-name">JP Inventory Management</div>
-                        <div class="p-url">jpstoreerp.vercel.app</div>
-                        <span class="p-badge"><i class="fas fa-external-link-alt"></i> Visit</span>
-                    </a>
-                </div>
+
+                <!-- Project 1: Kitchen Noir -->
                 <div class="project-card">
                     <a href="https://kitchen-noir-inky.vercel.app" target="_blank">
-                        <span class="p-icon"><i class="fas fa-utensils"></i></span>
-                        <div class="p-name">Kitchen Noir</div>
-                        <div class="p-url">kitchen-noir-inky.vercel.app</div>
-                        <span class="p-badge"><i class="fas fa-external-link-alt"></i> Visit</span>
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/0RnBKXRf/Wren-Kitchens-Ad-Website-Images-111.jpg" alt="Kitchen Noir">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Kitchen Noir</div>
+                            <div class="p-desc">Luxury E-Commerce platform with premium UI, cart, bookings, and user authentication.</div>
+                            <div class="p-url">kitchen-noir-inky.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
                     </a>
                 </div>
+
+                <!-- Project 2: Abbas Store (YOUR IMAGE) -->
+                <div class="project-card">
+                    <a href="https://abbasstore.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/hFnxBRSS/Chat-GPT-Image-Sep-1-2026-08-25-07-AM.png" alt="Abbas Store">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Abbas Store v7.3</div>
+                            <div class="p-desc">Advanced B2B ERP with Aging Report, Multi-bank, and Full Inventory Management.</div>
+                            <div class="p-url">abbasstore.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 3: JP Store ERP (YOUR IMAGE) -->
+                <div class="project-card">
+                    <a href="https://jpstoreerp.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/nNKz7RDp/Chat-GPT-Image-Sep-1-2026-08-14-41-AM.png" alt="JP Store ERP">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">JP Store ERP</div>
+                            <div class="p-desc">Enterprise-grade Profit/Loss, Inventory Aging, and Advanced Analytics Dashboard.</div>
+                            <div class="p-url">jpstoreerp.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 4: Nayyer Medical -->
+                <div class="project-card">
+                    <a href="https://nayyarms.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/37H6ybdN/pharmacy-medicine-healthcare.jpg" alt="Nayyer Medical">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Nayyer Medical</div>
+                            <div class="p-desc">Multi-lingual Healthcare System with Cloud-based Prescriptions and Orders.</div>
+                            <div class="p-url">nayyarms.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 5: Apex Grocers (YOUR IMAGE) -->
+                <div class="project-card">
+                    <a href="https://apexstore.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/dsqp06vR/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png" alt="Apex Grocers">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Apex Grocers</div>
+                            <div class="p-desc">Fast-moving retail with Real-Time Tracking, Inventory, and Payment Integration.</div>
+                            <div class="p-url">apexstore.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 6: Samina Store -->
+                <div class="project-card">
+                    <a href="https://saminastore.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/LDG7QBXK/UK-Easy-Fit-Autograph-Cashmere-Gloss-Hero.jpg" alt="Samina Store">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Samina Store & Accounting</div>
+                            <div class="p-desc">Digitalized Retail & Smart Double-Entry Accounting for financial clarity.</div>
+                            <div class="p-url">saminastore.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- ========== CONTACT US (Kitchen Noir Style) ========== -->
+    <!-- ========== CONTACT US ========== -->
     <section class="contact-section" id="contact">
         <div class="container">
             <h2 class="section-title">Get in <span>Touch</span></h2>
@@ -439,6 +485,37 @@
         </div>
     </footer>
 
+    <!-- ========== ADMIN ========== -->
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('adminLoginModal')">&times;</span>
+            <h2><i class="fas fa-lock"></i> Admin Login</h2>
+            <input type="email" id="adminEmail" placeholder="Email">
+            <input type="password" id="adminPassword" placeholder="Password">
+            <button onclick="performAdminLogin()">Login</button>
+            <div id="loginError" style="display:none; margin-top:15px; color:#c62828; font-weight:600;">Invalid credentials!</div>
+        </div>
+    </div>
+
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-content">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h2><i class="fas fa-shield-alt" style="color:#d4a02b;"></i> Admin Panel</h2>
+                <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
+            </div>
+            <div class="admin-tabs">
+                <button class="active" onclick="switchTab('messages')">Contact Messages</button>
+                <button onclick="switchTab('clients')">Registered Clients</button>
+            </div>
+            <div id="messagesTab" style="display: block;">
+                <div id="inquiryList"></div>
+            </div>
+            <div id="clientsTab" style="display: none;">
+                <div id="clientsList"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- ========== MODALS ========== -->
     <div id="ceoModal" class="modal">
         <div class="modal-content" style="max-width: 600px; text-align: left;">
@@ -480,40 +557,8 @@
         </div>
     </div>
 
-    <!-- ========== ADMIN LOGIN & PANEL ========== -->
-    <div id="adminLoginModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('adminLoginModal')">&times;</span>
-            <h2><i class="fas fa-lock"></i> Admin Login</h2>
-            <input type="email" id="adminEmail" placeholder="Email">
-            <input type="password" id="adminPassword" placeholder="Password">
-            <button onclick="performAdminLogin()">Login</button>
-            <div id="loginError" style="display:none; margin-top:15px; color:#c62828; font-weight:600;">Invalid credentials!</div>
-        </div>
-    </div>
-
-    <div id="adminPanel" class="admin-panel">
-        <div class="admin-content">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <h2><i class="fas fa-shield-alt" style="color:#d4a02b;"></i> Admin Panel</h2>
-                <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
-            </div>
-            <div class="admin-tabs">
-                <button class="active" onclick="switchTab('messages')">Contact Messages</button>
-                <button onclick="switchTab('clients')">Registered Clients</button>
-            </div>
-            <div id="messagesTab" style="display: block;">
-                <div id="inquiryList"></div>
-            </div>
-            <div id="clientsTab" style="display: none;">
-                <div id="clientsList"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========== JAVASCRIPT (Supabase) ========== -->
+    <!-- ========== SUPABASE & JAVASCRIPT ========== -->
     <script>
-        // Supabase Setup
         const supabase = window.supabase.createClient(
             'https://wsflwxtmuuauqmsfhnux.supabase.co',
             'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I'
@@ -521,12 +566,10 @@
         const ADMIN_EMAIL = "admin@nexify.co.uk";
         const ADMIN_PASS = "nexify123";
 
-        // --- Navbar Functions ---
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-        // --- Contact Form Submission ---
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('contactName').value;
@@ -547,7 +590,6 @@
             }
         });
 
-        // --- Admin Login ---
         function promptAdmin() {
             const admin = localStorage.getItem('nexify_admin');
             if (admin === 'true') { openAdminPanel(); }
@@ -590,7 +632,6 @@
             }
         }
 
-        // --- Load Contact Messages ---
         async function loadMessages() {
             const list = document.getElementById('inquiryList');
             list.innerHTML = '<p style="color:#888;">Loading...</p>';
@@ -614,7 +655,6 @@
             } catch (err) { list.innerHTML = '<p style="color:#e74c3c;">Error: ' + err.message + '</p>'; }
         }
 
-        // --- Delete Message ---
         async function deleteMessage(id) {
             if (!confirm("Delete this message?")) return;
             try {
@@ -623,7 +663,6 @@
             } catch (err) { alert('Error: ' + err.message); }
         }
 
-        // --- Load Registered Clients ---
         async function loadClients() {
             const list = document.getElementById('clientsList');
             list.innerHTML = '<p style="color:#888;">Loading...</p>';
