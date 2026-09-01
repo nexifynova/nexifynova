@@ -547,17 +547,17 @@
         </div>
     </div>
 
-    <!-- ========== JAVASCRIPT ========== -->
+    <!-- ========== JAVASCRIPT (REARRANGED FOR SAFETY) ========== -->
     <script>
-        // Supabase Configuration - SIRF EK BAAR
-        const supabase = window.supabase.createClient(
-            'https://wsflwxtmuuauqmsfhnux.supabase.co',
-            'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I'
-        );
-        const ADMIN_PASS = "admin123";
+        // ============================================================
+        // 1. PEHLE SARE FUNCTIONS DEFINE KAREIN (Global Scope)
+        //    TAAKE AGAR Supabase fail bhi ho toh yeh available rahein
+        // ============================================================
 
-        // --- Navbar Functions (Window par bind - HTML attributes ke liye) ---
-        window.scrollToTop = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
+        // --- Navbar Functions ---
+        window.scrollToTop = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
 
         window.openModal = function(id) {
             const modal = document.getElementById(id);
@@ -584,9 +584,10 @@
         window.moveCarousel = function(direction) {
             const carousel = document.getElementById('projectsCarousel');
             const cards = carousel.children;
+            if (cards.length === 0) return;
             const cardWidth = cards[0].getBoundingClientRect().width;
 
-            let carouselIndex = 0; // Reset index for static cards
+            let carouselIndex = 0;
             carouselIndex += direction;
             if (carouselIndex < 0) carouselIndex = cards.length - 1;
             if (carouselIndex >= cards.length) carouselIndex = 0;
@@ -594,32 +595,16 @@
             carousel.style.transform = `translateX(-${carouselIndex * cardWidth}px)`;
         };
 
-        // --- Contact Form ---
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const phone = document.getElementById('contactPhone').value;
-            const message = document.getElementById('contactMessage').value;
+        // --- Admin Login Functions ---
+        const ADMIN_PASS = "admin123";
 
-            try {
-                const { error } = await supabase.from('inquiries').insert([
-                    { name, email, phone, message, created_at: new Date().toISOString() }
-                ]);
-                if (error) throw error;
-                document.getElementById('successMsg').style.display = 'block';
-                document.getElementById('contactForm').reset();
-                setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 5000);
-            } catch (err) {
-                alert("Error sending message: " + err.message);
-            }
-        });
-
-        // --- Admin Login ---
         window.promptAdmin = function() {
             const admin = localStorage.getItem('nexify_admin');
-            if (admin === 'true') { openAdminPanel(); }
-            else { document.getElementById('adminLoginModal').style.display = 'flex'; }
+            if (admin === 'true') {
+                openAdminPanel();
+            } else {
+                document.getElementById('adminLoginModal').style.display = 'flex';
+            }
         };
 
         window.performAdminLogin = function() {
@@ -628,9 +613,10 @@
                 localStorage.setItem('nexify_admin', 'true');
                 document.getElementById('adminLoginModal').style.display = 'none';
                 document.getElementById('adminPanel').style.display = 'flex';
-                loadMessages();
-                loadClients();
-                loadAdminProjects();
+                // Load data after panel opens
+                if (typeof loadMessages === 'function') loadMessages();
+                if (typeof loadClients === 'function') loadClients();
+                if (typeof loadAdminProjects === 'function') loadAdminProjects();
             } else {
                 document.getElementById('loginError').style.display = 'block';
             }
@@ -643,30 +629,146 @@
 
         function openAdminPanel() {
             document.getElementById('adminPanel').style.display = 'flex';
-            loadMessages();
-            loadClients();
-            loadAdminProjects();
+            if (typeof loadMessages === 'function') loadMessages();
+            if (typeof loadClients === 'function') loadClients();
+            if (typeof loadAdminProjects === 'function') loadAdminProjects();
         }
 
+        // --- Tab Switching ---
         window.switchTab = function(tab) {
             document.querySelectorAll('.admin-tabs button').forEach(btn => btn.classList.remove('active'));
             if (tab === 'messages') {
                 document.querySelectorAll('.admin-tabs button')[0].classList.add('active');
                 document.getElementById('messagesTab').style.display = 'block';
                 document.getElementById('clientsTab').style.display = 'none';
-                loadMessages();
+                if (typeof loadMessages === 'function') loadMessages();
             } else {
                 document.querySelectorAll('.admin-tabs button')[1].classList.add('active');
                 document.getElementById('messagesTab').style.display = 'none';
                 document.getElementById('clientsTab').style.display = 'block';
-                loadClients();
+                if (typeof loadClients === 'function') loadClients();
             }
         };
+
+        // --- Preview Image ---
+        window.previewProjectImage = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('projImagePreview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                document.getElementById('projImageUrl').value = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        // --- Delete Message (will be defined after supabase) ---
+        window.deleteMessage = async function(id) {
+            // Will be overridden later if supabase available
+            if (typeof supabase !== 'undefined' && supabase) {
+                try {
+                    const { error } = await supabase.from('inquiries').delete().eq('id', id);
+                    if (!error) loadMessages();
+                    else alert('Error: ' + error.message);
+                } catch (e) {
+                    alert('Error: ' + e.message);
+                }
+            } else {
+                alert('Supabase not available. Cannot delete.');
+            }
+        };
+
+        // --- Delete Project ---
+        window.deleteProject = async function(id) {
+            if (!confirm("Delete this project?")) return;
+            if (typeof supabase !== 'undefined' && supabase) {
+                try {
+                    const { error } = await supabase.from('projects').delete().eq('id', id);
+                    if (!error) loadAdminProjects();
+                    else alert('Error: ' + error.message);
+                } catch (e) {
+                    alert('Error: ' + e.message);
+                }
+            } else {
+                alert('Supabase not available.');
+            }
+        };
+
+        // --- Save New Project ---
+        window.saveProject = async function() {
+            const name = document.getElementById('projName').value.trim();
+            const desc = document.getElementById('projDesc').value.trim();
+            const url = document.getElementById('projUrl').value.trim();
+            const image = document.getElementById('projImageUrl').value;
+
+            if (!name || !desc || !url || !image) {
+                alert("Please fill all fields and select an image.");
+                return;
+            }
+
+            if (typeof supabase !== 'undefined' && supabase) {
+                try {
+                    const { error } = await supabase.from('projects').insert([{
+                        project_name: name,
+                        project_description: desc,
+                        project_url: url,
+                        project_image: image,
+                        created_at: new Date().toISOString()
+                    }]);
+                    if (error) throw error;
+                    alert("Project added successfully!");
+                    document.getElementById('projName').value = '';
+                    document.getElementById('projDesc').value = '';
+                    document.getElementById('projUrl').value = '';
+                    document.getElementById('projImageFile').value = '';
+                    document.getElementById('projImagePreview').style.display = 'none';
+                    document.getElementById('projImageUrl').value = '';
+                    loadAdminProjects();
+                } catch (err) {
+                    alert("Error adding project: " + err.message);
+                }
+            } else {
+                alert('Supabase not available. Cannot save project.');
+            }
+        };
+
+        // ============================================================
+        // 2. AB SUPABASE INITIALIZE KAREIN (TRY-CATCH MEIN)
+        //    AGAR FAIL HO TOH BHI SCRIPT NA RUKAY
+        // ============================================================
+        let supabase = null;
+
+        try {
+            if (window.supabase) {
+                supabase = window.supabase.createClient(
+                    'https://wsflwxtmuuauqmsfhnux.supabase.co',
+                    'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I'
+                );
+                console.log('Supabase initialized successfully.');
+            } else {
+                console.warn('Supabase library not loaded. Check CDN link.');
+            }
+        } catch (err) {
+            console.error('Supabase initialization error:', err);
+            supabase = null;
+        }
+
+        // ============================================================
+        // 3. DATA LOADING FUNCTIONS (JO SUPABASE USE KARTE HAIN)
+        //    INKO AB DEFINE KAREIN, KYUNKI supabase variable ab available hai
+        // ============================================================
 
         // --- Load Admin Projects ---
         async function loadAdminProjects() {
             const list = document.getElementById('adminProjectsList');
             list.innerHTML = '<p style="color:#888;">Loading...</p>';
+
+            if (!supabase) {
+                list.innerHTML = '<p style="color:#e74c3c;">Supabase not available.</p>';
+                return;
+            }
 
             try {
                 const { data, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
@@ -687,84 +789,20 @@
                         </div>
                     `;
                 });
-
             } catch (err) {
                 list.innerHTML = `<p style="color:#e74c3c;">Error: ${err.message}</p>`;
             }
         }
 
-        // --- Preview Project Image ---
-        window.previewProjectImage = function(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.getElementById('projImagePreview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-                document.getElementById('projImageUrl').value = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        };
-
-        // --- Save New Project ---
-        window.saveProject = async function() {
-            const name = document.getElementById('projName').value.trim();
-            const desc = document.getElementById('projDesc').value.trim();
-            const url = document.getElementById('projUrl').value.trim();
-            const image = document.getElementById('projImageUrl').value;
-
-            if (!name || !desc || !url || !image) {
-                alert("Please fill all fields and select an image.");
-                return;
-            }
-
-            try {
-                const { error } = await supabase.from('projects').insert([
-                    {
-                        project_name: name,
-                        project_description: desc,
-                        project_url: url,
-                        project_image: image,
-                        created_at: new Date().toISOString()
-                    }
-                ]);
-
-                if (error) throw error;
-
-                alert("Project added successfully!");
-                document.getElementById('projName').value = '';
-                document.getElementById('projDesc').value = '';
-                document.getElementById('projUrl').value = '';
-                document.getElementById('projImageFile').value = '';
-                document.getElementById('projImagePreview').style.display = 'none';
-                document.getElementById('projImageUrl').value = '';
-
-                loadAdminProjects();
-
-            } catch (err) {
-                alert("Error adding project: " + err.message);
-            }
-        };
-
-        // --- Delete Project ---
-        window.deleteProject = async function(id) {
-            if (!confirm("Delete this project?")) return;
-
-            try {
-                const { error } = await supabase.from('projects').delete().eq('id', id);
-                if (error) throw error;
-                loadAdminProjects();
-            } catch (err) {
-                alert("Error deleting: " + err.message);
-            }
-        };
-
         // --- Load Contact Messages ---
         async function loadMessages() {
             const list = document.getElementById('inquiryList');
             list.innerHTML = '<p style="color:#888;">Loading...</p>';
+
+            if (!supabase) {
+                list.innerHTML = '<p style="color:#e74c3c;">Supabase not available.</p>';
+                return;
+            }
 
             try {
                 const { data, error } = await supabase.from('inquiries').select('*').order('created_at', { ascending: false });
@@ -788,25 +826,20 @@
                         </div>
                     `;
                 });
-
             } catch (err) {
                 list.innerHTML = `<p style="color:#e74c3c;">Error: ${err.message}</p>`;
             }
         }
 
-        // --- Delete Message ---
-        window.deleteMessage = async function(id) {
-            if (!confirm("Delete this message?")) return;
-            try {
-                await supabase.from('inquiries').delete().eq('id', id);
-                loadMessages();
-            } catch (err) { alert('Error: ' + err.message); }
-        };
-
         // --- Load Registered Clients ---
         async function loadClients() {
             const list = document.getElementById('clientsList');
             list.innerHTML = '<p style="color:#888;">Loading...</p>';
+
+            if (!supabase) {
+                list.innerHTML = '<p style="color:#e74c3c;">Supabase not available.</p>';
+                return;
+            }
 
             try {
                 const { data, error } = await supabase.from('clients').select('*').order('created_at', { ascending: false });
@@ -828,16 +861,46 @@
                         </div>
                     `;
                 });
-
             } catch (err) {
                 list.innerHTML = `<p style="color:#e74c3c;">Error: ${err.message}</p>`;
             }
         }
 
-        // --- Initialize ---
-        document.addEventListener('DOMContentLoaded', function() {
-            // Static projects show ho rahe hain
+        // ============================================================
+        // 4. CONTACT FORM SUBMIT (SUPABASE USE KAREGA)
+        // ============================================================
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!supabase) {
+                alert('Supabase not available. Cannot send message.');
+                return;
+            }
+
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const phone = document.getElementById('contactPhone').value;
+            const message = document.getElementById('contactMessage').value;
+
+            try {
+                const { error } = await supabase.from('inquiries').insert([
+                    { name, email, phone, message, created_at: new Date().toISOString() }
+                ]);
+                if (error) throw error;
+                document.getElementById('successMsg').style.display = 'block';
+                document.getElementById('contactForm').reset();
+                setTimeout(() => {
+                    document.getElementById('successMsg').style.display = 'none';
+                }, 5000);
+            } catch (err) {
+                alert("Error sending message: " + err.message);
+            }
         });
+
+        // ============================================================
+        // 5. INITIALIZE – AGAR KOI TASK HO TOH
+        // ============================================================
+        console.log('Nexify Nova script loaded successfully.');
     </script>
 </body>
 </html>
