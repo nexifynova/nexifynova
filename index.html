@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nexify Nova | UK-Based Business Solutions Consultancy</title>
+
+    <!-- Favicon (Apna Custom Logo) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230d0f1a'/><text x='50' y='65' font-family='Arial' font-size='45' fill='%23d4a853' text-anchor='middle' font-weight='bold'>NN</text></svg>" />
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -26,7 +30,6 @@
         .logo-link { display: flex; align-items: center; gap: 14px; text-decoration: none; }
         .brand-name { font-size: 1.9rem; font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: 1px; }
         .brand-name span { color: #d4a02b; text-shadow: 0 0 30px rgba(212, 160, 43, 0.3); }
-        .logo-img { width: 60px; height: 60px; object-fit: contain; border-radius: 50%; }
 
         /* Navigation */
         .nav-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
@@ -74,7 +77,7 @@
         .showcase-card .info { padding: 20px; }
         .showcase-card .info p { color: #5a6a7e; font-size: 0.95rem; }
 
-        /* PROJECT CAROUSEL */
+        /* PROJECTS WITH FULL IMAGES */
         .our-projects { padding: 80px 0; background: linear-gradient(135deg, #0f1a2b 0%, #1a2a3a 60%, #2a3a4a 100%); color: #fff; text-align: center; position: relative; overflow: hidden; }
         .our-projects::before { content: "✦"; font-size: 300px; position: absolute; left: -100px; bottom: -120px; color: rgba(212, 160, 43, 0.03); transform: rotate(-10deg); }
         .our-projects .projects-title { font-size: 2.8rem; font-weight: 900; margin-bottom: 8px; letter-spacing: 1px; }
@@ -82,29 +85,42 @@
         .our-projects .projects-sub { font-size: 1.1rem; color: #b0c0d0; max-width: 600px; margin: 0 auto 40px; }
         .our-projects .projects-divider { width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #d4a02b, transparent); margin: 8px auto 32px; border-radius: 10px; }
 
-        /* Carousel */
-        .carousel-container { position: relative; max-width: 1100px; margin: 0 auto; overflow: hidden; padding: 10px; }
-        .projects-carousel { display: flex; transition: transform 0.5s ease-in-out; }
-        .carousel-card { min-width: 33.33%; padding: 15px; }
-        .project-card { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 160, 43, 0.12); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; height: 100%; }
-        .project-card:hover { transform: translateY(-5px); border-color: #d4a02b; background: rgba(255, 255, 255, 0.12); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3); }
-        .project-card .project-image { width: 100%; height: 220px; overflow: hidden; }
-        .project-card .project-image img { width: 100%; height: 100%; object-fit: cover; background: #0f1a2b; transition: transform 0.5s; }
-        .project-card:hover .project-image img { transform: scale(1.05); }
-        .project-card .project-content { padding: 20px; text-align: center; }
-        .project-card .p-name { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-        .project-card .p-desc { font-size: 0.9rem; color: #b0c0d0; margin-bottom: 12px; line-height: 1.5; }
-        .project-card .p-url { font-size: 0.7rem; color: #8e96b0; margin-bottom: 15px; }
-        .project-card .p-badge { background: #d4a02b; color: #1a2a3a; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; display: inline-block; }
+        /* Project Cards with FULL Images */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .project-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(212, 160, 43, 0.12);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .project-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4a02b, #f5d061, #d4a02b);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .project-card:hover { transform: translateY(-10px) scale(1.02); background: rgba(255, 255, 255, 0.12); border-color: #d4a02b; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
+        .project-card:hover::after { opacity: 1; }
+
+        .project-card .project-image { width: 100%; height: auto; aspect-ratio: 16/10; overflow: hidden; position: relative; }
+        .project-card .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .project-card:hover .project-image img { transform: scale(1.1); }
+
+        .project-card .project-content { padding: 25px 20px; }
+        .project-card .p-name { font-size: 1.4rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .project-card .p-desc { font-size: 0.95rem; color: #b0c0d0; line-height: 1.6; margin-bottom: 15px; }
+        .project-card .p-url { font-size: 0.75rem; color: #8e96b0; word-break: break-all; margin-bottom: 15px; opacity: 0.8; }
+        .project-card .p-badge { display: inline-block; background: #d4a02b; color: #1a2a3a; padding: 10px 25px; border-radius: 50px; font-weight: 700; font-size: 0.8rem; transition: 0.3s; }
         .project-card a { color: inherit; text-decoration: none; }
-
-        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; font-size: 30px; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10; }
-        .carousel-btn:hover { background: #d4a02b; color: #1a2a3a; }
-        .prev-btn { left: 0; }
-        .next-btn { right: 0; }
-
-        @media (max-width: 992px) { .carousel-card { min-width: 50%; } }
-        @media (max-width: 600px) { .carousel-card { min-width: 100%; } .projects-title { font-size: 2rem; } }
+        .project-card .p-badge:hover { background: #f0d080; transform: scale(1.05); }
 
         /* Contact */
         .contact-section { padding: 60px 0; background: #f8faff; }
@@ -125,18 +141,35 @@
         .contact-info-box a { color: #d4a02b; text-decoration: none; font-weight: 600; }
         .contact-info-box a:hover { text-decoration: underline; }
 
+        /* CTA */
+        .cta-section { background: linear-gradient(135deg, #0f1a2b, #1a2a3a); color: #fff; padding: 80px 0; text-align: center; }
+        .cta-section h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; }
+        .cta-section h2 span { color: #d4a02b; }
+        .cta-section .cta-desc { font-size: 1.2rem; color: #b0c0d0; max-width: 650px; margin: 0 auto 35px; }
+        .cta-section .contact-info { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; margin-bottom: 30px; }
+        .cta-section .contact-info div { display: flex; align-items: center; gap: 12px; font-size: 1.1rem; color: #d0dce8; }
+        .cta-section .contact-info i { color: #d4a02b; font-size: 1.4rem; }
+
+        /* Footer */
+        .footer { background: #0a1520; color: #8a9aa8; padding: 30px 0 20px; text-align: center; font-size: 0.9rem; }
+        .footer .footer-brand { font-size: 1.5rem; font-weight: 700; color: #fff; }
+        .footer .footer-brand span { color: #d4a02b; }
+        .footer .social-links { margin: 15px 0; display: flex; justify-content: center; gap: 18px; }
+        .footer .social-links a { color: #8a9aa8; font-size: 1.3rem; transition: color 0.3s; }
+        .footer .social-links a:hover { color: #d4a02b; }
+
         /* Admin */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; }
-        .modal-content { background: #fff; padding: 30px; border-radius: 24px; max-width: 500px; width: 90%; text-align: center; }
+        .modal-content { background: #fff; padding: 30px; border-radius: 24px; max-width: 400px; width: 90%; text-align: center; }
         .modal-content h2 { color: #d4a02b; margin-bottom: 20px; }
-        .modal-content input, .modal-content textarea, .modal-content select { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 12px; font-size: 1rem; font-family: inherit; }
+        .modal-content input { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 12px; font-size: 1rem; font-family: inherit; }
         .modal-content button { width: 100%; background: #d4a02b; color: #fff; padding: 14px; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
         .modal-content button:hover { background: #b8891f; }
         .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #888; }
         .modal-close:hover { color: #d4a02b; }
 
-        .admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; overflow-y: auto; }
-        .admin-content { background: #fff; padding: 30px; border-radius: 24px; max-width: 800px; width: 95%; max-height: 85vh; overflow-y: auto; position: relative; }
+        .admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; }
+        .admin-content { background: #fff; padding: 30px; border-radius: 24px; max-width: 700px; width: 95%; max-height: 85vh; overflow-y: auto; position: relative; }
         .admin-content h2 { color: #1a2a3a; border-bottom: 2px solid #d4a02b; padding-bottom: 10px; margin-bottom: 20px; }
         .admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .admin-tabs button { background: #f8faff; border: 1px solid #ddd; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
@@ -146,11 +179,6 @@
         .admin-item small { color: #888; display: block; margin-top: 5px; }
         .delete-btn { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; }
         .logout-btn { background: #ef4444; color: white; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-weight: 700; }
-        .admin-project-form { background: #f8faff; border: 2px dashed #d4a02b; padding: 20px; border-radius: 16px; margin-bottom: 20px; }
-        .admin-project-form h3 { color: #1a2a3a; margin-bottom: 15px; }
-        .file-input-wrapper { position: relative; margin-bottom: 15px; }
-        .file-input-wrapper input[type="file"] { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
-        .file-input-wrapper .file-label { display: block; padding: 12px; background: #fff; border: 1px dashed #aaa; border-radius: 8px; text-align: center; color: #666; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
@@ -160,12 +188,11 @@
             .cta-section h2 { font-size: 2rem; }
             .cta-section .contact-info { flex-direction: column; align-items: center; gap: 15px; }
             .contact-wrapper { grid-template-columns: 1fr; }
-            .admin-content { max-width: 95%; }
+            .projects-grid { grid-template-columns: 1fr; gap: 20px; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.8rem; }
             .navbar .nav-links { flex-wrap: wrap; justify-content: flex-end; }
-            .carousel-card { min-width: 100%; }
         }
     </style>
 </head>
@@ -176,7 +203,40 @@
         <div class="container">
             <div class="logo-wrapper">
                 <a href="#" class="logo-link">
-                    <img src="<a href="https://ibb.co/Kcqrs0Df"><img src="https://i.ibb.co/Psh6WmMP/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Chat GPT Image Sep 1 2026 10 26 24 AM" border="0"></a>" />
+                    <div class="animated-logo">
+                        <svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="goldGradBold" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#fff8e1" />
+                                    <stop offset="30%" stop-color="#f5d061" />
+                                    <stop offset="70%" stop-color="#d4a02b" />
+                                    <stop offset="100%" stop-color="#b8891f" />
+                                </linearGradient>
+                                <linearGradient id="shineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+                                    <stop offset="40%" stop-color="rgba(255,255,255,0)" />
+                                    <stop offset="60%" stop-color="rgba(255,255,255,0)" />
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0.4)" />
+                                </linearGradient>
+                                <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+                                    <feGaussianBlur stdDeviation="4" result="blur" />
+                                    <feMerge>
+                                        <feMergeNode in="blur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <path d="M 50 5 L 92 20 L 92 52 C 92 78 72 94 50 99 C 28 94 8 78 8 52 L 8 20 L 50 5 Z"
+                            fill="#0f1a2b" stroke="url(#goldGradBold)" stroke-width="5" />
+                            <path d="M 50 12 L 59 36 L 84 36 L 64 53 L 72 78 L 50 62 L 28 78 L 36 53 L 16 36 L 41 36 L 50 12 Z"
+                            fill="url(#goldGradBold)" filter="url(#glow)" />
+                            <path d="M 50 12 L 59 36 L 84 36 L 64 53 L 72 78 L 50 62 L 28 78 L 36 53 L 16 36 L 41 36 L 50 12 Z"
+                            fill="url(#shineGrad)" />
+                            <text x="50" y="90" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="900"
+                            fill="#ffffff" text-anchor="middle" letter-spacing="-2"
+                            stroke="url(#goldGradBold)" stroke-width="0.8">NN</text>
+                        </svg>
+                    </div>
                     <div>
                         <div class="brand-name">NEXIFY <span>NOVA</span></div>
                         <div style="font-size:0.6rem; color:#b0c0d0; letter-spacing:3px; font-weight:300; margin-top:2px;">
@@ -256,19 +316,105 @@
         </div>
     </section>
 
-    <!-- ========== PROJECTS CAROUSEL ========== -->
+    <!-- ========== PROJECTS WITH FULL IMAGES ========== -->
     <section class="our-projects" id="projects">
         <div class="container">
             <h2 class="projects-title">🌟 Our <span>Projects</span></h2>
             <p class="projects-sub">Explore the digital solutions we've built for real businesses.</p>
             <div class="projects-divider"></div>
 
-            <div class="carousel-container">
-                <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)">&#10094;</button>
-                <div class="projects-carousel" id="projectsCarousel">
-                    <!-- Cards loaded dynamically -->
+            <div class="projects-grid">
+
+                <!-- Project 1: Kitchen Noir (Correct Link) -->
+                <div class="project-card">
+                    <a href="https://knoir.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/0RnBKXRf/Wren-Kitchens-Ad-Website-Images-111.jpg" alt="Kitchen Noir">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Kitchen Noir</div>
+                            <div class="p-desc">Luxury E-Commerce platform with premium UI, cart, bookings, and user authentication.</div>
+                            <div class="p-url">knoir.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
                 </div>
-                <button class="carousel-btn next-btn" onclick="moveCarousel(1)">&#10095;</button>
+
+                <!-- Project 2: Abbas Store (YOUR IMAGE) -->
+                <div class="project-card">
+                    <a href="https://abbasstore.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/hFnxBRSS/Chat-GPT-Image-Sep-1-2026-08-25-07-AM.png" alt="Abbas Store">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Abbas Store v7.3</div>
+                            <div class="p-desc">Advanced B2B ERP with Aging Report, Multi-bank, and Full Inventory Management.</div>
+                            <div class="p-url">abbasstore.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 3: JP Store ERP (YOUR IMAGE) -->
+                <div class="project-card">
+                    <a href="https://jpstoreerp.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/nNKz7RDp/Chat-GPT-Image-Sep-1-2026-08-14-41-AM.png" alt="JP Store ERP">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">JP Store ERP</div>
+                            <div class="p-desc">Enterprise-grade Profit/Loss, Inventory Aging, and Advanced Analytics Dashboard.</div>
+                            <div class="p-url">jpstoreerp.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 4: Nayyer Medical -->
+                <div class="project-card">
+                    <a href="https://nayyarms.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/37H6ybdN/pharmacy-medicine-healthcare.jpg" alt="Nayyer Medical">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Nayyer Medical</div>
+                            <div class="p-desc">Multi-lingual Healthcare System with Cloud-based Prescriptions and Orders.</div>
+                            <div class="p-url">nayyarms.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 5: Apex Grocers (YOUR IMAGE) -->
+                <div class="project-card">
+                    <a href="https://apexstore.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/dsqp06vR/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png" alt="Apex Grocers">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Apex Grocers</div>
+                            <div class="p-desc">Fast-moving retail with Real-Time Tracking, Inventory, and Payment Integration.</div>
+                            <div class="p-url">apexstore.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 6: Samina Store -->
+                <div class="project-card">
+                    <a href="https://saminastore.vercel.app" target="_blank">
+                        <div class="project-image">
+                            <img src="https://i.ibb.co/LDG7QBXK/UK-Easy-Fit-Autograph-Cashmere-Gloss-Hero.jpg" alt="Samina Store">
+                        </div>
+                        <div class="project-content">
+                            <div class="p-name">Samina Store & Accounting</div>
+                            <div class="p-desc">Digitalized Retail & Smart Double-Entry Accounting for financial clarity.</div>
+                            <div class="p-url">saminastore.vercel.app</div>
+                            <span class="p-badge">Visit Project</span>
+                        </div>
+                    </a>
+                </div>
+
             </div>
         </div>
     </section>
@@ -342,8 +488,39 @@
         </div>
     </footer>
 
+    <!-- ========== ADMIN ========== -->
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('adminLoginModal')">&times;</span>
+            <h2><i class="fas fa-lock"></i> Admin Login</h2>
+            <input type="email" id="adminEmail" placeholder="Email">
+            <input type="password" id="adminPassword" placeholder="Password">
+            <button onclick="performAdminLogin()">Login</button>
+            <div id="loginError" style="display:none; margin-top:15px; color:#c62828; font-weight:600;">Invalid credentials!</div>
+        </div>
+    </div>
+
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-content">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h2><i class="fas fa-shield-alt" style="color:#d4a02b;"></i> Admin Panel</h2>
+                <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
+            </div>
+            <div class="admin-tabs">
+                <button class="active" onclick="switchTab('messages')">Contact Messages</button>
+                <button onclick="switchTab('clients')">Registered Clients</button>
+            </div>
+            <div id="messagesTab" style="display: block;">
+                <div id="inquiryList"></div>
+            </div>
+            <div id="clientsTab" style="display: none;">
+                <div id="clientsList"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- ========== MODALS ========== -->
-    <div id="ceoModal" class="modal" style="display: none;">
+    <div id="ceoModal" class="modal">
         <div class="modal-content" style="max-width: 600px; text-align: left;">
             <span class="modal-close" onclick="closeModal('ceoModal')">&times;</span>
             <span class="modal-badge"><i class="fas fa-user-tie"></i> CEO's Message</span>
@@ -354,7 +531,7 @@
         </div>
     </div>
 
-    <div id="visionModal" class="modal" style="display: none;">
+    <div id="visionModal" class="modal">
         <div class="modal-content" style="max-width: 600px; text-align: left;">
             <span class="modal-close" onclick="closeModal('visionModal')">&times;</span>
             <span class="modal-badge"><i class="fas fa-eye"></i> Our Vision</span>
@@ -365,7 +542,7 @@
         </div>
     </div>
 
-    <div id="hierarchyModal" class="modal" style="display: none;">
+    <div id="hierarchyModal" class="modal">
         <div class="modal-content" style="max-width: 700px; text-align: left;">
             <span class="modal-close" onclick="closeModal('hierarchyModal')">&times;</span>
             <span class="modal-badge"><i class="fas fa-sitemap"></i> Organizational Hierarchy</span>
@@ -383,117 +560,19 @@
         </div>
     </div>
 
-    <!-- ========== ADMIN ========== -->
-    <div id="adminLoginModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('adminLoginModal')">&times;</span>
-            <h2><i class="fas fa-lock"></i> Admin Login</h2>
-            <input type="password" id="adminPassword" placeholder="Password">
-            <button onclick="performAdminLogin()">Login</button>
-            <div id="loginError" style="display:none; margin-top:15px; color:#c62828; font-weight:600;">Invalid Password!</div>
-        </div>
-    </div>
-
-    <div id="adminPanel" class="admin-panel">
-        <div class="admin-content">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <h2><i class="fas fa-shield-alt" style="color:#d4a02b;"></i> Admin Dashboard</h2>
-                <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
-            </div>
-
-            <!-- Add Project Form -->
-            <div class="admin-project-form">
-                <h3>➕ Add New Project</h3>
-                <div class="form-group">
-                    <label>Project Name</label>
-                    <input type="text" id="projName" placeholder="e.g. ABC Store">
-                </div>
-                <div class="form-group">
-                    <label>Project Description</label>
-                    <textarea id="projDesc" rows="3" placeholder="Short description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Project Live Link</label>
-                    <input type="text" id="projUrl" placeholder="https://abcstore.vercel.app">
-                </div>
-                <div class="form-group">
-                    <label>Project Image</label>
-                    <div class="file-input-wrapper">
-                        <span class="file-label"><i class="fas fa-upload"></i> Choose Image</span>
-                        <input type="file" id="projImageFile" accept="image/*" onchange="previewProjectImage(event)">
-                    </div>
-                    <div style="margin-top:10px;">
-                        <img id="projImagePreview" src="" alt="Preview" style="display:none; max-width:100px; border-radius:8px;">
-                    </div>
-                    <input type="hidden" id="projImageUrl" value="">
-                </div>
-                <button class="submit-btn" onclick="saveProject()"><i class="fas fa-save"></i> Save Project</button>
-            </div>
-
-            <!-- View Projects -->
-            <div style="margin-bottom: 20px;">
-                <h3>📋 All Projects</h3>
-                <div id="adminProjectsList"></div>
-            </div>
-
-            <!-- Tabs -->
-            <div class="admin-tabs" style="margin-top: 30px;">
-                <button class="active" onclick="switchTab('messages')">Contact Messages</button>
-                <button onclick="switchTab('clients')">Registered Clients</button>
-            </div>
-            <div id="messagesTab" style="display: block;">
-                <div id="inquiryList"></div>
-            </div>
-            <div id="clientsTab" style="display: none;">
-                <div id="clientsList"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========== JAVASCRIPT ========== -->
+    <!-- ========== SUPABASE & JAVASCRIPT ========== -->
     <script>
         const supabase = window.supabase.createClient(
             'https://wsflwxtmuuauqmsfhnux.supabase.co',
             'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I'
         );
-        const ADMIN_PASS = "admin123";
+        const ADMIN_EMAIL = "admin@nexify.co.uk";
+        const ADMIN_PASS = "nexify123";
 
-        // --- Navbar Functions (Fixed) ---
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            modal.style.display = 'flex';
-        }
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.style.display = 'none';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-            }
-        }
-
-        // --- Dynamic Carousel ---
-        let carouselIndex = 0;
-
-        function moveCarousel(direction) {
-            const carousel = document.getElementById('projectsCarousel');
-            const cards = carousel.children;
-            const cardWidth = cards[0].getBoundingClientRect().width;
-
-            carouselIndex += direction;
-
-            if (carouselIndex < 0) carouselIndex = cards.length - 1;
-            if (carouselIndex >= cards.length) carouselIndex = 0;
-
-            carousel.style.transform = `translateX(-${carouselIndex * cardWidth}px)`;
-        }
-
-        // --- Contact Form ---
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('contactName').value;
@@ -514,39 +593,33 @@
             }
         });
 
-        // --- Admin Login ---
         function promptAdmin() {
             const admin = localStorage.getItem('nexify_admin');
             if (admin === 'true') { openAdminPanel(); }
             else { document.getElementById('adminLoginModal').style.display = 'flex'; }
         }
-
         function performAdminLogin() {
+            const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
-            if (password === ADMIN_PASS) {
+            if (email === ADMIN_EMAIL && password === ADMIN_PASS) {
                 localStorage.setItem('nexify_admin', 'true');
                 document.getElementById('adminLoginModal').style.display = 'none';
                 document.getElementById('adminPanel').style.display = 'flex';
                 loadMessages();
                 loadClients();
-                loadAdminProjects();
             } else {
                 document.getElementById('loginError').style.display = 'block';
             }
         }
-
         function logoutAdmin() {
             localStorage.removeItem('nexify_admin');
             document.getElementById('adminPanel').style.display = 'none';
         }
-
         function openAdminPanel() {
             document.getElementById('adminPanel').style.display = 'flex';
             loadMessages();
             loadClients();
-            loadAdminProjects();
         }
-
         function switchTab(tab) {
             document.querySelectorAll('.admin-tabs button').forEach(btn => btn.classList.remove('active'));
             if (tab === 'messages') {
@@ -562,162 +635,13 @@
             }
         }
 
-        // --- Load Public Projects ---
-        async function loadPublicProjects() {
-            const carousel = document.getElementById('projectsCarousel');
-            carousel.innerHTML = '<p style="color:#fff; text-align:center; width:100%;">Loading projects...</p>';
-
-            try {
-                const { data, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
-                if (error) throw error;
-
-                if (!data || data.length === 0) {
-                    carousel.innerHTML = '<p style="color:#fff; text-align:center; width:100%;">No projects added yet.</p>';
-                    return;
-                }
-
-                carousel.innerHTML = '';
-                data.forEach(project => {
-                    carousel.innerHTML += `
-                        <div class="carousel-card">
-                            <div class="project-card">
-                                <a href="${project.project_url}" target="_blank">
-                                    <div class="project-image">
-                                        <img src="${project.project_image}" alt="${project.project_name}">
-                                    </div>
-                                    <div class="project-content">
-                                        <div class="p-name">${project.project_name}</div>
-                                        <div class="p-desc">${project.project_description}</div>
-                                        <div class="p-url">${project.project_url}</div>
-                                        <span class="p-badge">Visit Project</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                });
-
-                carouselIndex = 0;
-
-            } catch (err) {
-                carousel.innerHTML = `<p style="color:#e74c3c; text-align:center; width:100%;">Error loading: ${err.message}</p>`;
-            }
-        }
-
-        // --- Load Admin Projects ---
-        async function loadAdminProjects() {
-            const list = document.getElementById('adminProjectsList');
-            list.innerHTML = '<p style="color:#888;">Loading...</p>';
-
-            try {
-                const { data, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
-                if (error) throw error;
-
-                if (!data || data.length === 0) {
-                    list.innerHTML = '<p style="color:#888;">No projects yet. Add your first project above.</p>';
-                    return;
-                }
-
-                list.innerHTML = '';
-                data.forEach(project => {
-                    list.innerHTML += `
-                        <div class="admin-item">
-                            <strong>${project.project_name}</strong>
-                            <small>${project.project_url}</small>
-                            <button class="delete-btn" onclick="deleteProject('${project.id}')">Delete</button>
-                        </div>
-                    `;
-                });
-
-            } catch (err) {
-                list.innerHTML = `<p style="color:#e74c3c;">Error: ${err.message}</p>`;
-            }
-        }
-
-        // --- Preview Project Image ---
-        function previewProjectImage(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.getElementById('projImagePreview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-                document.getElementById('projImageUrl').value = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // --- Save New Project ---
-        async function saveProject() {
-            const name = document.getElementById('projName').value.trim();
-            const desc = document.getElementById('projDesc').value.trim();
-            const url = document.getElementById('projUrl').value.trim();
-            const image = document.getElementById('projImageUrl').value;
-
-            if (!name || !desc || !url || !image) {
-                alert("Please fill all fields and select an image.");
-                return;
-            }
-
-            try {
-                const { error } = await supabase.from('projects').insert([
-                    {
-                        project_name: name,
-                        project_description: desc,
-                        project_url: url,
-                        project_image: image,
-                        created_at: new Date().toISOString()
-                    }
-                ]);
-
-                if (error) throw error;
-
-                alert("Project added successfully!");
-                document.getElementById('projName').value = '';
-                document.getElementById('projDesc').value = '';
-                document.getElementById('projUrl').value = '';
-                document.getElementById('projImageFile').value = '';
-                document.getElementById('projImagePreview').style.display = 'none';
-                document.getElementById('projImageUrl').value = '';
-
-                loadAdminProjects();
-                loadPublicProjects();
-
-            } catch (err) {
-                alert("Error adding project: " + err.message);
-            }
-        }
-
-        // --- Delete Project ---
-        async function deleteProject(id) {
-            if (!confirm("Delete this project?")) return;
-
-            try {
-                const { error } = await supabase.from('projects').delete().eq('id', id);
-                if (error) throw error;
-                loadAdminProjects();
-                loadPublicProjects();
-            } catch (err) {
-                alert("Error deleting: " + err.message);
-            }
-        }
-
-        // --- Load Contact Messages ---
         async function loadMessages() {
             const list = document.getElementById('inquiryList');
             list.innerHTML = '<p style="color:#888;">Loading...</p>';
-
             try {
                 const { data, error } = await supabase.from('inquiries').select('*').order('created_at', { ascending: false });
                 if (error) throw error;
-
-                if (!data || data.length === 0) {
-                    list.innerHTML = '<p style="color:#888;">No messages yet.</p>';
-                    return;
-                }
-
+                if (!data || data.length === 0) { list.innerHTML = '<p style="color:#888;">No messages yet.</p>'; return; }
                 list.innerHTML = '';
                 data.forEach(msg => {
                     list.innerHTML += `
@@ -731,13 +655,9 @@
                         </div>
                     `;
                 });
-
-            } catch (err) {
-                list.innerHTML = `<p style="color:#e74c3c;">Error: ${err.message}</p>`;
-            }
+            } catch (err) { list.innerHTML = '<p style="color:#e74c3c;">Error: ' + err.message + '</p>'; }
         }
 
-        // --- Delete Message ---
         async function deleteMessage(id) {
             if (!confirm("Delete this message?")) return;
             try {
@@ -746,20 +666,13 @@
             } catch (err) { alert('Error: ' + err.message); }
         }
 
-        // --- Load Registered Clients ---
         async function loadClients() {
             const list = document.getElementById('clientsList');
             list.innerHTML = '<p style="color:#888;">Loading...</p>';
-
             try {
                 const { data, error } = await supabase.from('clients').select('*').order('created_at', { ascending: false });
                 if (error) throw error;
-
-                if (!data || data.length === 0) {
-                    list.innerHTML = '<p style="color:#888;">No registered clients yet.</p>';
-                    return;
-                }
-
+                if (!data || data.length === 0) { list.innerHTML = '<p style="color:#888;">No registered clients yet.</p>'; return; }
                 list.innerHTML = '';
                 data.forEach(client => {
                     list.innerHTML += `
@@ -771,16 +684,8 @@
                         </div>
                     `;
                 });
-
-            } catch (err) {
-                list.innerHTML = `<p style="color:#e74c3c;">Error: ${err.message}</p>`;
-            }
+            } catch (err) { list.innerHTML = '<p style="color:#e74c3c;">Error: ' + err.message + '</p>'; }
         }
-
-        // --- Initialize ---
-        document.addEventListener('DOMContentLoaded', function() {
-            loadPublicProjects();
-        });
     </script>
 </body>
 </html>
