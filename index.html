@@ -9,10 +9,11 @@
     <link rel="icon" href="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Supabase Library Load (Sirf Ye Library Load Karega, Variable Nahi Banayega) -->
+    <!-- Supabase Library CDN - Sirf Load Hogi, Use Nahi Karenge Abhi -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
+        /* (Same CSS as before - remove any duplicate) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7fc; color: #1a2a3a; line-height: 1.7; }
         a { text-decoration: none; }
@@ -72,7 +73,6 @@
         .showcase-card .info { padding: 20px; }
         .showcase-card .info p { color: #5a6a7e; font-size: 0.95rem; }
 
-        /* PROJECTS */
         .our-projects { padding: 80px 0; background: linear-gradient(135deg, #0f1a2b 0%, #1a2a3a 60%, #2a3a4a 100%); color: #fff; text-align: center; position: relative; overflow: hidden; }
         .our-projects::before { content: "✦"; font-size: 300px; position: absolute; left: -100px; bottom: -120px; color: rgba(212, 160, 43, 0.03); transform: rotate(-10deg); }
         .our-projects .projects-title { font-size: 2.8rem; font-weight: 900; margin-bottom: 8px; letter-spacing: 1px; }
@@ -103,7 +103,6 @@
         @media (max-width: 992px) { .carousel-card { min-width: 50%; } }
         @media (max-width: 600px) { .carousel-card { min-width: 100%; } .projects-title { font-size: 2rem; } }
 
-        /* Contact */
         .contact-section { padding: 60px 0; background: #f8faff; }
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
         .contact-form { background: #fff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border: 1px solid #eef3f8; }
@@ -125,9 +124,6 @@
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background: #fff; padding: 30px; border-radius: 24px; max-width: 500px; width: 90%; text-align: center; }
         .modal-content h2 { color: #d4a02b; margin-bottom: 20px; }
-        .modal-content input, .modal-content textarea, .modal-content select { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 12px; font-size: 1rem; font-family: inherit; }
-        .modal-content button { width: 100%; background: #d4a02b; color: #fff; padding: 14px; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; }
-        .modal-content button:hover { background: #b8891f; }
         .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #888; }
         .modal-close:hover { color: #d4a02b; }
 
@@ -153,8 +149,6 @@
             .navbar .nav-links { gap: 10px; }
             .navbar .nav-links a { font-size: 0.75rem; }
             .section-title { font-size: 2rem; }
-            .cta-section h2 { font-size: 2rem; }
-            .cta-section .contact-info { flex-direction: column; align-items: center; gap: 15px; }
             .contact-wrapper { grid-template-columns: 1fr; }
             .admin-content { max-width: 95%; }
         }
@@ -163,6 +157,21 @@
             .navbar .nav-links { flex-wrap: wrap; justify-content: flex-end; }
             .carousel-card { min-width: 100%; }
         }
+
+        /* footer */
+        .footer { background: #0f1a2b; color: #b0c0d0; padding: 40px 0; text-align: center; }
+        .footer .footer-brand { font-size: 2rem; font-weight: 900; color: #fff; }
+        .footer .footer-brand span { color: #d4a02b; }
+        .footer .social-links { margin: 20px 0; display: flex; justify-content: center; gap: 20px; }
+        .footer .social-links a { color: #b0c0d0; font-size: 1.5rem; transition: color 0.3s; }
+        .footer .social-links a:hover { color: #d4a02b; }
+
+        .cta-section { background: #1a2a3a; padding: 60px 0; text-align: center; color: #fff; }
+        .cta-section h2 { font-size: 2.5rem; font-weight: 800; }
+        .cta-section h2 span { color: #d4a02b; }
+        .cta-section .cta-desc { font-size: 1.2rem; color: #b0c0d0; margin: 15px 0 30px; }
+        .cta-section .contact-info { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; font-size: 1.1rem; }
+        .cta-section .contact-info div { background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
@@ -262,8 +271,7 @@
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)">&#10094;</button>
                 <div class="projects-carousel" id="projectsCarousel">
-
-                    <!-- 1. Abbas Store (Your Image) -->
+                    <!-- 6 Projects (same as before) -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://abbasstore.vercel.app" target="_blank">
@@ -279,8 +287,6 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- 2. JP Store ERP (Your Image) -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://jpstoreerp.vercel.app" target="_blank">
@@ -296,8 +302,6 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- 3. Apex Grocers (Your Image) -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://apexstore.vercel.app" target="_blank">
@@ -313,8 +317,6 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- 4. Nayyer Medical -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://nayyarms.vercel.app" target="_blank">
@@ -330,8 +332,6 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- 5. Kitchen Noir -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://knoir.vercel.app" target="_blank">
@@ -347,8 +347,6 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- 6. Samina Store -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://saminastore.vercel.app" target="_blank">
@@ -364,7 +362,6 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
                 <button class="carousel-btn next-btn" onclick="moveCarousel(1)">&#10095;</button>
             </div>
@@ -492,116 +489,90 @@
         </div>
     </div>
 
-    <!-- ========== ADMIN PANEL ========== -->
+    <!-- ========== ADMIN PANEL (Static Demo - No Database) ========== -->
     <div id="adminPanel" class="admin-panel">
         <div class="admin-content">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
                 <h2><i class="fas fa-shield-alt" style="color:#d4a02b;"></i> Admin Dashboard</h2>
                 <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
             </div>
-
-            <!-- Add Project Form -->
-            <div class="admin-project-form">
-                <h3>➕ Add New Project</h3>
-                <div class="form-group">
-                    <label>Project Name</label>
-                    <input type="text" id="projName" placeholder="e.g. ABC Store">
-                </div>
-                <div class="form-group">
-                    <label>Project Description</label>
-                    <textarea id="projDesc" rows="3" placeholder="Short description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Project Live Link</label>
-                    <input type="text" id="projUrl" placeholder="https://abcstore.vercel.app">
-                </div>
-                <div class="form-group">
-                    <label>Project Image</label>
-                    <div class="file-input-wrapper">
-                        <span class="file-label"><i class="fas fa-upload"></i> Choose Image</span>
-                        <input type="file" id="projImageFile" accept="image/*" onchange="previewProjectImage(event)">
-                    </div>
-                    <div style="margin-top:10px;">
-                        <img id="projImagePreview" src="" alt="Preview" style="display:none; max-width:100px; border-radius:8px;">
-                    </div>
-                    <input type="hidden" id="projImageUrl" value="">
-                </div>
-                <button class="submit-btn" onclick="saveProject()"><i class="fas fa-save"></i> Save Project</button>
+            <div style="background:#f8faff; padding:20px; border-radius:16px; border:2px dashed #d4a02b; margin-bottom:20px;">
+                <h3>📌 Static Demo — No Database Connected</h3>
+                <p style="color:#6b7a8f;">This is a placeholder. We will add Supabase queries step by step after testing.</p>
             </div>
-
-            <div style="margin-bottom: 20px;">
+            <div style="margin-bottom:20px;">
                 <h3>📋 All Projects</h3>
-                <div id="adminProjectsList"></div>
+                <div id="adminProjectsList">
+                    <div class="admin-item"><strong>Abbas Store</strong><small>abbasstore.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+                    <div class="admin-item"><strong>JP Store ERP</strong><small>jpstoreerp.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+                </div>
             </div>
-
-            <div class="admin-tabs" style="margin-top: 30px;">
+            <div class="admin-tabs" style="margin-top:30px;">
                 <button class="active" onclick="switchTab('messages')">Contact Messages</button>
                 <button onclick="switchTab('clients')">Registered Clients</button>
             </div>
-            <div id="messagesTab" style="display: block;">
-                <div id="inquiryList"></div>
+            <div id="messagesTab" style="display:block;">
+                <div id="inquiryList">
+                    <div class="admin-item"><strong>John Doe</strong><small>john@example.com</small><p>Demo message</p><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+                </div>
             </div>
-            <div id="clientsTab" style="display: none;">
-                <div id="clientsList"></div>
+            <div id="clientsTab" style="display:none;">
+                <div id="clientsList">
+                    <div class="admin-item"><strong>Jane Smith</strong><small>jane@example.com</small><small>Registered: 1 Sep 2026</small></div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- ========== JAVASCRIPT (REARRANGED FOR SAFETY) ========== -->
+    <!-- ========== JAVASCRIPT (BILKUL SUPABASE FREE) ========== -->
     <script>
-        // ============================================================
-        // 1. PEHLE SARE FUNCTIONS DEFINE KAREIN (Global Scope)
-        //    TAAKE AGAR Supabase fail bhi ho toh yeh available rahein
-        // ============================================================
+        // ====================== PURE FUNCTIONS (No Supabase) ======================
 
-        // --- Navbar Functions ---
+        // Navbar
         window.scrollToTop = function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
+        // Modal Open/Close
         window.openModal = function(id) {
             const modal = document.getElementById(id);
-            if (modal) {
-                modal.style.display = 'flex';
-            }
+            if (modal) modal.style.display = 'flex';
         };
 
         window.closeModal = function(id) {
             const modal = document.getElementById(id);
-            if (modal) {
-                modal.style.display = 'none';
-            }
+            if (modal) modal.style.display = 'none';
         };
 
-        // Modal ke bahar click karne par band ho
+        // Close modal on outside click
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
             }
         });
 
-        // --- Dynamic Carousel ---
+        // Carousel
         window.moveCarousel = function(direction) {
             const carousel = document.getElementById('projectsCarousel');
             const cards = carousel.children;
             if (cards.length === 0) return;
             const cardWidth = cards[0].getBoundingClientRect().width;
 
-            let carouselIndex = 0;
-            carouselIndex += direction;
-            if (carouselIndex < 0) carouselIndex = cards.length - 1;
-            if (carouselIndex >= cards.length) carouselIndex = 0;
-
-            carousel.style.transform = `translateX(-${carouselIndex * cardWidth}px)`;
+            let currentIndex = 0;
+            // Simulate index (we just rotate)
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = cards.length - 1;
+            if (currentIndex >= cards.length) currentIndex = 0;
+            carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
         };
 
-        // --- Admin Login Functions ---
+        // Admin Login
         const ADMIN_PASS = "admin123";
 
         window.promptAdmin = function() {
             const admin = localStorage.getItem('nexify_admin');
             if (admin === 'true') {
-                openAdminPanel();
+                document.getElementById('adminPanel').style.display = 'flex';
             } else {
                 document.getElementById('adminLoginModal').style.display = 'flex';
             }
@@ -613,10 +584,6 @@
                 localStorage.setItem('nexify_admin', 'true');
                 document.getElementById('adminLoginModal').style.display = 'none';
                 document.getElementById('adminPanel').style.display = 'flex';
-                // Load data after panel opens
-                if (typeof loadMessages === 'function') loadMessages();
-                if (typeof loadClients === 'function') loadClients();
-                if (typeof loadAdminProjects === 'function') loadAdminProjects();
             } else {
                 document.getElementById('loginError').style.display = 'block';
             }
@@ -627,280 +594,47 @@
             document.getElementById('adminPanel').style.display = 'none';
         };
 
-        function openAdminPanel() {
-            document.getElementById('adminPanel').style.display = 'flex';
-            if (typeof loadMessages === 'function') loadMessages();
-            if (typeof loadClients === 'function') loadClients();
-            if (typeof loadAdminProjects === 'function') loadAdminProjects();
-        }
-
-        // --- Tab Switching ---
+        // Tab Switching (demo only)
         window.switchTab = function(tab) {
             document.querySelectorAll('.admin-tabs button').forEach(btn => btn.classList.remove('active'));
             if (tab === 'messages') {
                 document.querySelectorAll('.admin-tabs button')[0].classList.add('active');
                 document.getElementById('messagesTab').style.display = 'block';
                 document.getElementById('clientsTab').style.display = 'none';
-                if (typeof loadMessages === 'function') loadMessages();
             } else {
                 document.querySelectorAll('.admin-tabs button')[1].classList.add('active');
                 document.getElementById('messagesTab').style.display = 'none';
                 document.getElementById('clientsTab').style.display = 'block';
-                if (typeof loadClients === 'function') loadClients();
             }
         };
 
-        // --- Preview Image ---
-        window.previewProjectImage = function(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.getElementById('projImagePreview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-                document.getElementById('projImageUrl').value = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        };
-
-        // --- Delete Message (will be defined after supabase) ---
-        window.deleteMessage = async function(id) {
-            // Will be overridden later if supabase available
-            if (typeof supabase !== 'undefined' && supabase) {
-                try {
-                    const { error } = await supabase.from('inquiries').delete().eq('id', id);
-                    if (!error) loadMessages();
-                    else alert('Error: ' + error.message);
-                } catch (e) {
-                    alert('Error: ' + e.message);
-                }
-            } else {
-                alert('Supabase not available. Cannot delete.');
-            }
-        };
-
-        // --- Delete Project ---
-        window.deleteProject = async function(id) {
-            if (!confirm("Delete this project?")) return;
-            if (typeof supabase !== 'undefined' && supabase) {
-                try {
-                    const { error } = await supabase.from('projects').delete().eq('id', id);
-                    if (!error) loadAdminProjects();
-                    else alert('Error: ' + error.message);
-                } catch (e) {
-                    alert('Error: ' + e.message);
-                }
-            } else {
-                alert('Supabase not available.');
-            }
-        };
-
-        // --- Save New Project ---
-        window.saveProject = async function() {
-            const name = document.getElementById('projName').value.trim();
-            const desc = document.getElementById('projDesc').value.trim();
-            const url = document.getElementById('projUrl').value.trim();
-            const image = document.getElementById('projImageUrl').value;
-
-            if (!name || !desc || !url || !image) {
-                alert("Please fill all fields and select an image.");
-                return;
-            }
-
-            if (typeof supabase !== 'undefined' && supabase) {
-                try {
-                    const { error } = await supabase.from('projects').insert([{
-                        project_name: name,
-                        project_description: desc,
-                        project_url: url,
-                        project_image: image,
-                        created_at: new Date().toISOString()
-                    }]);
-                    if (error) throw error;
-                    alert("Project added successfully!");
-                    document.getElementById('projName').value = '';
-                    document.getElementById('projDesc').value = '';
-                    document.getElementById('projUrl').value = '';
-                    document.getElementById('projImageFile').value = '';
-                    document.getElementById('projImagePreview').style.display = 'none';
-                    document.getElementById('projImageUrl').value = '';
-                    loadAdminProjects();
-                } catch (err) {
-                    alert("Error adding project: " + err.message);
-                }
-            } else {
-                alert('Supabase not available. Cannot save project.');
-            }
-        };
-
-        // ============================================================
-        // 2. AB SUPABASE INITIALIZE KAREIN (TRY-CATCH MEIN)
-        //    AGAR FAIL HO TOH BHI SCRIPT NA RUKAY
-        // ============================================================
-        let supabase = null;
-
-        try {
-            if (window.supabase) {
-                supabase = window.supabase.createClient(
-                    'https://wsflwxtmuuauqmsfhnux.supabase.co',
-                    'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I'
-                );
-                console.log('Supabase initialized successfully.');
-            } else {
-                console.warn('Supabase library not loaded. Check CDN link.');
-            }
-        } catch (err) {
-            console.error('Supabase initialization error:', err);
-            supabase = null;
-        }
-
-        // ============================================================
-        // 3. DATA LOADING FUNCTIONS (JO SUPABASE USE KARTE HAIN)
-        //    INKO AB DEFINE KAREIN, KYUNKI supabase variable ab available hai
-        // ============================================================
-
-        // --- Load Admin Projects ---
-        async function loadAdminProjects() {
-            const list = document.getElementById('adminProjectsList');
-            list.innerHTML = '<p style="color:#888;">Loading...</p>';
-
-            if (!supabase) {
-                list.innerHTML = '<p style="color:#e74c3c;">Supabase not available.</p>';
-                return;
-            }
-
-            try {
-                const { data, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
-                if (error) throw error;
-
-                if (!data || data.length === 0) {
-                    list.innerHTML = '<p style="color:#888;">No projects yet. Add your first project above.</p>';
-                    return;
-                }
-
-                list.innerHTML = '';
-                data.forEach(project => {
-                    list.innerHTML += `
-                        <div class="admin-item">
-                            <strong>${project.project_name}</strong>
-                            <small>${project.project_url}</small>
-                            <button class="delete-btn" onclick="deleteProject('${project.id}')">Delete</button>
-                        </div>
-                    `;
-                });
-            } catch (err) {
-                list.innerHTML = `<p style="color:#e74c3c;">Error: ${err.message}</p>`;
-            }
-        }
-
-        // --- Load Contact Messages ---
-        async function loadMessages() {
-            const list = document.getElementById('inquiryList');
-            list.innerHTML = '<p style="color:#888;">Loading...</p>';
-
-            if (!supabase) {
-                list.innerHTML = '<p style="color:#e74c3c;">Supabase not available.</p>';
-                return;
-            }
-
-            try {
-                const { data, error } = await supabase.from('inquiries').select('*').order('created_at', { ascending: false });
-                if (error) throw error;
-
-                if (!data || data.length === 0) {
-                    list.innerHTML = '<p style="color:#888;">No messages yet.</p>';
-                    return;
-                }
-
-                list.innerHTML = '';
-                data.forEach(msg => {
-                    list.innerHTML += `
-                        <div class="admin-item">
-                            <strong>${msg.name}</strong>
-                            <small><i class="fas fa-envelope"></i> ${msg.email}</small>
-                            <small><i class="fas fa-phone"></i> ${msg.phone || 'N/A'}</small>
-                            <p style="margin-top:5px;">${msg.message}</p>
-                            <small style="color:#999;">${new Date(msg.created_at).toLocaleString()}</small>
-                            <button class="delete-btn" onclick="deleteMessage('${msg.id}')">Delete</button>
-                        </div>
-                    `;
-                });
-            } catch (err) {
-                list.innerHTML = `<p style="color:#e74c3c;">Error: ${err.message}</p>`;
-            }
-        }
-
-        // --- Load Registered Clients ---
-        async function loadClients() {
-            const list = document.getElementById('clientsList');
-            list.innerHTML = '<p style="color:#888;">Loading...</p>';
-
-            if (!supabase) {
-                list.innerHTML = '<p style="color:#e74c3c;">Supabase not available.</p>';
-                return;
-            }
-
-            try {
-                const { data, error } = await supabase.from('clients').select('*').order('created_at', { ascending: false });
-                if (error) throw error;
-
-                if (!data || data.length === 0) {
-                    list.innerHTML = '<p style="color:#888;">No registered clients yet.</p>';
-                    return;
-                }
-
-                list.innerHTML = '';
-                data.forEach(client => {
-                    list.innerHTML += `
-                        <div class="admin-item">
-                            <strong>${client.full_name}</strong>
-                            <small><i class="fas fa-envelope"></i> ${client.email}</small>
-                            <small><i class="fas fa-phone"></i> ${client.phone || 'N/A'}</small>
-                            <small style="color:#999;">Registered: ${new Date(client.created_at).toLocaleString()}</small>
-                        </div>
-                    `;
-                });
-            } catch (err) {
-                list.innerHTML = `<p style="color:#e74c3c;">Error: ${err.message}</p>`;
-            }
-        }
-
-        // ============================================================
-        // 4. CONTACT FORM SUBMIT (SUPABASE USE KAREGA)
-        // ============================================================
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        // Contact Form - Just a local alert (No Supabase)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            if (!supabase) {
-                alert('Supabase not available. Cannot send message.');
-                return;
-            }
-
             const name = document.getElementById('contactName').value;
             const email = document.getElementById('contactEmail').value;
             const phone = document.getElementById('contactPhone').value;
             const message = document.getElementById('contactMessage').value;
 
-            try {
-                const { error } = await supabase.from('inquiries').insert([
-                    { name, email, phone, message, created_at: new Date().toISOString() }
-                ]);
-                if (error) throw error;
-                document.getElementById('successMsg').style.display = 'block';
-                document.getElementById('contactForm').reset();
-                setTimeout(() => {
-                    document.getElementById('successMsg').style.display = 'none';
-                }, 5000);
-            } catch (err) {
-                alert("Error sending message: " + err.message);
-            }
+            // Simulate success
+            document.getElementById('successMsg').style.display = 'block';
+            this.reset();
+            setTimeout(() => {
+                document.getElementById('successMsg').style.display = 'none';
+            }, 5000);
+
+            // Log to console
+            console.log('Contact Form Submitted (Demo):', { name, email, phone, message });
+            alert('Thank you! Your message has been received. (No database connected yet.)');
         });
 
-        // ============================================================
-        // 5. INITIALIZE – AGAR KOI TASK HO TOH
-        // ============================================================
-        console.log('Nexify Nova script loaded successfully.');
+        // Page load - check if admin already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('nexify_admin') === 'true') {
+                // don't auto-open, user can click Admin Panel
+            }
+            console.log('Nexify Nova Static Version - No Supabase');
+        });
     </script>
 </body>
 </html>
