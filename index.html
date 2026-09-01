@@ -8,270 +8,1484 @@
     <!-- Logo Favicon -->
     <link rel="icon" href="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" />
 
+    <!-- Google Fonts: Elegant Serif + Clean Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Supabase Library CDN - Sirf Load Hogi, Use Nahi Karenge Abhi -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
-        /* (Same CSS as before - remove any duplicate) */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7fc; color: #1a2a3a; line-height: 1.7; }
-        a { text-decoration: none; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        /* ============================================================
+                   1. CSS VARIABLES — TIDY THEME
+                   ============================================================ */
+        :root {
+            /* Colours */
+            --color-cream: #f8f7f4;
+            --color-white: #ffffff;
+            --color-charcoal: #1a1a2e;
+            --color-charcoal-light: #2d2d44;
+            --color-gray: #6b6b7a;
+            --color-gray-light: #e8e6e0;
+            --color-gold: #c9a959;
+            --color-gold-light: #dfc87a;
+            --color-gold-dark: #b08f3f;
 
-        .btn-primary { background: #d4a02b; color: #1a2a3a; padding: 14px 40px; border-radius: 50px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s ease; display: inline-block; box-shadow: 0 10px 25px rgba(212, 160, 43, 0.3); }
-        .btn-primary:hover { background: #b8891f; transform: translateY(-3px); box-shadow: 0 15px 35px rgba(212, 160, 43, 0.4); }
-        .btn-outline { background: transparent; color: #fff; padding: 14px 40px; border-radius: 50px; font-weight: 700; font-size: 1rem; border: 2px solid #fff; cursor: pointer; transition: all 0.3s ease; display: inline-block; }
-        .btn-outline:hover { background: #fff; color: #1a2a3a; }
+            /* Typography */
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-        .navbar { background: #1a2a3a; padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
-        .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        .logo-wrapper { display: flex; flex-direction: column; align-items: flex-start; }
-        .logo-link { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-        .brand-name { font-size: 1.9rem; font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: 1px; }
-        .brand-name span { color: #d4a02b; text-shadow: 0 0 30px rgba(212, 160, 43, 0.3); }
-        .logo-img { width: 60px; height: 60px; object-fit: contain; border-radius: 50%; }
+            /* Spacing */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 4rem;
+            --spacing-2xl: 6rem;
 
-        .nav-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-        .navbar .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-        .navbar .nav-links a { color: #ccc; font-weight: 600; font-size: 0.85rem; transition: color 0.3s; }
-        .navbar .nav-links a:hover { color: #d4a02b; }
-        .navbar .nav-cta { background: #d4a02b; color: #1a2a3a; padding: 6px 16px; border-radius: 30px; font-weight: 700; transition: background 0.3s; }
-        .navbar .nav-cta:hover { background: #b8891f; color: #fff; }
+            /* Border radius */
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
 
-        .hero { background: linear-gradient(135deg, #0f1a2b 0%, #1a2a3a 50%, #2a3a4a 100%); color: #fff; padding: 80px 0 70px; text-align: center; position: relative; overflow: hidden; }
-        .hero::before { content: "✦"; font-size: 400px; position: absolute; right: -80px; top: -120px; color: rgba(212, 160, 43, 0.04); transform: rotate(15deg); }
-        .hero h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 15px; line-height: 1.2; }
-        .hero h1 span { color: #d4a02b; }
-        .hero .subtitle { font-size: 1.3rem; color: #b0c0d0; max-width: 700px; margin: 0 auto 25px; }
-        .hero .btn-group { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+            /* Shadows — very subtle */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
 
-        .trust-bar { background: #fff; padding: 40px 0; border-bottom: 1px solid #eef3f8; }
-        .trust-bar .container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; }
-        .trust-bar .stat h3 { font-size: 2.2rem; color: #1a2a3a; }
-        .trust-bar .stat h3 span { color: #d4a02b; }
-        .trust-bar .stat p { color: #6b7a8f; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; }
+            /* Transitions */
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-        .services { padding: 80px 0; background: #f8faff; }
-        .section-title { text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; }
-        .section-title span { color: #d4a02b; }
-        .section-desc { text-align: center; color: #6b7a8f; max-width: 650px; margin: 0 auto 50px; font-size: 1.1rem; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service-card { background: #fff; padding: 40px 30px; border-radius: 24px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); text-align: center; transition: all 0.3s ease; border: 1px solid #eef3f8; }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); border-color: #d4a02b; }
-        .service-card i { font-size: 3.2rem; color: #d4a02b; margin-bottom: 18px; }
-        .service-card h3 { font-size: 1.4rem; margin-bottom: 10px; }
-        .service-card p { color: #5a6a7e; font-size: 0.95rem; }
+        /* ============================================================
+                   2. RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        .showcase { padding: 80px 0; background: #fff; }
-        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-top: 30px; }
-        .showcase-card { background: #f8faff; border-radius: 20px; overflow: hidden; box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06); text-align: center; transition: all 0.3s ease; }
-        .showcase-card:hover { transform: scale(1.02); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); }
-        .showcase-card .icon-box { background: linear-gradient(135deg, #1a2a3a, #2a3a4a); padding: 40px 20px 20px; color: #fff; }
-        .showcase-card .icon-box i { font-size: 4rem; color: #d4a02b; }
-        .showcase-card .icon-box h4 { margin-top: 15px; font-size: 1.2rem; }
-        .showcase-card .info { padding: 20px; }
-        .showcase-card .info p { color: #5a6a7e; font-size: 0.95rem; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        .our-projects { padding: 80px 0; background: linear-gradient(135deg, #0f1a2b 0%, #1a2a3a 60%, #2a3a4a 100%); color: #fff; text-align: center; position: relative; overflow: hidden; }
-        .our-projects::before { content: "✦"; font-size: 300px; position: absolute; left: -100px; bottom: -120px; color: rgba(212, 160, 43, 0.03); transform: rotate(-10deg); }
-        .our-projects .projects-title { font-size: 2.8rem; font-weight: 900; margin-bottom: 8px; letter-spacing: 1px; }
-        .our-projects .projects-title span { color: #d4a02b; text-shadow: 0 0 40px rgba(212, 160, 43, 0.15); }
-        .our-projects .projects-sub { font-size: 1.1rem; color: #b0c0d0; max-width: 600px; margin: 0 auto 40px; }
-        .our-projects .projects-divider { width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #d4a02b, transparent); margin: 8px auto 32px; border-radius: 10px; }
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-cream);
+            color: var(--color-charcoal);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-        .carousel-container { position: relative; max-width: 1100px; margin: 0 auto; overflow: hidden; padding: 10px; }
-        .projects-carousel { display: flex; transition: transform 0.5s ease-in-out; }
-        .carousel-card { min-width: 33.33%; padding: 15px; }
-        .project-card { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(212, 160, 43, 0.12); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; height: 100%; }
-        .project-card:hover { transform: translateY(-5px); border-color: #d4a02b; background: rgba(255, 255, 255, 0.12); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3); }
-        .project-card .project-image { width: 100%; height: 220px; overflow: hidden; }
-        .project-card .project-image img { width: 100%; height: 100%; object-fit: cover; background: #0f1a2b; transition: transform 0.5s; }
-        .project-card:hover .project-image img { transform: scale(1.05); }
-        .project-card .project-content { padding: 20px; text-align: center; }
-        .project-card .p-name { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-        .project-card .p-desc { font-size: 0.9rem; color: #b0c0d0; margin-bottom: 12px; line-height: 1.5; }
-        .project-card .p-url { font-size: 0.7rem; color: #8e96b0; margin-bottom: 15px; }
-        .project-card .p-badge { background: #d4a02b; color: #1a2a3a; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; display: inline-block; }
-        .project-card a { color: inherit; text-decoration: none; }
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; font-size: 30px; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10; }
-        .carousel-btn:hover { background: #d4a02b; color: #1a2a3a; }
-        .prev-btn { left: 0; }
-        .next-btn { right: 0; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-        @media (max-width: 992px) { .carousel-card { min-width: 50%; } }
-        @media (max-width: 600px) { .carousel-card { min-width: 100%; } .projects-title { font-size: 2rem; } }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-        .contact-section { padding: 60px 0; background: #f8faff; }
-        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
-        .contact-form { background: #fff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border: 1px solid #eef3f8; }
-        .contact-form h3 { font-size: 24px; color: #1a2a3a; margin-bottom: 20px; }
-        .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; margin-bottom: 6px; font-size: 14px; color: #6b7a8f; font-weight: 600; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px 15px; background: #f8faff; color: #1a2a3a; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 16px; font-family: inherit; transition: 0.3s; outline: none; }
-        .form-group input:focus, .form-group textarea:focus { border-color: #d4a02b; box-shadow: 0 0 10px rgba(212,160,43,0.2); }
-        .submit-btn { width: 100%; padding: 14px; background: #d4a02b; color: #1a2a3a; font-weight: 700; font-size: 16px; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; }
-        .submit-btn:hover { background: #b8891f; color: #fff; transform: translateY(-2px); }
-        .success-msg { display: none; text-align: center; padding: 15px; background: #e8f5e9; border: 1px solid #2e7d32; border-radius: 8px; color: #2e7d32; margin-top: 20px; font-weight: 600; }
-        .contact-info-box { background: #fff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border: 1px solid #eef3f8; }
-        .contact-info-box h3 { font-size: 24px; color: #1a2a3a; margin-bottom: 20px; }
-        .contact-info-box p { color: #6b7a8f; font-size: 16px; line-height: 1.8; margin-bottom: 15px; }
-        .contact-info-box i { color: #d4a02b; margin-right: 10px; }
-        .contact-info-box a { color: #d4a02b; text-decoration: none; font-weight: 600; }
-        .contact-info-box a:hover { text-decoration: underline; }
+        /* ============================================================
+                   3. TYPOGRAPHY
+                   ============================================================ */
+        .heading-serif {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; }
-        .modal-content { background: #fff; padding: 30px; border-radius: 24px; max-width: 500px; width: 90%; text-align: center; }
-        .modal-content h2 { color: #d4a02b; margin-bottom: 20px; }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #888; }
-        .modal-close:hover { color: #d4a02b; }
+        .heading-serif-light {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
 
-        .admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; overflow-y: auto; }
-        .admin-content { background: #fff; padding: 30px; border-radius: 24px; max-width: 800px; width: 95%; max-height: 85vh; overflow-y: auto; position: relative; }
-        .admin-content h2 { color: #1a2a3a; border-bottom: 2px solid #d4a02b; padding-bottom: 10px; margin-bottom: 20px; }
-        .admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
-        .admin-tabs button { background: #f8faff; border: 1px solid #ddd; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
-        .admin-tabs button.active { background: #d4a02b; color: #fff; border-color: #d4a02b; }
-        .admin-item { background: #f8faff; padding: 15px; border-radius: 12px; margin-bottom: 12px; border-left: 4px solid #d4a02b; }
-        .admin-item strong { color: #1a2a3a; display: block; }
-        .admin-item small { color: #888; display: block; margin-top: 5px; }
-        .delete-btn { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; }
-        .logout-btn { background: #ef4444; color: white; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-weight: 700; }
-        .admin-project-form { background: #f8faff; border: 2px dashed #d4a02b; padding: 20px; border-radius: 16px; margin-bottom: 20px; }
-        .admin-project-form h3 { color: #1a2a3a; margin-bottom: 15px; }
-        .file-input-wrapper { position: relative; margin-bottom: 15px; }
-        .file-input-wrapper input[type="file"] { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
-        .file-input-wrapper .file-label { display: block; padding: 12px; background: #fff; border: 1px dashed #aaa; border-radius: 8px; text-align: center; color: #666; }
+        .heading-serif-italic {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: -0.01em;
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        /* ============================================================
+                   4. BUTTONS
+                   ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .btn-primary {
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            box-shadow: 0 2px 12px rgba(26, 26, 46, 0.15);
+        }
+        .btn-primary:hover {
+            background: var(--color-charcoal-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(26, 26, 46, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-charcoal);
+            border: 1.5px solid var(--color-charcoal);
+        }
+        .btn-outline:hover {
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        .btn-gold {
+            background: var(--color-gold);
+            color: var(--color-white);
+            box-shadow: 0 2px 12px rgba(201, 169, 89, 0.3);
+        }
+        .btn-gold:hover {
+            background: var(--color-gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 169, 89, 0.4);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--color-charcoal);
+            padding: 14px 20px;
+        }
+        .btn-ghost:hover {
+            color: var(--color-gold);
+        }
+
+        .btn-sm {
+            padding: 10px 24px;
+            font-size: 0.85rem;
+        }
+
+        /* ============================================================
+                   5. NAVBAR
+                   ============================================================ */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 12px 0;
+            transition: all var(--transition);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .brand-name {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-charcoal);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+        .brand-name span {
+            color: var(--color-gold);
+        }
+        .brand-tagline {
+            font-size: 0.55rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--color-gray);
+            font-weight: 500;
+            margin-top: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .nav-links a {
+            padding: 6px 14px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--color-gray);
+            transition: color var(--transition);
+            border-radius: 30px;
+        }
+        .nav-links a:hover {
+            color: var(--color-charcoal);
+        }
+        .nav-links a.nav-cta {
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        .nav-links a.nav-cta:hover {
+            background: var(--color-charcoal-light);
+            color: var(--color-white);
+        }
+        .nav-links a i {
+            margin-right: 4px;
+            font-size: 0.75rem;
+        }
+
+        /* Mobile Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--color-charcoal);
+            border-radius: 4px;
+            transition: all var(--transition);
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ============================================================
+                   6. HERO
+                   ============================================================ */
+        .hero {
+            padding: 100px 0 80px;
+            background: var(--color-cream);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 169, 89, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            background: rgba(201, 169, 89, 0.10);
+            padding: 6px 18px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(201, 169, 89, 0.15);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.6rem);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--color-gold);
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+            color: var(--color-gray);
+            max-width: 620px;
+            margin: 0 auto 36px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+                   7. TRUST BAR
+                   ============================================================ */
+        .trust-bar {
+            padding: 48px 0;
+            background: var(--color-white);
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .trust-bar .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 24px;
+            text-align: center;
+        }
+
+        .trust-stat h3 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--color-charcoal);
+            font-family: var(--font-serif);
+        }
+        .trust-stat h3 span {
+            color: var(--color-gold);
+        }
+        .trust-stat p {
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+                   8. SECTION TITLES
+                   ============================================================ */
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+        .section-title span {
+            color: var(--color-gold);
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--color-gray);
+            max-width: 580px;
+            margin: 0 auto 48px;
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .section-divider {
+            width: 48px;
+            height: 2px;
+            background: var(--color-gold);
+            margin: 12px auto 40px;
+            border-radius: 4px;
+        }
+
+        /* ============================================================
+                   9. SERVICES
+                   ============================================================ */
+        .services {
+            padding: 80px 0;
+            background: var(--color-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 28px;
+        }
+
+        .service-card {
+            background: var(--color-cream);
+            padding: 40px 28px 36px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(201, 169, 89, 0.25);
+            box-shadow: var(--shadow-md);
+        }
+
+        .service-card .icon {
+            font-size: 2.6rem;
+            color: var(--color-gold);
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            font-size: 0.92rem;
+            color: var(--color-gray);
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+                   10. SHOWCASE
+                   ============================================================ */
+        .showcase {
+            padding: 80px 0;
+            background: var(--color-cream);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .showcase-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .showcase-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(201, 169, 89, 0.15);
+        }
+
+        .showcase-card .icon-box {
+            padding: 32px 20px 20px;
+            text-align: center;
+            background: var(--color-charcoal);
+            color: var(--color-white);
+        }
+        .showcase-card .icon-box i {
+            font-size: 2.8rem;
+            color: var(--color-gold);
+        }
+        .showcase-card .icon-box h4 {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .showcase-card .info {
+            padding: 20px 24px 24px;
+        }
+        .showcase-card .info p {
+            font-size: 0.92rem;
+            color: var(--color-gray);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+                   11. PROJECTS CAROUSEL
+                   ============================================================ */
+        .our-projects {
+            padding: 80px 0;
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            text-align: center;
+        }
+
+        .our-projects .section-title {
+            color: var(--color-white);
+        }
+        .our-projects .section-title span {
+            color: var(--color-gold);
+        }
+        .our-projects .section-desc {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .our-projects .section-divider {
+            background: var(--color-gold);
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 8px 4px;
+        }
+
+        .projects-carousel {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 0;
+        }
+
+        .carousel-card {
+            min-width: 33.333%;
+            padding: 12px;
+            flex-shrink: 0;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            height: 100%;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(201, 169, 89, 0.25);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card .project-image {
+            height: 200px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .project-card .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover .project-image img {
+            transform: scale(1.04);
+        }
+
+        .project-card .project-content {
+            padding: 20px 22px 24px;
+            text-align: center;
+        }
+        .project-card .p-name {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-white);
+            margin-bottom: 4px;
+        }
+        .project-card .p-desc {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .project-card .p-url {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 14px;
+        }
+        .project-card .p-badge {
+            display: inline-block;
+            background: var(--color-gold);
+            color: var(--color-charcoal);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-btn:hover {
+            background: var(--color-gold);
+            color: var(--color-charcoal);
+            border-color: var(--color-gold);
+        }
+        .prev-btn {
+            left: -12px;
+        }
+        .next-btn {
+            right: -12px;
+        }
+
+        @media (max-width: 992px) {
+            .carousel-card {
+                min-width: 50%;
+            }
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .prev-btn {
+                left: -6px;
+            }
+            .next-btn {
+                right: -6px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .carousel-card {
+                min-width: 100%;
+            }
+            .carousel-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ============================================================
+                   12. CONTACT
+                   ============================================================ */
+        .contact-section {
+            padding: 80px 0;
+            background: var(--color-white);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: var(--color-cream);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+        }
+
+        .contact-form h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-gray);
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--color-white);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            transition: all var(--transition);
+            outline: none;
+            color: var(--color-charcoal);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 3px rgba(201, 169, 89, 0.12);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .success-msg {
+            display: none;
+            background: #e6f4ea;
+            color: #1e7e34;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 20px;
+            font-weight: 500;
+            border-left: 3px solid #1e7e34;
+        }
+
+        .contact-info-box {
+            background: var(--color-cream);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+        }
+        .contact-info-box h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .contact-info-box p {
+            color: var(--color-gray);
+            font-size: 0.95rem;
+            line-height: 2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .contact-info-box p i {
+            color: var(--color-gold);
+            width: 20px;
+            font-size: 1rem;
+        }
+        .contact-info-box a {
+            color: var(--color-gold-dark);
+            font-weight: 500;
+        }
+        .contact-info-box a:hover {
+            text-decoration: underline;
+        }
+        .contact-info-box .offer-list {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        .contact-info-box .offer-list p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--color-charcoal);
+        }
+
+        /* ============================================================
+                   13. CTA SECTION
+                   ============================================================ */
+        .cta-section {
+            padding: 64px 0;
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 700;
+        }
+        .cta-section h2 span {
+            color: var(--color-gold);
+        }
+        .cta-section .cta-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 12px 0 32px;
+        }
+        .cta-section .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 24px 40px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+        .cta-section .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .cta-section .contact-info div i {
+            color: var(--color-gold);
+        }
+        .cta-section .contact-info a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color var(--transition);
+        }
+        .cta-section .contact-info a:hover {
+            color: var(--color-gold);
+        }
+
+        /* ============================================================
+                   14. FOOTER
+                   ============================================================ */
+        .footer {
+            background: var(--color-charcoal);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 48px 0 36px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
+        }
+        .footer .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-white);
+        }
+        .footer .footer-brand span {
+            color: var(--color-gold);
+        }
+        .footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin: 20px 0 16px;
+        }
+        .footer .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            transition: all var(--transition);
+        }
+        .footer .social-links a:hover {
+            background: var(--color-gold);
+            color: var(--color-charcoal);
+        }
+        .footer p {
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+        .footer .footer-tagline {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.25);
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================================
+                   15. MODALS
+                   ============================================================ */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .modal-content {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: 40px 44px;
+            max-width: 560px;
+            width: 100%;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--color-gray);
+            transition: color var(--transition);
+            line-height: 1;
+            background: none;
+            border: none;
+        }
+        .modal-close:hover {
+            color: var(--color-charcoal);
+        }
+
+        .modal-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            background: rgba(201, 169, 89, 0.08);
+            padding: 4px 14px;
+            border-radius: 50px;
+            margin-bottom: 8px;
+        }
+
+        .modal-content h2 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-charcoal);
+            margin-bottom: 4px;
+        }
+        .modal-content .modal-divider {
+            width: 48px;
+            height: 2px;
+            background: var(--color-gold);
+            margin: 12px 0 20px;
+            border-radius: 4px;
+        }
+        .modal-content p {
+            color: var(--color-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        .modal-content p strong {
+            color: var(--color-charcoal);
+        }
+
+        .hierarchy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 8px;
+        }
+        .hierarchy-card {
+            background: var(--color-cream);
+            padding: 18px 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .hierarchy-card h4 {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .hierarchy-card .role {
+            color: var(--color-gold);
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin: 2px 0 4px;
+        }
+        .hierarchy-card p {
+            font-size: 0.82rem;
+            color: var(--color-gray);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 500px) {
+            .hierarchy-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                padding: 28px 20px;
+            }
+        }
+
+        /* ============================================================
+                   16. ADMIN PANEL
+                   ============================================================ */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .admin-content {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: 36px 40px;
+            max-width: 820px;
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .admin-content h2 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        .admin-content h2 i {
+            color: var(--color-gold);
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0 16px;
+        }
+        .admin-tabs button {
+            padding: 10px 22px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 50px;
+            background: var(--color-cream);
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--color-gray);
+        }
+        .admin-tabs button.active {
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            border-color: var(--color-charcoal);
+        }
+        .admin-tabs button:hover {
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            border-color: var(--color-charcoal);
+        }
+
+        .admin-item {
+            background: var(--color-cream);
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            border-left: 3px solid var(--color-gold);
+        }
+        .admin-item strong {
+            display: block;
+            color: var(--color-charcoal);
+        }
+        .admin-item small {
+            color: var(--color-gray);
+            font-size: 0.82rem;
+        }
+        .admin-item p {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            color: var(--color-gray);
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            margin-top: 8px;
+        }
+        .delete-btn:hover {
+            background: #b02a37;
+        }
+
+        .logout-btn {
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            border: none;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .logout-btn:hover {
+            background: var(--color-charcoal-light);
+        }
+
+        .admin-project-form {
+            background: var(--color-cream);
+            border: 2px dashed rgba(201, 169, 89, 0.3);
+            padding: 24px 28px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 24px;
+        }
+        .admin-project-form h3 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .file-input-wrapper {
+            position: relative;
+            margin-bottom: 14px;
+        }
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .file-input-wrapper .file-label {
+            display: block;
+            padding: 12px 16px;
+            background: var(--color-white);
+            border: 1px dashed rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            color: var(--color-gray);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+                   17. RESPONSIVE — MOBILE FIRST TWEAKS
+                   ============================================================ */
+        @media (max-width: 992px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .admin-content {
+                padding: 28px 24px;
+            }
+        }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .navbar .nav-links { gap: 10px; }
-            .navbar .nav-links a { font-size: 0.75rem; }
-            .section-title { font-size: 2rem; }
-            .contact-wrapper { grid-template-columns: 1fr; }
-            .admin-content { max-width: 95%; }
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 16px 0 8px;
+                gap: 2px;
+                border-top: 1px solid rgba(0, 0, 0, 0.04);
+                margin-top: 8px;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 10px 14px;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-links a.nav-cta {
+                width: auto;
+                margin: 6px auto 0;
+            }
+
+            .hero {
+                padding: 64px 0 48px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .trust-stat h3 {
+                font-size: 1.8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
+
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.8rem; }
-            .navbar .nav-links { flex-wrap: wrap; justify-content: flex-end; }
-            .carousel-card { min-width: 100%; }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .contact-form {
+                padding: 28px 18px;
+            }
+            .contact-info-box {
+                padding: 28px 18px;
+            }
+            .admin-content {
+                padding: 20px 16px;
+            }
+            .admin-project-form {
+                padding: 18px 14px;
+            }
+            .modal-content {
+                padding: 24px 18px;
+            }
         }
 
-        /* footer */
-        .footer { background: #0f1a2b; color: #b0c0d0; padding: 40px 0; text-align: center; }
-        .footer .footer-brand { font-size: 2rem; font-weight: 900; color: #fff; }
-        .footer .footer-brand span { color: #d4a02b; }
-        .footer .social-links { margin: 20px 0; display: flex; justify-content: center; gap: 20px; }
-        .footer .social-links a { color: #b0c0d0; font-size: 1.5rem; transition: color 0.3s; }
-        .footer .social-links a:hover { color: #d4a02b; }
+        /* ============================================================
+                   18. ANIMATIONS (Subtle)
+                   ============================================================ */
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
 
-        .cta-section { background: #1a2a3a; padding: 60px 0; text-align: center; color: #fff; }
-        .cta-section h2 { font-size: 2.5rem; font-weight: 800; }
-        .cta-section h2 span { color: #d4a02b; }
-        .cta-section .cta-desc { font-size: 1.2rem; color: #b0c0d0; margin: 15px 0 30px; }
-        .cta-section .contact-info { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; font-size: 1.1rem; }
-        .cta-section .contact-info div { background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+        .fade-in:nth-child(2) {
+            animation-delay: 0.10s;
+        }
+        .fade-in:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+        .fade-in:nth-child(4) {
+            animation-delay: 0.20s;
+        }
+        .fade-in:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+        .fade-in:nth-child(6) {
+            animation-delay: 0.30s;
+        }
     </style>
 </head>
 <body>
 
-    <!-- ========== NAVBAR ========== -->
-    <nav class="navbar">
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar" id="navbar">
         <div class="container">
-            <div class="logo-wrapper">
-                <a href="#" class="logo-link">
-                    <img src="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Nexify Nova Logo" class="logo-img" />
-                    <div>
-                        <div class="brand-name">NEXIFY <span>NOVA</span></div>
-                        <div style="font-size:0.6rem; color:#b0c0d0; letter-spacing:3px; font-weight:300; margin-top:2px;">
-                            <i class="fas fa-star" style="color:#d4a02b;font-size:0.3rem;"></i>
-                            DIGITAL BUSINESS SOLUTIONS
-                            <i class="fas fa-star" style="color:#d4a02b;font-size:0.3rem;"></i>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <a href="#" class="logo-wrapper" onclick="scrollToTop()">
+                <img src="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Nexify Nova Logo" class="logo-img" />
+                <div>
+                    <div class="brand-name">NEXIFY <span>NOVA</span></div>
+                    <div class="brand-tagline">Digital Business Solutions</div>
+                </div>
+            </a>
 
-            <div class="nav-right">
-                <ul class="nav-links">
-                    <li><a href="#" onclick="scrollToTop()"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#" onclick="openModal('ceoModal')"><i class="fas fa-user-tie"></i> CEO Message</a></li>
-                    <li><a href="#" onclick="openModal('visionModal')"><i class="fas fa-eye"></i> Vision</a></li>
-                    <li><a href="#" onclick="openModal('hierarchyModal')"><i class="fas fa-sitemap"></i> Hierarchy</a></li>
-                    <li><a href="#" onclick="promptAdmin()"><i class="fas fa-shield-alt"></i> Admin Panel</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#showcase">Solutions</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact" class="nav-cta">Contact</a></li>
-                </ul>
-            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="scrollToTop()"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" onclick="openModal('ceoModal')"><i class="fas fa-user-tie"></i> CEO</a></li>
+                <li><a href="#" onclick="openModal('visionModal')"><i class="fas fa-eye"></i> Vision</a></li>
+                <li><a href="#" onclick="openModal('hierarchyModal')"><i class="fas fa-sitemap"></i> Team</a></li>
+                <li><a href="#" onclick="promptAdmin()"><i class="fas fa-shield-alt"></i> Admin</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#showcase">Solutions</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- ========== HERO ========== -->
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Intelligent Digital Systems <br>for a <span>Global Economy</span></h1>
-            <p class="subtitle">From luxury retail to complex B2B supply chains, we engineer world-class platforms that drive real, measurable growth.</p>
-            <div class="btn-group">
-                <a href="#projects" class="btn-primary"><i class="fas fa-rocket"></i> View Our Work</a>
-                <a href="#contact" class="btn-outline"><i class="fas fa-envelope"></i> Contact Us</a>
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-star" style="margin-right:6px;"></i> Trusted by 50+ businesses</div>
+                <h1 class="heading-serif">Intelligent Digital Systems<br />for a <span>Global Economy</span></h1>
+                <p class="subtitle">From luxury retail to complex B2B supply chains, we engineer world-class platforms that drive real, measurable growth.</p>
+                <div class="btn-group">
+                    <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Our Work</a>
+                    <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Us</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== TRUST BAR ========== -->
+    <!-- ============================================================
+    TRUST BAR
+    ============================================================ -->
     <section class="trust-bar">
         <div class="container">
-            <div class="stat"><h3><span>50+</span></h3><p>Businesses Transformed</p></div>
-            <div class="stat"><h3><span>100%</span></h3><p>Client Satisfaction</p></div>
-            <div class="stat"><h3><span>24/7</span></h3><p>Support Available</p></div>
-            <div class="stat"><h3><span>4.9★</span></h3><p>Average Rating</p></div>
+            <div class="trust-stat"><h3><span>50+</span></h3><p>Businesses Transformed</p></div>
+            <div class="trust-stat"><h3><span>100%</span></h3><p>Client Satisfaction</p></div>
+            <div class="trust-stat"><h3><span>24/7</span></h3><p>Support Available</p></div>
+            <div class="trust-stat"><h3><span>4.9★</span></h3><p>Average Rating</p></div>
         </div>
     </section>
 
-    <!-- ========== SERVICES ========== -->
+    <!-- ============================================================
+    SERVICES
+    ============================================================ -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">What We <span>Offer</span></h2>
             <p class="section-desc">Complete digital solutions to streamline your business operations.</p>
+            <div class="section-divider"></div>
+
             <div class="services-grid">
-                <div class="service-card"><i class="fas fa-store"></i><h3>Business Digitalization</h3><p>Transform your traditional business into a fully digital, paperless operation.</p></div>
-                <div class="service-card"><i class="fas fa-chart-line"></i><h3>Business Management</h3><p>End-to-end management of sales, purchases, accounts, and cash flow.</p></div>
-                <div class="service-card"><i class="fas fa-boxes"></i><h3>Inventory Management</h3><p>Real-time tracking of stock, suppliers, and inventory with smart alerts.</p></div>
-                <div class="service-card"><i class="fas fa-credit-card"></i><h3>Cash Flow Management</h3><p>Monitor income, expenses, and profit with full transparency.</p></div>
-                <div class="service-card"><i class="fas fa-mobile-alt"></i><h3>Custom Web & Mobile Apps</h3><p>Tailor-made apps that fit your business needs perfectly.</p></div>
-                <div class="service-card"><i class="fas fa-headset"></i><h3>24/7 Support & Training</h3><p>We don't just build — we train and support your team.</p></div>
+                <div class="service-card fade-in">
+                    <span class="icon"><i class="fas fa-store"></i></span>
+                    <h3>Business Digitalization</h3>
+                    <p>Transform your traditional business into a fully digital, paperless operation.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="icon"><i class="fas fa-chart-line"></i></span>
+                    <h3>Business Management</h3>
+                    <p>End-to-end management of sales, purchases, accounts, and cash flow.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="icon"><i class="fas fa-boxes"></i></span>
+                    <h3>Inventory Management</h3>
+                    <p>Real-time tracking of stock, suppliers, and inventory with smart alerts.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="icon"><i class="fas fa-credit-card"></i></span>
+                    <h3>Cash Flow Management</h3>
+                    <p>Monitor income, expenses, and profit with full transparency.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="icon"><i class="fas fa-mobile-alt"></i></span>
+                    <h3>Custom Web & Mobile Apps</h3>
+                    <p>Tailor-made apps that fit your business needs perfectly.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="icon"><i class="fas fa-headset"></i></span>
+                    <h3>24/7 Support & Training</h3>
+                    <p>We don't just build — we train and support your team.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== SHOWCASE ========== -->
+    <!-- ============================================================
+    SHOWCASE
+    ============================================================ -->
     <section class="showcase" id="showcase">
         <div class="container">
             <h2 class="section-title">Our <span>Solutions</span> in Action</h2>
             <p class="section-desc">Real systems that we build for businesses like yours.</p>
+            <div class="section-divider"></div>
+
             <div class="showcase-grid">
-                <div class="showcase-card"><div class="icon-box"><i class="fas fa-shopping-cart"></i><h4>E-Commerce Store</h4></div><div class="info"><p>Fully functional online store with inventory and order tracking.</p></div></div>
-                <div class="showcase-card"><div class="icon-box"><i class="fas fa-tachometer-alt"></i><h4>Management Dashboard</h4></div><div class="info"><p>Central dashboard to manage sales, purchases, and accounts.</p></div></div>
-                <div class="showcase-card"><div class="icon-box"><i class="fas fa-warehouse"></i><h4>Inventory System</h4></div><div class="info"><p>Smart inventory with low-stock alerts and supplier management.</p></div></div>
-                <div class="showcase-card"><div class="icon-box"><i class="fas fa-wallet"></i><h4>Cash Flow Tracker</h4></div><div class="info"><p>Track every rupee — income, expenses, and profit in real-time.</p></div></div>
+                <div class="showcase-card fade-in">
+                    <div class="icon-box"><i class="fas fa-shopping-cart"></i><h4>E-Commerce Store</h4></div>
+                    <div class="info"><p>Fully functional online store with inventory and order tracking.</p></div>
+                </div>
+                <div class="showcase-card fade-in">
+                    <div class="icon-box"><i class="fas fa-tachometer-alt"></i><h4>Management Dashboard</h4></div>
+                    <div class="info"><p>Central dashboard to manage sales, purchases, and accounts.</p></div>
+                </div>
+                <div class="showcase-card fade-in">
+                    <div class="icon-box"><i class="fas fa-warehouse"></i><h4>Inventory System</h4></div>
+                    <div class="info"><p>Smart inventory with low-stock alerts and supplier management.</p></div>
+                </div>
+                <div class="showcase-card fade-in">
+                    <div class="icon-box"><i class="fas fa-wallet"></i><h4>Cash Flow Tracker</h4></div>
+                    <div class="info"><p>Track every rupee — income, expenses, and profit in real-time.</p></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== PROJECTS CAROUSEL ========== -->
+    <!-- ============================================================
+    PROJECTS CAROUSEL
+    ============================================================ -->
     <section class="our-projects" id="projects">
         <div class="container">
-            <h2 class="projects-title">🌟 Our <span>Projects</span></h2>
-            <p class="projects-sub">Explore the digital solutions we've built for real businesses.</p>
-            <div class="projects-divider"></div>
+            <h2 class="section-title">🌟 Our <span>Projects</span></h2>
+            <p class="section-desc">Explore the digital solutions we've built for real businesses.</p>
+            <div class="section-divider"></div>
 
             <div class="carousel-container">
-                <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)" aria-label="Previous">&#10094;</button>
                 <div class="projects-carousel" id="projectsCarousel">
-                    <!-- 6 Projects (same as before) -->
+
+                    <!-- Project 1 -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://abbasstore.vercel.app" target="_blank">
@@ -287,6 +1501,8 @@
                             </a>
                         </div>
                     </div>
+
+                    <!-- Project 2 -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://jpstoreerp.vercel.app" target="_blank">
@@ -302,6 +1518,8 @@
                             </a>
                         </div>
                     </div>
+
+                    <!-- Project 3 -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://apexstore.vercel.app" target="_blank">
@@ -317,6 +1535,8 @@
                             </a>
                         </div>
                     </div>
+
+                    <!-- Project 4 -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://nayyarms.vercel.app" target="_blank">
@@ -332,6 +1552,8 @@
                             </a>
                         </div>
                     </div>
+
+                    <!-- Project 5 -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://knoir.vercel.app" target="_blank">
@@ -347,6 +1569,8 @@
                             </a>
                         </div>
                     </div>
+
+                    <!-- Project 6 -->
                     <div class="carousel-card">
                         <div class="project-card">
                             <a href="https://saminastore.vercel.app" target="_blank">
@@ -362,17 +1586,21 @@
                             </a>
                         </div>
                     </div>
+
                 </div>
-                <button class="carousel-btn next-btn" onclick="moveCarousel(1)">&#10095;</button>
+                <button class="carousel-btn next-btn" onclick="moveCarousel(1)" aria-label="Next">&#10095;</button>
             </div>
         </div>
     </section>
 
-    <!-- ========== CONTACT US ========== -->
+    <!-- ============================================================
+    CONTACT
+    ============================================================ -->
     <section class="contact-section" id="contact">
         <div class="container">
             <h2 class="section-title">Get in <span>Touch</span></h2>
-            <p class="section-desc" style="margin-bottom: 30px;">We'd love to hear about your project. Fill out the form below.</p>
+            <p class="section-desc">We'd love to hear about your project. Fill out the form below.</p>
+            <div class="section-divider"></div>
 
             <div class="contact-wrapper">
                 <div class="contact-form">
@@ -381,11 +1609,23 @@
                         <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.
                     </div>
                     <form id="contactForm">
-                        <div class="form-group"><label>Full Name *</label><input type="text" id="contactName" required placeholder="John Doe"></div>
-                        <div class="form-group"><label>Email Address *</label><input type="email" id="contactEmail" required placeholder="john@example.com"></div>
-                        <div class="form-group"><label>Phone Number</label><input type="tel" id="contactPhone" placeholder="+44 7123 456789"></div>
-                        <div class="form-group"><label>Message *</label><textarea id="contactMessage" rows="5" required placeholder="Tell us about your project..."></textarea></div>
-                        <button type="submit" class="submit-btn">Send Message</button>
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="contactName" required placeholder="John Doe" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" id="contactEmail" required placeholder="john@example.com" />
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="contactPhone" placeholder="+44 7123 456789" />
+                        </div>
+                        <div class="form-group">
+                            <label>Message *</label>
+                            <textarea id="contactMessage" rows="5" required placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
                     </form>
                 </div>
 
@@ -393,180 +1633,300 @@
                     <h3>Contact Information</h3>
                     <p><i class="fas fa-map-marker-alt"></i> 100 Victoria Street, London, SW1E 5JL, UK</p>
                     <p><i class="fas fa-phone"></i> +44 7564 920084</p>
-                    <p><i class="fas fa-envelope"></i> info@nexifynova.co.uk</p>
-                    <p><i class="fas fa-globe"></i> www.nexifynova.co.uk</p>
-                    <hr style="border: 1px solid #eef3f8; margin: 20px 0;">
-                    <h3 style="font-size: 18px;">What we offer:</h3>
-                    <p>✓ Custom E-Commerce Stores</p>
-                    <p>✓ B2B Inventory & ERP Systems</p>
-                    <p>✓ Corporate Websites & Booking Systems</p>
-                    <p>✓ Real-Time Data Management</p>
-                    <p>✓ 24/7 Technical Support</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@nexifynova.co.uk">info@nexifynova.co.uk</a></p>
+                    <p><i class="fas fa-globe"></i> <a href="#">www.nexifynova.co.uk</a></p>
+
+                    <div class="offer-list">
+                        <h3 style="font-size:1.1rem;font-family:var(--font-serif);font-weight:600;margin-bottom:8px;">What we offer:</h3>
+                        <p>✓ Custom E-Commerce Stores</p>
+                        <p>✓ B2B Inventory & ERP Systems</p>
+                        <p>✓ Corporate Websites & Booking Systems</p>
+                        <p>✓ Real-Time Data Management</p>
+                        <p>✓ 24/7 Technical Support</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== CTA ========== -->
+    <!-- ============================================================
+    CTA SECTION
+    ============================================================ -->
     <section class="cta-section">
         <div class="container">
             <h2>Ready to <span>Digitalize</span> Your Business?</h2>
-            <p class="cta-desc">Let’s build a system that grows with you.</p>
+            <p class="cta-desc">Let's build a system that grows with you.</p>
             <div class="contact-info">
-                <div><a href="https://wa.me/923493709850" target="_blank" style="color:#d0dce8; text-decoration:none;"><i class="fab fa-whatsapp"></i> +92 349 3709850</a></div>
-                <div><span style="color:#d0dce8;"><i class="fas fa-phone"></i> +44 7564 920084</span></div>
-                <div><a href="mailto:info@nexifynova.co.uk" style="color:#d0dce8; text-decoration:none;"><i class="fas fa-envelope"></i> info@nexifynova.co.uk</a></div>
+                <div><a href="https://wa.me/923493709850" target="_blank"><i class="fab fa-whatsapp"></i> +92 349 3709850</a></div>
+                <div><i class="fas fa-phone"></i> +44 7564 920084</div>
+                <div><a href="mailto:info@nexifynova.co.uk"><i class="fas fa-envelope"></i> info@nexifynova.co.uk</a></div>
                 <div><i class="fas fa-map-marker-alt"></i> London, UK</div>
             </div>
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
     <footer class="footer">
         <div class="container">
             <div class="footer-brand">NEXIFY <span>NOVA</span></div>
             <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
-            <p style="margin-top:15px;">&copy; 2026 Nexify Nova. All rights reserved.</p>
-            <p style="margin-top:6px;font-size:0.8rem;color:#5a6a7e;"><i class="fas fa-globe"></i> Digitalizing businesses, one at a time.</p>
+            <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
+            <p class="footer-tagline"><i class="fas fa-globe"></i> Digitalizing businesses, one at a time.</p>
         </div>
     </footer>
 
-    <!-- ========== MODALS ========== -->
-    <div id="ceoModal" class="modal" style="display: none;">
-        <div class="modal-content" style="max-width: 600px; text-align: left;">
-            <span class="modal-close" onclick="closeModal('ceoModal')">&times;</span>
+    <!-- ============================================================
+    MODALS
+    ============================================================ -->
+    <!-- CEO Modal -->
+    <div id="ceoModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('ceoModal')">&times;</button>
             <span class="modal-badge"><i class="fas fa-user-tie"></i> CEO's Message</span>
             <h2>Our Promise To You</h2>
-            <div style="border-top:2px solid #d4a02b; margin:20px 0; width:60px;"></div>
+            <div class="modal-divider"></div>
             <p>At Nexify Nova, we believe that every business has a unique story to tell. Our mission is to transform that story into a digital reality. We don't just build websites; we build long-term partnerships, ensuring that your online presence is as powerful as your vision.</p>
-            <p style="margin-top:15px;">We are not just a service provider; we are your dedicated digital growth partner. Your success is our success, and we are with you at every step of this journey.</p>
+            <p style="margin-top:16px;">We are not just a service provider; we are your dedicated digital growth partner. Your success is our success, and we are with you at every step of this journey.</p>
         </div>
     </div>
 
-    <div id="visionModal" class="modal" style="display: none;">
-        <div class="modal-content" style="max-width: 600px; text-align: left;">
-            <span class="modal-close" onclick="closeModal('visionModal')">&times;</span>
+    <!-- Vision Modal -->
+    <div id="visionModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('visionModal')">&times;</button>
             <span class="modal-badge"><i class="fas fa-eye"></i> Our Vision</span>
             <h2>Nexify Nova's Vision</h2>
-            <div style="border-top:2px solid #d4a02b; margin:20px 0; width:60px;"></div>
+            <div class="modal-divider"></div>
             <p><strong>Our Vision:</strong> "To equip every business with digital power, enabling them to compete on a global level."</p>
-            <p style="margin-top:15px;">We envision a future where every small and large business can leverage modern technology to fully realize its potential.</p>
+            <p style="margin-top:16px;">We envision a future where every small and large business can leverage modern technology to fully realize its potential.</p>
         </div>
     </div>
 
-    <div id="hierarchyModal" class="modal" style="display: none;">
-        <div class="modal-content" style="max-width: 700px; text-align: left;">
-            <span class="modal-close" onclick="closeModal('hierarchyModal')">&times;</span>
+    <!-- Hierarchy Modal -->
+    <div id="hierarchyModal" class="modal">
+        <div class="modal-content" style="max-width:720px;">
+            <button class="modal-close" onclick="closeModal('hierarchyModal')">&times;</button>
             <span class="modal-badge"><i class="fas fa-sitemap"></i> Organizational Hierarchy</span>
             <h2>Our Team</h2>
-            <div style="border-top:2px solid #d4a02b; margin:20px 0; width:60px;"></div>
-            <div class="hierarchy-grid" style="display: grid; gap: 15px;">
-                <div class="hierarchy-card" style="background: #f8faff; padding: 18px; border-radius: 16px;"><h4>Miss Zuma Lasiaf</h4><p class="role" style="color:#d4a02b; font-weight:700;">Founder & CEO</p><p>Leading the vision and strategy of Nexify Nova.</p></div>
-                <div class="hierarchy-card" style="background: #f8faff; padding: 18px; border-radius: 16px;"><h4>Mr. Faisal Ilyas</h4><p class="role" style="color:#d4a02b; font-weight:700;">Country Head of Marketing and Sales Manager</p><p>UK — Driving marketing and sales across the region.</p></div>
-                <div class="hierarchy-card" style="background: #f8faff; padding: 18px; border-radius: 16px;"><h4>Mr. Asad Ilyas</h4><p class="role" style="color:#d4a02b; font-weight:700;">Joint Marketing & Sales Manager</p><p>UK & Pak — Supporting marketing and sales operations.</p></div>
-                <div class="hierarchy-card" style="background: #f8faff; padding: 18px; border-radius: 16px;"><h4>Mr. Qasam Aziz</h4><p class="role" style="color:#d4a02b; font-weight:700;">Country Head of Marketing and Sales Manager</p><p>UK — Expanding our reach and building partnerships.</p></div>
-                <div class="hierarchy-card" style="background: #f8faff; padding: 18px; border-radius: 16px;"><h4>Mr. Shahryar Masood</h4><p class="role" style="color:#d4a02b; font-weight:700;">Islamabad/Rawalpindi Business Development Lead</p><p>Promoting growth and ensuring strong sales.</p></div>
-                <div class="hierarchy-card" style="background: #f8faff; padding: 18px; border-radius: 16px;"><h4>Mr. Danish Ahmed Siddiqui</h4><p class="role" style="color:#d4a02b; font-weight:700;">Karachi Business Development Lead</p><p>Promoting growth and ensuring strong sales.</p></div>
-                <div class="hierarchy-card" style="background: #f8faff; padding: 18px; border-radius: 16px;"><h4>Mr. Syed Muhammad Imran</h4><p class="role" style="color:#d4a02b; font-weight:700;">Karachi Sales & Operations Manager</p><p>Managing local sales and operational excellence.</p></div>
+            <div class="modal-divider"></div>
+            <div class="hierarchy-grid">
+                <div class="hierarchy-card"><h4>Miss Zuma Lasiaf</h4><div class="role">Founder &amp; CEO</div><p>Leading the vision and strategy of Nexify Nova.</p></div>
+                <div class="hierarchy-card"><h4>Mr. Faisal Ilyas</h4><div class="role">Country Head — Marketing &amp; Sales</div><p>UK — Driving marketing and sales across the region.</p></div>
+                <div class="hierarchy-card"><h4>Mr. Asad Ilyas</h4><div class="role">Joint Marketing &amp; Sales Manager</div><p>UK &amp; Pak — Supporting marketing and sales operations.</p></div>
+                <div class="hierarchy-card"><h4>Mr. Qasam Aziz</h4><div class="role">Country Head — Marketing &amp; Sales</div><p>UK — Expanding our reach and building partnerships.</p></div>
+                <div class="hierarchy-card"><h4>Mr. Shahryar Masood</h4><div class="role">Business Development Lead — Islamabad</div><p>Promoting growth and ensuring strong sales.</p></div>
+                <div class="hierarchy-card"><h4>Mr. Danish Ahmed Siddiqui</h4><div class="role">Business Development Lead — Karachi</div><p>Promoting growth and ensuring strong sales.</p></div>
+                <div class="hierarchy-card"><h4>Mr. Syed Muhammad Imran</h4><div class="role">Sales &amp; Operations Manager — Karachi</div><p>Managing local sales and operational excellence.</p></div>
             </div>
         </div>
     </div>
 
-    <!-- ========== ADMIN LOGIN ========== -->
-    <div id="adminLoginModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('adminLoginModal')">&times;</span>
-            <h2><i class="fas fa-lock"></i> Admin Login</h2>
-            <input type="password" id="adminPassword" placeholder="Password">
-            <button onclick="performAdminLogin()">Login</button>
-            <div id="loginError" style="display:none; margin-top:15px; color:#c62828; font-weight:600;">Invalid Password!</div>
+    <!-- ============================================================
+    ADMIN LOGIN MODAL
+    ============================================================ -->
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content" style="max-width:420px;">
+            <button class="modal-close" onclick="closeModal('adminLoginModal')">&times;</button>
+            <h2 style="font-family:var(--font-serif);"><i class="fas fa-lock" style="color:var(--color-gold);"></i> Admin Login</h2>
+            <div class="modal-divider" style="margin:8px auto 20px;"></div>
+            <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,0.08);border-radius:var(--radius-sm);font-size:1rem;font-family:var(--font-sans);margin-bottom:16px;" />
+            <button onclick="performAdminLogin()" class="btn btn-primary" style="width:100%;justify-content:center;">Login</button>
+            <div id="loginError" style="display:none;margin-top:16px;color:#dc3545;font-weight:600;font-size:0.9rem;">Invalid Password!</div>
         </div>
     </div>
 
-    <!-- ========== ADMIN PANEL (Static Demo - No Database) ========== -->
+    <!-- ============================================================
+    ADMIN PANEL
+    ============================================================ -->
     <div id="adminPanel" class="admin-panel">
         <div class="admin-content">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <h2><i class="fas fa-shield-alt" style="color:#d4a02b;"></i> Admin Dashboard</h2>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+                <h2><i class="fas fa-shield-alt" style="color:var(--color-gold);"></i> Admin Dashboard</h2>
                 <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
             </div>
-            <div style="background:#f8faff; padding:20px; border-radius:16px; border:2px dashed #d4a02b; margin-bottom:20px;">
-                <h3>📌 Static Demo — No Database Connected</h3>
-                <p style="color:#6b7a8f;">This is a placeholder. We will add Supabase queries step by step after testing.</p>
-            </div>
-            <div style="margin-bottom:20px;">
-                <h3>📋 All Projects</h3>
-                <div id="adminProjectsList">
-                    <div class="admin-item"><strong>Abbas Store</strong><small>abbasstore.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
-                    <div class="admin-item"><strong>JP Store ERP</strong><small>jpstoreerp.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+
+            <!-- Add Project Form -->
+            <div class="admin-project-form">
+                <h3>➕ Add New Project</h3>
+                <div class="form-group">
+                    <label>Project Name</label>
+                    <input type="text" id="projName" placeholder="e.g. ABC Store" />
                 </div>
+                <div class="form-group">
+                    <label>Project Description</label>
+                    <textarea id="projDesc" rows="3" placeholder="Short description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Project Live Link</label>
+                    <input type="text" id="projUrl" placeholder="https://abcstore.vercel.app" />
+                </div>
+                <div class="form-group">
+                    <label>Project Image</label>
+                    <div class="file-input-wrapper">
+                        <span class="file-label"><i class="fas fa-upload"></i> Choose Image</span>
+                        <input type="file" id="projImageFile" accept="image/*" onchange="previewProjectImage(event)" />
+                    </div>
+                    <div style="margin-top:10px;">
+                        <img id="projImagePreview" src="" alt="Preview" style="display:none;max-width:80px;border-radius:var(--radius-sm);border:1px solid rgba(0,0,0,0.06);" />
+                    </div>
+                    <input type="hidden" id="projImageUrl" value="" />
+                </div>
+                <button class="btn btn-primary" onclick="saveProject()" style="width:100%;justify-content:center;"><i class="fas fa-save"></i> Save Project</button>
             </div>
-            <div class="admin-tabs" style="margin-top:30px;">
+
+            <!-- Projects List -->
+            <div style="margin-bottom:24px;">
+                <h3 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:600;margin-bottom:12px;">📋 All Projects</h3>
+                <div id="adminProjectsList"></div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="admin-tabs">
                 <button class="active" onclick="switchTab('messages')">Contact Messages</button>
                 <button onclick="switchTab('clients')">Registered Clients</button>
             </div>
             <div id="messagesTab" style="display:block;">
-                <div id="inquiryList">
-                    <div class="admin-item"><strong>John Doe</strong><small>john@example.com</small><p>Demo message</p><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
-                </div>
+                <div id="inquiryList"></div>
             </div>
             <div id="clientsTab" style="display:none;">
-                <div id="clientsList">
-                    <div class="admin-item"><strong>Jane Smith</strong><small>jane@example.com</small><small>Registered: 1 Sep 2026</small></div>
-                </div>
+                <div id="clientsList"></div>
             </div>
         </div>
     </div>
 
-    <!-- ========== JAVASCRIPT (BILKUL SUPABASE FREE) ========== -->
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
     <script>
-        // ====================== PURE FUNCTIONS (No Supabase) ======================
+        // ============================================================
+        // 1. NAVBAR — HAMBURGER TOGGLE
+        // ============================================================
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
 
-        // Navbar
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ============================================================
+        // 2. SCROLL TO TOP
+        // ============================================================
         window.scrollToTop = function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // Modal Open/Close
+        // ============================================================
+        // 3. MODALS
+        // ============================================================
         window.openModal = function(id) {
             const modal = document.getElementById(id);
             if (modal) modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         };
 
         window.closeModal = function(id) {
             const modal = document.getElementById(id);
             if (modal) modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         };
 
         // Close modal on outside click
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
         });
 
-        // Carousel
-        window.moveCarousel = function(direction) {
-            const carousel = document.getElementById('projectsCarousel');
-            const cards = carousel.children;
-            if (cards.length === 0) return;
-            const cardWidth = cards[0].getBoundingClientRect().width;
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(m => {
+                    if (m.style.display === 'flex') {
+                        m.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
 
-            let currentIndex = 0;
-            // Simulate index (we just rotate)
-            currentIndex += direction;
-            if (currentIndex < 0) currentIndex = cards.length - 1;
-            if (currentIndex >= cards.length) currentIndex = 0;
-            carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        // ============================================================
+        // 4. CAROUSEL
+        // ============================================================
+        let carouselIndex = 0;
+        const carousel = document.getElementById('projectsCarousel');
+        const cards = carousel.children;
+        const totalCards = cards.length;
+
+        window.moveCarousel = function(direction) {
+            if (totalCards === 0) return;
+            const cardWidth = cards[0].getBoundingClientRect().width + 24; // + gap
+
+            carouselIndex += direction;
+            if (carouselIndex < 0) carouselIndex = totalCards - 1;
+            if (carouselIndex >= totalCards) carouselIndex = 0;
+
+            carousel.style.transform = `translateX(-${carouselIndex * cardWidth}px)`;
         };
 
-        // Admin Login
+        // Auto-play carousel every 5 seconds
+        let autoPlayInterval = setInterval(() => moveCarousel(1), 5000);
+
+        // Pause auto-play on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        carouselContainer.addEventListener('mouseleave', () => {
+            autoPlayInterval = setInterval(() => moveCarousel(1), 5000);
+        });
+
+        // ============================================================
+        // 5. CONTACT FORM (Static — No Database)
+        // ============================================================
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+            const message = document.getElementById('contactMessage').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Simulate success
+            document.getElementById('successMsg').style.display = 'block';
+            this.reset();
+
+            setTimeout(() => {
+                document.getElementById('successMsg').style.display = 'none';
+            }, 5000);
+
+            console.log('Contact Form Submitted (Demo):', { name, email, phone, message });
+            alert('Thank you! Your message has been received. (No database connected yet.)');
+        });
+
+        // ============================================================
+        // 6. ADMIN LOGIN
+        // ============================================================
         const ADMIN_PASS = "admin123";
 
         window.promptAdmin = function() {
@@ -584,6 +1944,9 @@
                 localStorage.setItem('nexify_admin', 'true');
                 document.getElementById('adminLoginModal').style.display = 'none';
                 document.getElementById('adminPanel').style.display = 'flex';
+                loadAdminProjects();
+                loadMessages();
+                loadClients();
             } else {
                 document.getElementById('loginError').style.display = 'block';
             }
@@ -594,46 +1957,101 @@
             document.getElementById('adminPanel').style.display = 'none';
         };
 
-        // Tab Switching (demo only)
+        // ============================================================
+        // 7. ADMIN TAB SWITCHING
+        // ============================================================
         window.switchTab = function(tab) {
             document.querySelectorAll('.admin-tabs button').forEach(btn => btn.classList.remove('active'));
             if (tab === 'messages') {
                 document.querySelectorAll('.admin-tabs button')[0].classList.add('active');
                 document.getElementById('messagesTab').style.display = 'block';
                 document.getElementById('clientsTab').style.display = 'none';
+                loadMessages();
             } else {
                 document.querySelectorAll('.admin-tabs button')[1].classList.add('active');
                 document.getElementById('messagesTab').style.display = 'none';
                 document.getElementById('clientsTab').style.display = 'block';
+                loadClients();
             }
         };
 
-        // Contact Form - Just a local alert (No Supabase)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const phone = document.getElementById('contactPhone').value;
-            const message = document.getElementById('contactMessage').value;
+        // ============================================================
+        // 8. ADMIN — STATIC DATA (No Database)
+        // ============================================================
+        function loadAdminProjects() {
+            const list = document.getElementById('adminProjectsList');
+            list.innerHTML = `
+                        <div class="admin-item"><strong>Abbas Store v7.3</strong><small>abbasstore.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+                        <div class="admin-item"><strong>JP Store ERP</strong><small>jpstoreerp.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+                        <div class="admin-item"><strong>Kitchen Noir</strong><small>knoir.vercel.app</small><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+                    `;
+        }
 
-            // Simulate success
-            document.getElementById('successMsg').style.display = 'block';
-            this.reset();
-            setTimeout(() => {
-                document.getElementById('successMsg').style.display = 'none';
-            }, 5000);
+        function loadMessages() {
+            const list = document.getElementById('inquiryList');
+            list.innerHTML = `
+                        <div class="admin-item"><strong>John Doe</strong><small>john@example.com</small><p>Demo message from John</p><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+                        <div class="admin-item"><strong>Jane Smith</strong><small>jane@example.com</small><p>Demo message from Jane</p><button class="delete-btn" onclick="alert('Delete demo')">Delete</button></div>
+                    `;
+        }
 
-            // Log to console
-            console.log('Contact Form Submitted (Demo):', { name, email, phone, message });
-            alert('Thank you! Your message has been received. (No database connected yet.)');
-        });
+        function loadClients() {
+            const list = document.getElementById('clientsList');
+            list.innerHTML = `
+                        <div class="admin-item"><strong>John Doe</strong><small>john@example.com</small><small style="display:block;color:#999;">Registered: 1 Sep 2026</small></div>
+                        <div class="admin-item"><strong>Jane Smith</strong><small>jane@example.com</small><small style="display:block;color:#999;">Registered: 2 Sep 2026</small></div>
+                    `;
+        }
 
-        // Page load - check if admin already logged in
+        // ============================================================
+        // 9. ADMIN — PROJECT IMAGE PREVIEW
+        // ============================================================
+        window.previewProjectImage = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('projImagePreview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                document.getElementById('projImageUrl').value = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        // ============================================================
+        // 10. ADMIN — SAVE PROJECT (Static Demo)
+        // ============================================================
+        window.saveProject = function() {
+            const name = document.getElementById('projName').value.trim();
+            const desc = document.getElementById('projDesc').value.trim();
+            const url = document.getElementById('projUrl').value.trim();
+            const image = document.getElementById('projImageUrl').value;
+
+            if (!name || !desc || !url || !image) {
+                alert('Please fill all fields and select an image.');
+                return;
+            }
+
+            alert('✅ Project "' + name + '" added successfully! (Demo — No database connected.)');
+            document.getElementById('projName').value = '';
+            document.getElementById('projDesc').value = '';
+            document.getElementById('projUrl').value = '';
+            document.getElementById('projImageFile').value = '';
+            document.getElementById('projImagePreview').style.display = 'none';
+            document.getElementById('projImageUrl').value = '';
+            loadAdminProjects();
+        };
+
+        // ============================================================
+        // 11. INIT — Check admin session on load
+        // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('nexify_admin') === 'true') {
-                // don't auto-open, user can click Admin Panel
+                // User is logged in, but we won't auto-open the panel
+                console.log('Admin session active.');
             }
-            console.log('Nexify Nova Static Version - No Supabase');
+            console.log('✨ Nexify Nova — Tidy Theme (Static) loaded.');
         });
     </script>
 </body>
