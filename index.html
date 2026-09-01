@@ -548,7 +548,7 @@
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
-        // Supabase Configuration (Sirf Ek Baar - NO DUPLICATE)
+        // Supabase Configuration - SIRF EK BAAR (Yahan se DUPLICATE DELETE karein)
         const supabase = window.supabase.createClient(
             'https://wsflwxtmuuauqmsfhnux.supabase.co',
             'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I'
@@ -558,7 +558,6 @@
         // --- Navbar Functions ---
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-        // Modals ko Open/Close karne ke functions (window par attach)
         window.openModal = function(id) {
             const modal = document.getElementById(id);
             if (modal) {
@@ -589,7 +588,6 @@
             const cardWidth = cards[0].getBoundingClientRect().width;
 
             carouselIndex += direction;
-
             if (carouselIndex < 0) carouselIndex = cards.length - 1;
             if (carouselIndex >= cards.length) carouselIndex = 0;
 
