@@ -48,13 +48,10 @@
 
             --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-            /* Scroll progress bar */
             --scroll-progress: 0%;
         }
 
-        /* ============================================================
-                   LIGHT MODE VARIABLES
-                   ============================================================ */
+        /* LIGHT MODE VARIABLES */
         body.light-mode {
             --bg-primary: #f5f5f0;
             --bg-secondary: #eae8e0;
@@ -205,6 +202,28 @@
             font-size: 0.85rem;
         }
 
+        .btn-filter {
+            padding: 8px 22px;
+            border-radius: 50px;
+            border: 1px solid var(--border-medium);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-filter:hover {
+            border-color: var(--accent-gold);
+            color: var(--text-primary);
+        }
+        .btn-filter.active {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            border-color: var(--accent-gold);
+        }
+
         /* ============================================================
                    5. NAVBAR
                    ============================================================ */
@@ -306,7 +325,6 @@
             font-size: 0.75rem;
         }
 
-        /* Theme Toggle Button */
         .theme-toggle {
             background: none;
             border: 1px solid var(--border-medium);
@@ -328,12 +346,7 @@
             color: var(--accent-gold);
             transform: rotate(20deg);
         }
-        .theme-toggle i {
-            margin: 0;
-            font-size: 1rem;
-        }
 
-        /* Hamburger */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -427,7 +440,6 @@
             color: var(--accent-gold);
         }
 
-        /* Typing cursor */
         .typing-cursor {
             display: inline-block;
             width: 3px;
@@ -589,12 +601,20 @@
         }
 
         /* ============================================================
-                   10. PROJECTS — ECOMMERCE GRID STYLE (FIXED IMAGES)
+                   10. PROJECTS — with FILTER
                    ============================================================ */
         .projects-section {
             padding: 80px 0;
             background: var(--bg-primary);
             transition: background 0.4s ease;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 36px;
         }
 
         .projects-grid {
@@ -752,7 +772,75 @@
         }
 
         /* ============================================================
-                   12. CONTACT
+                   12. TESTIMONIALS (BATCH 2)
+                   ============================================================ */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+            transition: background 0.4s ease;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            padding: 32px 28px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition);
+            text-align: center;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 160, 43, 0.15);
+            box-shadow: var(--shadow-card);
+            background: var(--bg-card-hover);
+        }
+
+        .testimonial-card .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            border: 2px solid var(--border-subtle);
+        }
+        .testimonial-card .stars {
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .testimonial-card blockquote {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+            transition: color 0.4s ease;
+        }
+        .testimonial-card .author {
+            margin-top: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            transition: color 0.4s ease;
+        }
+        .testimonial-card .role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            transition: color 0.4s ease;
+        }
+
+        /* ============================================================
+                   13. CONTACT
                    ============================================================ */
         .contact-section {
             padding: 80px 0;
@@ -881,7 +969,7 @@
         }
 
         /* ============================================================
-                   13. CTA SECTION
+                   14. CTA SECTION
                    ============================================================ */
         .cta-section {
             padding: 60px 0;
@@ -931,7 +1019,7 @@
         }
 
         /* ============================================================
-                   14. FOOTER
+                   15. FOOTER
                    ============================================================ */
         .footer {
             background: var(--bg-primary);
@@ -992,7 +1080,7 @@
         }
 
         /* ============================================================
-                   15. FULL PAGE MODALS (CEO, Vision, Hierarchy)
+                   16. FULL PAGE MODALS (CEO, Vision, Hierarchy)
                    ============================================================ */
         .page-modal {
             display: none;
@@ -1001,14 +1089,14 @@
             z-index: 2000;
             background: var(--bg-primary);
             overflow-y: auto;
-            animation: pageModalIn 0.4s ease;
+            animation: pageModalIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             transition: background 0.4s ease;
         }
 
         @keyframes pageModalIn {
             from {
                 opacity: 0;
-                transform: scale(0.98) translateY(10px);
+                transform: scale(0.96) translateY(20px);
             }
             to {
                 opacity: 1;
@@ -1158,7 +1246,7 @@
         }
 
         /* ============================================================
-                   16. ADMIN PANEL
+                   17. ADMIN PANEL
                    ============================================================ */
         .admin-panel {
             display: none;
@@ -1326,7 +1414,7 @@
         }
 
         /* ============================================================
-                   17. SCROLL PROGRESS BAR
+                   18. SCROLL PROGRESS BAR
                    ============================================================ */
         .scroll-progress {
             position: fixed;
@@ -1348,7 +1436,7 @@
         }
 
         /* ============================================================
-                   18. BACK TO TOP BUTTON
+                   19. BACK TO TOP BUTTON
                    ============================================================ */
         .back-to-top {
             position: fixed;
@@ -1384,7 +1472,7 @@
         }
 
         /* ============================================================
-                   19. FLOATING WHATSAPP BUTTON
+                   20. FLOATING WHATSAPP BUTTON
                    ============================================================ */
         .whatsapp-float {
             position: fixed;
@@ -1410,11 +1498,6 @@
             transform: scale(1.08) translateY(-4px);
             box-shadow: 0 8px 32px rgba(37, 211, 102, 0.45);
         }
-        .whatsapp-float i {
-            font-size: 2rem;
-        }
-
-        /* Pulse animation for WhatsApp */
         .whatsapp-float::after {
             content: '';
             position: absolute;
@@ -1435,7 +1518,41 @@
         }
 
         /* ============================================================
-                   20. RESPONSIVE
+                   21. SCROLL-TRIGGERED FADE-IN (Smooth Page Transitions)
+                   ============================================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in:nth-child(1) {
+            transition-delay: 0.05s;
+        }
+        .fade-in:nth-child(2) {
+            transition-delay: 0.10s;
+        }
+        .fade-in:nth-child(3) {
+            transition-delay: 0.15s;
+        }
+        .fade-in:nth-child(4) {
+            transition-delay: 0.20s;
+        }
+        .fade-in:nth-child(5) {
+            transition-delay: 0.25s;
+        }
+        .fade-in:nth-child(6) {
+            transition-delay: 0.30s;
+        }
+
+        /* ============================================================
+                   22. RESPONSIVE
                    ============================================================ */
         @media (max-width: 992px) {
             .contact-wrapper {
@@ -1449,6 +1566,9 @@
             }
             .modal-page-hero {
                 height: 220px;
+            }
+            .testimonials-grid {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             }
         }
 
@@ -1503,6 +1623,9 @@
             .projects-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
             .hierarchy-grid {
                 grid-template-columns: 1fr;
             }
@@ -1543,6 +1666,9 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
             .hero h1 {
                 font-size: 1.8rem;
             }
@@ -1581,49 +1707,13 @@
                 height: 38px;
                 font-size: 0.9rem;
             }
-        }
-
-        /* ============================================================
-                   21. ANIMATIONS
-                   ============================================================ */
-        .fade-in {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
+            .filter-bar {
+                gap: 6px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .btn-filter {
+                padding: 6px 14px;
+                font-size: 0.7rem;
             }
-        }
-
-        .fade-in:nth-child(1) {
-            animation-delay: 0.05s;
-        }
-        .fade-in:nth-child(2) {
-            animation-delay: 0.10s;
-        }
-        .fade-in:nth-child(3) {
-            animation-delay: 0.15s;
-        }
-        .fade-in:nth-child(4) {
-            animation-delay: 0.20s;
-        }
-        .fade-in:nth-child(5) {
-            animation-delay: 0.25s;
-        }
-        .fade-in:nth-child(6) {
-            animation-delay: 0.30s;
-        }
-
-        /* Counter number animation */
-        .counter-number {
-            display: inline-block;
         }
     </style>
 </head>
@@ -1662,6 +1752,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#showcase">Solutions</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact" class="nav-cta">Contact</a></li>
                 <li>
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -1726,36 +1817,12 @@
             <div class="section-divider"></div>
 
             <div class="services-grid">
-                <div class="service-card fade-in">
-                    <span class="icon"><i class="fas fa-store"></i></span>
-                    <h3>Business Digitalization</h3>
-                    <p>Transform your traditional business into a fully digital, paperless operation.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <span class="icon"><i class="fas fa-chart-line"></i></span>
-                    <h3>Business Management</h3>
-                    <p>End-to-end management of sales, purchases, accounts, and cash flow.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <span class="icon"><i class="fas fa-boxes"></i></span>
-                    <h3>Inventory Management</h3>
-                    <p>Real-time tracking of stock, suppliers, and inventory with smart alerts.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <span class="icon"><i class="fas fa-credit-card"></i></span>
-                    <h3>Cash Flow Management</h3>
-                    <p>Monitor income, expenses, and profit with full transparency.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <span class="icon"><i class="fas fa-mobile-alt"></i></span>
-                    <h3>Custom Web & Mobile Apps</h3>
-                    <p>Tailor-made apps that fit your business needs perfectly.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <span class="icon"><i class="fas fa-headset"></i></span>
-                    <h3>24/7 Support & Training</h3>
-                    <p>We don't just build — we train and support your team.</p>
-                </div>
+                <div class="service-card fade-in"><span class="icon"><i class="fas fa-store"></i></span><h3>Business Digitalization</h3><p>Transform your traditional business into a fully digital, paperless operation.</p></div>
+                <div class="service-card fade-in"><span class="icon"><i class="fas fa-chart-line"></i></span><h3>Business Management</h3><p>End-to-end management of sales, purchases, accounts, and cash flow.</p></div>
+                <div class="service-card fade-in"><span class="icon"><i class="fas fa-boxes"></i></span><h3>Inventory Management</h3><p>Real-time tracking of stock, suppliers, and inventory with smart alerts.</p></div>
+                <div class="service-card fade-in"><span class="icon"><i class="fas fa-credit-card"></i></span><h3>Cash Flow Management</h3><p>Monitor income, expenses, and profit with full transparency.</p></div>
+                <div class="service-card fade-in"><span class="icon"><i class="fas fa-mobile-alt"></i></span><h3>Custom Web & Mobile Apps</h3><p>Tailor-made apps that fit your business needs perfectly.</p></div>
+                <div class="service-card fade-in"><span class="icon"><i class="fas fa-headset"></i></span><h3>24/7 Support & Training</h3><p>We don't just build — we train and support your team.</p></div>
             </div>
         </div>
     </section>
@@ -1770,28 +1837,16 @@
             <div class="section-divider"></div>
 
             <div class="showcase-grid">
-                <div class="showcase-card fade-in">
-                    <div class="icon-box"><i class="fas fa-shopping-cart"></i><h4>E-Commerce Store</h4></div>
-                    <div class="info"><p>Fully functional online store with inventory and order tracking.</p></div>
-                </div>
-                <div class="showcase-card fade-in">
-                    <div class="icon-box"><i class="fas fa-tachometer-alt"></i><h4>Management Dashboard</h4></div>
-                    <div class="info"><p>Central dashboard to manage sales, purchases, and accounts.</p></div>
-                </div>
-                <div class="showcase-card fade-in">
-                    <div class="icon-box"><i class="fas fa-warehouse"></i><h4>Inventory System</h4></div>
-                    <div class="info"><p>Smart inventory with low-stock alerts and supplier management.</p></div>
-                </div>
-                <div class="showcase-card fade-in">
-                    <div class="icon-box"><i class="fas fa-wallet"></i><h4>Cash Flow Tracker</h4></div>
-                    <div class="info"><p>Track every rupee — income, expenses, and profit in real-time.</p></div>
-                </div>
+                <div class="showcase-card fade-in"><div class="icon-box"><i class="fas fa-shopping-cart"></i><h4>E-Commerce Store</h4></div><div class="info"><p>Fully functional online store with inventory and order tracking.</p></div></div>
+                <div class="showcase-card fade-in"><div class="icon-box"><i class="fas fa-tachometer-alt"></i><h4>Management Dashboard</h4></div><div class="info"><p>Central dashboard to manage sales, purchases, and accounts.</p></div></div>
+                <div class="showcase-card fade-in"><div class="icon-box"><i class="fas fa-warehouse"></i><h4>Inventory System</h4></div><div class="info"><p>Smart inventory with low-stock alerts and supplier management.</p></div></div>
+                <div class="showcase-card fade-in"><div class="icon-box"><i class="fas fa-wallet"></i><h4>Cash Flow Tracker</h4></div><div class="info"><p>Track every rupee — income, expenses, and profit in real-time.</p></div></div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-    PROJECTS — FIXED IMAGES & NO CROP
+    PROJECTS — with FILTER (BATCH 2)
     ============================================================ -->
     <section class="projects-section" id="projects">
         <div class="container">
@@ -1799,10 +1854,19 @@
             <p class="section-desc">Explore the digital solutions we've built for real businesses.</p>
             <div class="section-divider"></div>
 
-            <div class="projects-grid">
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <button class="btn-filter active" data-filter="all">All</button>
+                <button class="btn-filter" data-filter="erp">ERP</button>
+                <button class="btn-filter" data-filter="retail">Retail</button>
+                <button class="btn-filter" data-filter="healthcare">Healthcare</button>
+                <button class="btn-filter" data-filter="ecommerce">E-Commerce</button>
+            </div>
 
-                <!-- Project 1: Abbas Store -->
-                <div class="project-card fade-in">
+            <div class="projects-grid" id="projectsGrid">
+
+                <!-- Project 1: Abbas Store (ERP) -->
+                <div class="project-card fade-in" data-category="erp">
                     <a href="https://abbasstore.vercel.app" target="_blank">
                         <div class="project-image">
                             <img src="https://i.ibb.co/CshqJYtp/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png" alt="Abbas Store" />
@@ -1817,8 +1881,8 @@
                     </a>
                 </div>
 
-                <!-- Project 2: JP Store ERP -->
-                <div class="project-card fade-in">
+                <!-- Project 2: JP Store ERP (ERP) -->
+                <div class="project-card fade-in" data-category="erp">
                     <a href="https://jpstoreerp.vercel.app" target="_blank">
                         <div class="project-image">
                             <img src="https://i.ibb.co/JwCGP1BK/Chat-GPT-Image-Sep-1-2026-07-55-12-AM.png" alt="JP Store ERP" />
@@ -1833,8 +1897,8 @@
                     </a>
                 </div>
 
-                <!-- Project 3: Apex Grocers -->
-                <div class="project-card fade-in">
+                <!-- Project 3: Apex Grocers (Retail) -->
+                <div class="project-card fade-in" data-category="retail">
                     <a href="https://apexstore.vercel.app" target="_blank">
                         <div class="project-image">
                             <img src="https://i.ibb.co/ZRgNtjC4/Chat-GPT-Image-Sep-1-2026-08-25-07-AM.png" alt="Apex Grocers" />
@@ -1849,8 +1913,8 @@
                     </a>
                 </div>
 
-                <!-- Project 4: Nayyer Medical -->
-                <div class="project-card fade-in">
+                <!-- Project 4: Nayyer Medical (Healthcare) -->
+                <div class="project-card fade-in" data-category="healthcare">
                     <a href="https://nayyarms.vercel.app" target="_blank">
                         <div class="project-image">
                             <img src="https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nayyer Medical" />
@@ -1865,8 +1929,8 @@
                     </a>
                 </div>
 
-                <!-- Project 5: Kitchen Noir -->
-                <div class="project-card fade-in">
+                <!-- Project 5: Kitchen Noir (E-Commerce) -->
+                <div class="project-card fade-in" data-category="ecommerce">
                     <a href="https://knoir.vercel.app" target="_blank">
                         <div class="project-image">
                             <img src="https://i.ibb.co/0RnBKXRf/Wren-Kitchens-Ad-Website-Images-111.jpg" alt="Kitchen Noir" />
@@ -1881,8 +1945,8 @@
                     </a>
                 </div>
 
-                <!-- Project 6: Samina Store -->
-                <div class="project-card fade-in">
+                <!-- Project 6: Samina Store (Retail) -->
+                <div class="project-card fade-in" data-category="retail">
                     <a href="https://saminastore.vercel.app" target="_blank">
                         <div class="project-image">
                             <img src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Samina Store" />
@@ -1897,6 +1961,43 @@
                     </a>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TESTIMONIALS (BATCH 2)
+    ============================================================ -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our <span>Clients</span> Say</h2>
+            <p class="section-desc">Real feedback from real businesses we've helped transform.</p>
+            <div class="section-divider"></div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>Nexify Nova completely transformed our business operations. The ERP system they built is intuitive, powerful, and has saved us countless hours.</blockquote>
+                    <div class="author">John Doe</div>
+                    <div class="role">CEO, TechCorp Ltd.</div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>The team at Nexify Nova understood our vision perfectly. Our new e-commerce platform is sleek, fast, and has already boosted our sales by 40%.</blockquote>
+                    <div class="author">Sarah Smith</div>
+                    <div class="role">Founder, RetailGiant</div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="avatar"><i class="fas fa-user"></i></div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>From concept to launch, Nexify Nova was with us every step of the way. Their support is unmatched and the quality of work is outstanding.</blockquote>
+                    <div class="author">Mike Johnson</div>
+                    <div class="role">CTO, HealthPlus</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1998,7 +2099,6 @@
     <!-- CEO PAGE -->
     <div id="ceoPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('ceoPage')">&times;</button>
-
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
             <div class="container">
                 <a href="#" class="logo-wrapper" onclick="closePageModal('ceoPage'); scrollToTop();">
@@ -2016,21 +2116,14 @@
                 </ul>
             </div>
         </nav>
-
         <div class="modal-page-hero">
             <img src="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="CEO Message" />
-            <div class="page-title-overlay">
-                <h1>CEO <span>Message</span></h1>
-                <p>Our promise to you</p>
-            </div>
+            <div class="page-title-overlay"><h1>CEO <span>Message</span></h1><p>Our promise to you</p></div>
         </div>
-
         <div class="modal-page-content">
             <div class="content-text">
                 <p>At Nexify Nova, we believe that every business has a unique story to tell. Our mission is to transform that story into a digital reality. We don't just build websites; we build long-term partnerships, ensuring that your online presence is as powerful as your vision.</p>
-                <div class="highlight-quote">
-                    <p style="margin-bottom:0;"><strong style="color:var(--accent-gold);font-size:1.1rem;">"Your success is our success."</strong></p>
-                </div>
+                <div class="highlight-quote"><p style="margin-bottom:0;"><strong style="color:var(--accent-gold);font-size:1.1rem;">"Your success is our success."</strong></p></div>
                 <p>We are not just a service provider; we are your dedicated digital growth partner. We are with you at every step of this journey, from the first conversation to the final launch and beyond.</p>
                 <div style="margin-top:24px;padding:20px 24px;background:var(--bg-card);border-radius:var(--radius-md);border-left:3px solid var(--accent-gold);">
                     <strong style="color:var(--accent-gold);">— Zuma Lasiaf</strong><br />
@@ -2038,17 +2131,10 @@
                 </div>
             </div>
         </div>
-
         <footer class="footer" style="border-top:1px solid var(--border-subtle);">
             <div class="container">
                 <div class="footer-brand">NEXIFY <span>NOVA</span></div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
+                <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
                 <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
             </div>
         </footer>
@@ -2057,7 +2143,6 @@
     <!-- VISION PAGE -->
     <div id="visionPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('visionPage')">&times;</button>
-
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
             <div class="container">
                 <a href="#" class="logo-wrapper" onclick="closePageModal('visionPage'); scrollToTop();">
@@ -2075,47 +2160,25 @@
                 </ul>
             </div>
         </nav>
-
         <div class="modal-page-hero">
             <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Vision" />
-            <div class="page-title-overlay">
-                <h1>Our <span>Vision</span></h1>
-                <p>Shaping the future of digital business</p>
-            </div>
+            <div class="page-title-overlay"><h1>Our <span>Vision</span></h1><p>Shaping the future of digital business</p></div>
         </div>
-
         <div class="modal-page-content">
             <div class="content-text">
-                <div class="highlight-quote">
-                    <p style="margin-bottom:0;font-size:1.3rem;font-weight:600;color:var(--text-primary);">"To equip every business with digital power, enabling them to compete on a global level."</p>
-                </div>
+                <div class="highlight-quote"><p style="margin-bottom:0;font-size:1.3rem;font-weight:600;color:var(--text-primary);">"To equip every business with digital power, enabling them to compete on a global level."</p></div>
                 <p>We envision a future where every small and large business can leverage modern technology to fully realize its potential.</p>
                 <p>We believe that technology should be accessible, beautiful, and powerful — and that's exactly what we deliver to every client who trusts us with their digital journey.</p>
                 <div style="margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                    <div style="background:var(--bg-card);padding:24px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);text-align:center;">
-                        <div style="font-size:2.4rem;color:var(--accent-gold);margin-bottom:4px;">🌍</div>
-                        <h4 style="font-weight:700;font-size:1rem;">Global Reach</h4>
-                        <p style="font-size:0.85rem;color:var(--text-muted);">Empowering businesses worldwide.</p>
-                    </div>
-                    <div style="background:var(--bg-card);padding:24px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);text-align:center;">
-                        <div style="font-size:2.4rem;color:var(--accent-gold);margin-bottom:4px;">⚡</div>
-                        <h4 style="font-weight:700;font-size:1rem;">Innovation First</h4>
-                        <p style="font-size:0.85rem;color:var(--text-muted);">Always pushing the boundaries.</p>
-                    </div>
+                    <div style="background:var(--bg-card);padding:24px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);text-align:center;"><div style="font-size:2.4rem;color:var(--accent-gold);margin-bottom:4px;">🌍</div><h4 style="font-weight:700;font-size:1rem;">Global Reach</h4><p style="font-size:0.85rem;color:var(--text-muted);">Empowering businesses worldwide.</p></div>
+                    <div style="background:var(--bg-card);padding:24px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);text-align:center;"><div style="font-size:2.4rem;color:var(--accent-gold);margin-bottom:4px;">⚡</div><h4 style="font-weight:700;font-size:1rem;">Innovation First</h4><p style="font-size:0.85rem;color:var(--text-muted);">Always pushing the boundaries.</p></div>
                 </div>
             </div>
         </div>
-
         <footer class="footer" style="border-top:1px solid var(--border-subtle);">
             <div class="container">
                 <div class="footer-brand">NEXIFY <span>NOVA</span></div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
+                <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
                 <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
             </div>
         </footer>
@@ -2124,7 +2187,6 @@
     <!-- HIERARCHY (TEAM) PAGE -->
     <div id="hierarchyPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('hierarchyPage')">&times;</button>
-
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
             <div class="container">
                 <a href="#" class="logo-wrapper" onclick="closePageModal('hierarchyPage'); scrollToTop();">
@@ -2142,15 +2204,10 @@
                 </ul>
             </div>
         </nav>
-
         <div class="modal-page-hero">
             <img src="https://images.pexels.com/photos/3182820/pexels-photo-3182820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Our Team" />
-            <div class="page-title-overlay">
-                <h1>Meet the <span>Team</span></h1>
-                <p>The people behind Nexify Nova</p>
-            </div>
+            <div class="page-title-overlay"><h1>Meet the <span>Team</span></h1><p>The people behind Nexify Nova</p></div>
         </div>
-
         <div class="modal-page-content">
             <div class="content-text">
                 <p>Dedicated professionals committed to your success. We bring together diverse expertise to deliver world-class digital solutions.</p>
@@ -2165,17 +2222,10 @@
                 </div>
             </div>
         </div>
-
         <footer class="footer" style="border-top:1px solid var(--border-subtle);">
             <div class="container">
                 <div class="footer-brand">NEXIFY <span>NOVA</span></div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
+                <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
                 <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
             </div>
         </footer>
@@ -2266,7 +2316,7 @@
     </a>
 
     <!-- ============================================================
-    JAVASCRIPT
+    JAVASCRIPT (BATCH 2 + ALL PREVIOUS)
     ============================================================ -->
     <script>
         // ============================================================
@@ -2477,7 +2527,6 @@
         // 10. BACK TO TOP BUTTON
         // ============================================================
         const backToTopBtn = document.getElementById('backToTop');
-
         window.addEventListener('scroll', function() {
             if (window.scrollY > 400) {
                 backToTopBtn.classList.add('visible');
@@ -2485,7 +2534,6 @@
                 backToTopBtn.classList.remove('visible');
             }
         });
-
         backToTopBtn.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
@@ -2494,7 +2542,6 @@
         // 11. SCROLL PROGRESS BAR
         // ============================================================
         const progressBar = document.getElementById('progressBar');
-
         window.addEventListener('scroll', function() {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -2510,10 +2557,8 @@
 
         function animateCounters() {
             if (countersAnimated) return;
-
             const trustBar = document.getElementById('trustBar');
             const rect = trustBar.getBoundingClientRect();
-
             if (rect.top < window.innerHeight - 100) {
                 countersAnimated = true;
                 counters.forEach(counter => {
@@ -2532,11 +2577,8 @@
                 });
             }
         }
-
         window.addEventListener('scroll', animateCounters);
-        window.addEventListener('load', function() {
-            setTimeout(animateCounters, 500);
-        });
+        window.addEventListener('load', function() { setTimeout(animateCounters, 500); });
 
         // ============================================================
         // 13. TYPING ANIMATION
@@ -2545,28 +2587,17 @@
             const heading = document.getElementById('typingHeading');
             const cursor = document.getElementById('typingCursor');
 
-            // The full text to type (without the cursor)
-            const fullText = "Intelligent Digital Systems for a Global Economy";
-            // But we need to preserve the <span> tag for "Global Economy"
-            // So we'll break it down differently
-
-            // We'll type the first part, then the second part with the span
             const part1 = "Intelligent Digital Systems for a ";
             const part2 = "Global Economy";
 
-            // Reset heading: clear everything except cursor
-            // First, get the original structure
-            const originalHTML = heading.innerHTML;
-
-            // We'll rebuild: start with empty
             heading.innerHTML = '<span id="typingPart1"></span><span id="typingPart2"></span><span class="typing-cursor" id="typingCursor"></span>';
 
             const part1Span = document.getElementById('typingPart1');
             const part2Span = document.getElementById('typingPart2');
 
-            let index1 = 0;
-            let index2 = 0;
-            let isPart2 = false;
+            let index1 = 0,
+                index2 = 0,
+                isPart2 = false;
 
             function typeNext() {
                 if (!isPart2) {
@@ -2576,7 +2607,6 @@
                         setTimeout(typeNext, 40);
                     } else {
                         isPart2 = true;
-                        // Add the opening span tag for gold color
                         part2Span.innerHTML = '<span style="color:var(--accent-gold);"></span>';
                         setTimeout(typeNext, 200);
                     }
@@ -2587,13 +2617,10 @@
                         index2++;
                         setTimeout(typeNext, 40);
                     } else {
-                        // Done typing
                         cursor.style.animation = 'blink 0.8s step-end infinite';
                     }
                 }
             }
-
-            // Start typing after a short delay
             setTimeout(typeNext, 800);
         })();
 
@@ -2603,7 +2630,6 @@
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
 
-        // Check saved theme
         const savedTheme = localStorage.getItem('nexify_theme');
         if (savedTheme === 'light') {
             document.body.classList.add('light-mode');
@@ -2618,13 +2644,65 @@
         });
 
         // ============================================================
-        // 15. INIT
+        // 15. PROJECT FILTER (BATCH 2)
+        // ============================================================
+        const filterButtons = document.querySelectorAll('.btn-filter');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                const filterValue = this.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // ============================================================
+        // 16. SCROLL-TRIGGERED FADE-IN (Smooth Page Transitions)
+        // ============================================================
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -80px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // ============================================================
+        // 17. INIT
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('nexify_admin') === 'true') {
                 console.log('Admin session active.');
             }
-            console.log('🚀 Nexify Nova — Complete with Batch 1 Features.');
+            console.log('🚀 Nexify Nova — Batch 2 Complete: Testimonials, Filter, Smooth Transitions.');
         });
     </script>
 </body>
