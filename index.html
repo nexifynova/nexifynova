@@ -186,7 +186,7 @@
             <div class="nav-right">
                 <ul class="nav-links">
                     <li><a href="#" onclick="scrollToTop()"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#" onclick="openModal('ceoModal')"><i class="fas fa-user-tie"></i> CEO Message</a></li>
+                    <li><a href="javascript:void(0)" onclick="openModal('ceoModal')"><i class="fas fa-user-tie"></i> CEO Message</a></li>
                     <li><a href="#" onclick="openModal('visionModal')"><i class="fas fa-eye"></i> Vision</a></li>
                     <li><a href="#" onclick="openModal('hierarchyModal')"><i class="fas fa-sitemap"></i> Hierarchy</a></li>
                     <li><a href="#" onclick="promptAdmin()"><i class="fas fa-shield-alt"></i> Admin Panel</a></li>
@@ -441,15 +441,15 @@
 
     <!-- ========== MODALS ========== -->
     <div id="ceoModal" class="modal" style="display: none;">
-        <div class="modal-content" style="max-width: 600px; text-align: left;">
-            <span class="modal-close" onclick="closeModal('ceoModal')">&times;</span>
-            <span class="modal-badge"><i class="fas fa-user-tie"></i> CEO's Message</span>
-            <h2>Our Vision & Promise</h2>
-            <div style="border-top:2px solid #d4a02b; margin:20px 0; width:60px;"></div>
-            <p>Our goal is not just to digitalize businesses, but to give them a new dimension. We understand that every business has its own story and needs. That's why we tailor our solutions to your specific requirements, ensuring you get the best possible results.</p>
-            <p style="margin-top:15px;">Dear clients, your trust is our greatest strength. We are with you at every step — your business growth is our growth.</p>
-        </div>
+    <div class="modal-content" style="max-width: 600px; text-align: left;">
+        <span class="modal-close" onclick="closeModal('ceoModal')">&times;</span>
+        <span class="modal-badge"><i class="fas fa-user-tie"></i> CEO's Message</span>
+        <h2>Our Promise To You</h2>
+        <div style="border-top:2px solid #d4a02b; margin:20px 0; width:60px;"></div>
+        <p>At Nexify Nova, we believe that every business has a unique story to tell. Our mission is to transform that story into a digital reality. We don't just build websites; we build long-term partnerships, ensuring that your online presence is as powerful as your vision.</p>
+        <p style="margin-top:15px;">We are not just a service provider; we are your dedicated digital growth partner. Your success is our success, and we are with you at every step of this journey.</p>
     </div>
+</div>
 
     <div id="visionModal" class="modal" style="display: none;">
         <div class="modal-content" style="max-width: 600px; text-align: left;">
@@ -558,20 +558,26 @@
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
         function openModal(id) {
-            const modal = document.getElementById(id);
-            modal.style.display = 'flex';
-        }
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.style.display = 'none';
-        }
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.style.display = 'flex';
+    } else {
+        alert("Modal not found: " + id);
+    }
+}
+function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-            }
-        }
+// Modal ke bahar click karne par band ho
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+});
 
         // --- Dynamic Carousel ---
         let carouselIndex = 0;
