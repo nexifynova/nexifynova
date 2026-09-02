@@ -94,7 +94,6 @@
             margin: 0 auto;
             padding: 0 24px;
         }
-        /* ===== TYPOGRAPHY ===== */
         .heading {
             font-weight: 800;
             letter-spacing: -0.03em;
@@ -118,7 +117,6 @@
         .text-secondary {
             color: var(--text-secondary);
         }
-        /* ===== BUTTONS ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -189,7 +187,6 @@
             color: var(--bg-primary);
             border-color: var(--accent-gold);
         }
-        /* ===== CUSTOM CURSOR ===== */
         .custom-cursor {
             position: fixed;
             pointer-events: none;
@@ -216,7 +213,7 @@
             position: absolute;
             top: -20px;
             left: -20px;
-            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+            transition: width 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
         }
         .custom-cursor.hover .cursor-dot {
             width: 12px;
@@ -253,7 +250,6 @@
                 cursor: pointer;
             }
         }
-        /* ===== LOADING SKELETON ===== */
         #loadingSkeleton {
             position: fixed;
             inset: 0;
@@ -317,7 +313,6 @@
                 width: 100%;
             }
         }
-        /* ===== NAVBAR ===== */
         .navbar {
             position: sticky;
             top: 0;
@@ -417,8 +412,6 @@
             margin-right: 4px;
             font-size: 0.75rem;
         }
-
-        /* ===== USER DROPDOWN ===== */
         .user-dropdown {
             position: relative;
             display: inline-block;
@@ -522,8 +515,6 @@
             background: var(--border-subtle);
             margin: 4px 12px;
         }
-
-        /* ===== HERO ===== */
         .hero {
             padding: 100px 0 80px;
             background: var(--bg-primary);
@@ -628,8 +619,6 @@
             gap: 14px;
             flex-wrap: wrap;
         }
-
-        /* ===== TRUST BAR ===== */
         .trust-bar {
             padding: 44px 0;
             background: var(--bg-secondary);
@@ -662,8 +651,6 @@
             margin-top: 2px;
             transition: color 0.4s ease;
         }
-
-        /* ===== SECTION TITLES ===== */
         .section-title {
             font-size: clamp(2rem, 3.5vw, 2.8rem);
             font-weight: 800;
@@ -692,8 +679,6 @@
             margin: 10px auto 44px;
             border-radius: 4px;
         }
-
-        /* ===== SERVICES ===== */
         .services {
             padding: 80px 0;
             background: var(--bg-secondary);
@@ -746,8 +731,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        /* ===== PROJECTS ===== */
         .projects-section {
             padding: 80px 0;
             background: var(--bg-primary);
@@ -852,8 +835,6 @@
             color: var(--accent-gold-light);
             gap: 10px;
         }
-
-        /* ===== LIGHTBOX ===== */
         .lightbox {
             display: none;
             position: fixed;
@@ -923,8 +904,6 @@
                 height: 44px;
             }
         }
-
-        /* ===== SHOWCASE ===== */
         .showcase {
             padding: 80px 0;
             background: var(--bg-secondary);
@@ -972,8 +951,6 @@
             line-height: 1.6;
             transition: color 0.4s ease;
         }
-
-        /* ===== TESTIMONIALS ===== */
         .testimonials {
             padding: 80px 0;
             background: var(--bg-secondary);
@@ -1035,8 +1012,6 @@
             color: var(--text-muted);
             transition: color 0.4s ease;
         }
-
-        /* ===== BLOG ===== */
         .blog-section {
             padding: 80px 0;
             background: var(--bg-primary);
@@ -1143,8 +1118,6 @@
             font-size: 1.05rem;
             grid-column: 1 / -1;
         }
-
-        /* ===== CONTACT SECTION ===== */
         .contact-section {
             padding: 80px 0;
             background: var(--bg-secondary);
@@ -1264,8 +1237,6 @@
             line-height: 1.8;
             color: var(--text-primary);
         }
-
-        /* ===== CTA ===== */
         .cta-section {
             padding: 60px 0;
             background: var(--bg-primary);
@@ -1312,8 +1283,6 @@
         .cta-section .contact-info a:hover {
             color: var(--accent-gold);
         }
-
-        /* ===== FOOTER ===== */
         .footer {
             background: var(--bg-primary);
             color: var(--text-muted);
@@ -1372,8 +1341,6 @@
             opacity: 0.5;
             transition: color 0.4s ease;
         }
-
-        /* ===== FULL PAGE MODALS ===== */
         .page-modal {
             display: none;
             position: fixed;
@@ -1529,8 +1496,6 @@
             line-height: 1.5;
             transition: color 0.4s ease;
         }
-
-        /* ===== ADMIN PANEL ===== */
         .dashboard-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -1591,7 +1556,6 @@
                 font-size: 1.4rem;
             }
         }
-
         .admin-tabs {
             display: flex;
             gap: 10px;
@@ -1621,7 +1585,6 @@
             border-color: var(--accent-gold);
             transform: translateY(-2px);
         }
-
         .admin-item {
             background: var(--bg-secondary);
             padding: 16px 20px;
@@ -1692,7 +1655,6 @@
             background: rgba(212, 160, 43, 0.15);
             color: var(--accent-gold-light);
         }
-
         .delete-btn-text {
             background: #dc3545;
             color: white;
@@ -1708,7 +1670,6 @@
             background: #b02a37;
             transform: translateY(-2px) scale(1.04);
         }
-
         .logout-btn {
             background: var(--accent-gold);
             color: var(--bg-primary);
@@ -1725,7 +1686,6 @@
             transform: translateY(-2px) scale(1.04);
             box-shadow: 0 4px 16px rgba(212, 160, 43, 0.2);
         }
-
         .admin-project-form {
             background: var(--bg-secondary);
             border: 2px dashed rgba(212, 160, 43, 0.15);
@@ -1768,7 +1728,6 @@
             border-radius: var(--radius-sm);
             padding: 4px;
         }
-
         .date-filter {
             display: flex;
             gap: 12px;
@@ -1807,8 +1766,6 @@
             background: var(--accent-gold-light);
             transform: translateY(-2px);
         }
-
-        /* ===== PROFILE ===== */
         .profile-pic {
             width: 80px;
             height: 80px;
@@ -1822,8 +1779,6 @@
             border: 2px solid var(--accent-gold);
             margin: 0 auto 16px;
         }
-
-        /* ===== SCROLL PROGRESS ===== */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -1841,8 +1796,6 @@
             border-radius: 0 2px 2px 0;
             transition: width 0.1s linear;
         }
-
-        /* ===== BACK TO TOP ===== */
         .back-to-top {
             position: fixed;
             bottom: 100px;
@@ -1875,8 +1828,6 @@
             transform: translateY(-4px);
             box-shadow: 0 8px 32px rgba(212, 160, 43, 0.4);
         }
-
-        /* ===== WHATSAPP FLOAT ===== */
         .whatsapp-float {
             position: fixed;
             bottom: 28px;
@@ -1919,8 +1870,6 @@
                 opacity: 0;
             }
         }
-
-        /* ===== FADE IN ===== */
         .fade-in {
             opacity: 0;
             transform: translateY(40px);
@@ -1948,8 +1897,6 @@
         .fade-in:nth-child(6) {
             transition-delay: 0.30s;
         }
-
-        /* ===== CLIENT PROFILE MODAL ===== */
         .client-profile-modal {
             display: none;
             position: fixed;
@@ -2040,8 +1987,6 @@
             font-weight: 500;
             text-align: right;
         }
-
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .contact-wrapper {
                 grid-template-columns: 1fr;
@@ -2060,7 +2005,6 @@
                 grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             }
         }
-
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -2189,7 +2133,6 @@
                 padding: 28px 20px;
             }
         }
-
         @media (max-width: 480px) {
             .services-grid {
                 grid-template-columns: 1fr;
@@ -2456,9 +2399,7 @@
                 <button class="btn-filter" data-filter="healthcare">Healthcare</button>
                 <button class="btn-filter" data-filter="ecommerce">E-Commerce</button>
             </div>
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be rendered dynamically from Supabase -->
-            </div>
+            <div class="projects-grid" id="projectsGrid"></div>
         </div>
     </section>
 
@@ -2518,19 +2459,19 @@
                     </div>
                     <form id="contactForm">
                         <div class="form-group">
-                            <label>Full Name *</label>
+                            <label for="contactName">Full Name *</label>
                             <input type="text" id="contactName" required placeholder="John Doe" />
                         </div>
                         <div class="form-group">
-                            <label>Email Address *</label>
+                            <label for="contactEmail">Email Address *</label>
                             <input type="email" id="contactEmail" required placeholder="john@example.com" />
                         </div>
                         <div class="form-group">
-                            <label>Phone Number</label>
+                            <label for="contactPhone">Phone Number</label>
                             <input type="tel" id="contactPhone" placeholder="+44 7123 456789" />
                         </div>
                         <div class="form-group">
-                            <label>Message *</label>
+                            <label for="contactMessage">Message *</label>
                             <textarea id="contactMessage" rows="5" required placeholder="Tell us about your project..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
@@ -2768,10 +2709,10 @@
             <div id="blogTab" style="display:block;">
                 <div class="admin-project-form">
                     <h3>✍️ Add New Blog Post</h3>
-                    <div class="form-group"><label>Post Title *</label><input type="text" id="blogTitle" placeholder="e.g. How Digital Transformation is Reshaping UK Businesses" /></div>
-                    <div class="form-group"><label>Content / Description *</label><textarea id="blogContent" rows="4" placeholder="Write your blog post content here..."></textarea></div>
-                    <div class="form-group"><label>Category</label><input type="text" id="blogCategory" placeholder="e.g. Digitalization, ERP, E-Commerce" /></div>
-                    <div class="form-group"><label>Image URL</label><input type="text" id="blogImage" placeholder="https://images.pexels.com/..." /></div>
+                    <div class="form-group"><label for="blogTitle">Post Title *</label><input type="text" id="blogTitle" placeholder="e.g. How Digital Transformation is Reshaping UK Businesses" /></div>
+                    <div class="form-group"><label for="blogContent">Content / Description *</label><textarea id="blogContent" rows="4" placeholder="Write your blog post content here..."></textarea></div>
+                    <div class="form-group"><label for="blogCategory">Category</label><input type="text" id="blogCategory" placeholder="e.g. Digitalization, ERP, E-Commerce" /></div>
+                    <div class="form-group"><label for="blogImage">Image URL</label><input type="text" id="blogImage" placeholder="https://images.pexels.com/..." /></div>
                     <input type="hidden" id="blogEditId" value="" />
                     <button class="btn btn-primary" onclick="saveBlogPost()" style="width:100%;justify-content:center;"><i class="fas fa-save"></i> Publish Post</button>
                 </div>
@@ -2782,11 +2723,11 @@
             <div id="projectsTab" style="display:none;">
                 <div class="admin-project-form">
                     <h3>➕ Add New Project</h3>
-                    <div class="form-group"><label>Project Name</label><input type="text" id="projName" placeholder="e.g. ABC Store" /></div>
-                    <div class="form-group"><label>Project Description</label><textarea id="projDesc" rows="3" placeholder="Short description"></textarea></div>
-                    <div class="form-group"><label>Project Live Link</label><input type="text" id="projUrl" placeholder="https://abcstore.vercel.app" /></div>
-                    <div class="form-group"><label>Category</label><input type="text" id="projCategory" placeholder="erp, retail, healthcare, ecommerce" /></div>
-                    <div class="form-group"><label>Project Image</label>
+                    <div class="form-group"><label for="projName">Project Name</label><input type="text" id="projName" placeholder="e.g. ABC Store" /></div>
+                    <div class="form-group"><label for="projDesc">Project Description</label><textarea id="projDesc" rows="3" placeholder="Short description"></textarea></div>
+                    <div class="form-group"><label for="projUrl">Project Live Link</label><input type="text" id="projUrl" placeholder="https://abcstore.vercel.app" /></div>
+                    <div class="form-group"><label for="projCategory">Category</label><input type="text" id="projCategory" placeholder="erp, retail, healthcare, ecommerce" /></div>
+                    <div class="form-group"><label for="projImageFile">Project Image</label>
                         <div class="file-input-wrapper">
                             <span class="file-label"><i class="fas fa-upload"></i> Choose Image</span>
                             <input type="file" id="projImageFile" accept="image/*" onchange="previewProjectImage(event)" />
@@ -2853,10 +2794,10 @@
                     <h3>Send us a Message</h3>
                     <div class="success-msg" id="successMsgModal"><i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.</div>
                     <form id="contactFormModal">
-                        <div class="form-group"><label>Full Name *</label><input type="text" id="contactNameModal" required placeholder="John Doe" /></div>
-                        <div class="form-group"><label>Email Address *</label><input type="email" id="contactEmailModal" required placeholder="john@example.com" /></div>
-                        <div class="form-group"><label>Phone Number</label><input type="tel" id="contactPhoneModal" placeholder="+44 7123 456789" /></div>
-                        <div class="form-group"><label>Message *</label><textarea id="contactMessageModal" rows="5" required placeholder="Tell us about your project..."></textarea></div>
+                        <div class="form-group"><label for="contactNameModal">Full Name *</label><input type="text" id="contactNameModal" required placeholder="John Doe" /></div>
+                        <div class="form-group"><label for="contactEmailModal">Email Address *</label><input type="email" id="contactEmailModal" required placeholder="john@example.com" /></div>
+                        <div class="form-group"><label for="contactPhoneModal">Phone Number</label><input type="tel" id="contactPhoneModal" placeholder="+44 7123 456789" /></div>
+                        <div class="form-group"><label for="contactMessageModal">Message *</label><textarea id="contactMessageModal" rows="5" required placeholder="Tell us about your project..."></textarea></div>
                         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
                     </form>
                 </div>
@@ -2911,10 +2852,10 @@
         <div class="modal-page-content" style="max-width: 600px;">
             <div class="content-text">
                 <form id="registerForm">
-                    <div class="form-group"><label>Full Name *</label><input type="text" id="regName" required placeholder="John Doe" /></div>
-                    <div class="form-group"><label>Email Address *</label><input type="email" id="regEmail" required placeholder="john@example.com" /></div>
-                    <div class="form-group"><label>Password *</label><input type="password" id="regPassword" required placeholder="Min 6 characters" minlength="6" /></div>
-                    <div class="form-group"><label>Confirm Password *</label><input type="password" id="regConfirm" required placeholder="Confirm password" /></div>
+                    <div class="form-group"><label for="regName">Full Name *</label><input type="text" id="regName" required placeholder="John Doe" /></div>
+                    <div class="form-group"><label for="regEmail">Email Address *</label><input type="email" id="regEmail" required placeholder="john@example.com" /></div>
+                    <div class="form-group"><label for="regPassword">Password *</label><input type="password" id="regPassword" required placeholder="Min 6 characters" minlength="6" /></div>
+                    <div class="form-group"><label for="regConfirm">Confirm Password *</label><input type="password" id="regConfirm" required placeholder="Confirm password" /></div>
                     <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Register</button>
                 </form>
                 <div id="registerSuccess" style="display:none;margin-top:16px;padding:16px;background:rgba(46,125,50,0.15);border-radius:var(--radius-sm);border-left:3px solid #4caf50;color:#81c784;">
@@ -2956,8 +2897,8 @@
         <div class="modal-page-content" style="max-width: 500px;">
             <div class="content-text">
                 <form id="loginForm">
-                    <div class="form-group"><label>Email Address *</label><input type="email" id="loginEmail" required placeholder="john@example.com" /></div>
-                    <div class="form-group"><label>Password *</label><input type="password" id="loginPassword" required placeholder="Enter your password" /></div>
+                    <div class="form-group"><label for="loginEmail">Email Address *</label><input type="email" id="loginEmail" required placeholder="john@example.com" /></div>
+                    <div class="form-group"><label for="loginPassword">Password *</label><input type="password" id="loginPassword" required placeholder="Enter your password" /></div>
                     <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Sign In</button>
                 </form>
                 <div id="loginError" style="display:none;margin-top:16px;padding:12px;background:rgba(220,53,69,0.15);border-radius:var(--radius-sm);color:#dc3545;">Invalid email or password.</div>
@@ -2999,12 +2940,12 @@
             <div class="content-text">
                 <div class="profile-pic"><i class="fas fa-user-circle"></i></div>
                 <form id="profileForm">
-                    <div class="form-group"><label>Full Name *</label><input type="text" id="profileName" required placeholder="John Doe" /></div>
-                    <div class="form-group"><label>Email Address *</label><input type="email" id="profileEmail" required placeholder="john@example.com" /></div>
-                    <div class="form-group"><label>Phone Number</label><input type="tel" id="profilePhone" placeholder="+44 7123 456789" /></div>
-                    <div class="form-group"><label>City</label><input type="text" id="profileCity" placeholder="e.g. London" /></div>
-                    <div class="form-group"><label>Business Name</label><input type="text" id="profileBusiness" placeholder="Your company name" /></div>
-                    <div class="form-group"><label>Business Type</label><input type="text" id="profileBizType" placeholder="e.g. Retail, ERP, E-Commerce" /></div>
+                    <div class="form-group"><label for="profileName">Full Name *</label><input type="text" id="profileName" required placeholder="John Doe" /></div>
+                    <div class="form-group"><label for="profileEmail">Email Address *</label><input type="email" id="profileEmail" required placeholder="john@example.com" /></div>
+                    <div class="form-group"><label for="profilePhone">Phone Number</label><input type="tel" id="profilePhone" placeholder="+44 7123 456789" /></div>
+                    <div class="form-group"><label for="profileCity">City</label><input type="text" id="profileCity" placeholder="e.g. London" /></div>
+                    <div class="form-group"><label for="profileBusiness">Business Name</label><input type="text" id="profileBusiness" placeholder="Your company name" /></div>
+                    <div class="form-group"><label for="profileBizType">Business Type</label><input type="text" id="profileBizType" placeholder="e.g. Retail, ERP, E-Commerce" /></div>
                     <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Update Profile</button>
                 </form>
                 <div id="profileSuccess" style="display:none;margin-top:16px;padding:16px;background:rgba(46,125,50,0.15);border-radius:var(--radius-sm);color:#81c784;"><i class="fas fa-check-circle"></i> Profile updated successfully!</div>
@@ -3242,8 +3183,6 @@
         // ============================================================
         // 8. PROJECTS — Supabase CRUD
         // ============================================================
-
-        // Load projects from Supabase
         async function loadProjectsFromSupabase() {
             try {
                 const { data, error } = await window.supabaseClient
@@ -3299,22 +3238,11 @@
             });
         }
 
-        // Fallback: use localStorage if Supabase fails
         function renderProjectsFallback() {
             const projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
-            if (projects.length === 0) {
-                document.getElementById('projectsGrid').innerHTML = `
-                            <div class="no-blog-msg" style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">
-                                <i class="fas fa-folder-open" style="font-size:2rem;display:block;margin-bottom:12px;"></i>
-                                No projects yet.
-                            </div>
-                        `;
-                return;
-            }
             renderProjects(projects);
         }
 
-        // Save project to Supabase
         window.saveProject = async function() {
             const editId = document.getElementById('projEditId').value;
             if (editId) { updateProjectInSupabase(); return; }
@@ -3450,7 +3378,6 @@
 
         function loadAdminProjects() {
             const list = document.getElementById('adminProjectsList');
-            // Load from Supabase
             window.supabaseClient
                 .from('projects')
                 .select('*')
@@ -3543,7 +3470,6 @@
             renderBlogs(blogs);
         }
 
-        // Save blog post to Supabase
         window.saveBlogPost = async function() {
             const editId = document.getElementById('blogEditId').value;
             if (editId) { updateBlogPostInSupabase(); return; }
@@ -3721,7 +3647,6 @@
         // 10. MESSAGES — Supabase CRUD
         // ============================================================
 
-        // Contact form (main page)
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('contactName').value.trim();
@@ -3762,7 +3687,6 @@
             }
         });
 
-        // Contact form (modal)
         document.getElementById('contactFormModal').addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('contactNameModal').value.trim();
@@ -3803,7 +3727,6 @@
             }
         });
 
-        // Messages — Admin
         let allMessages = [];
 
         function loadMessages() {
@@ -4004,7 +3927,6 @@
             if (password.length < 6) { alert('Password must be at least 6 characters.'); return; }
 
             try {
-                // Check if email exists
                 const { data: existing, error: checkError } = await window.supabaseClient
                     .from('clients')
                     .select('email')
@@ -4250,7 +4172,6 @@
         }
 
         function updateDashboardStats() {
-            // Fetch counts from Supabase
             Promise.all([
                 window.supabaseClient.from('projects').select('*', { count: 'exact', head: true }),
                 window.supabaseClient.from('blogs').select('*', { count: 'exact', head: true }),
@@ -4389,7 +4310,6 @@
         // 23. PROJECT FILTER
         // ============================================================
         const filterButtons = document.querySelectorAll('.btn-filter');
-        const projectCards = document.querySelectorAll('.project-card');
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -4435,7 +4355,6 @@
         // 25. SEED INITIAL DATA (if empty)
         // ============================================================
         async function seedInitialData() {
-            // Check if projects table is empty
             const { data: existingProjects, error } = await window.supabaseClient
                 .from('projects')
                 .select('*', { count: 'exact', head: true });
