@@ -3004,12 +3004,16 @@
         let ringX = 0,
             ringY = 0;
         document.addEventListener('mousemove', function(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            dot.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px)';
+            // FIX: Added validation to prevent undefined values
+            if (e.clientX !== undefined && e.clientY !== undefined) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }
+            // FIX: Using translate3d for better and accurate positioning
+            dot.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0)';
             ringX += (mouseX - ringX) * 0.08;
             ringY += (mouseY - ringY) * 0.08;
-            ring.style.transform = 'translate(' + ringX + 'px, ' + ringY + 'px)';
+            ring.style.transform = 'translate3d(' + ringX + 'px, ' + ringY + 'px, 0)';
         });
         const hoverElements = document.querySelectorAll('a, button, .btn, .logo-wrapper, .project-card a, .nav-links a, .theme-toggle, .hamburger, .btn-filter, .delete-btn, .logout-btn, .modal-close-btn, .dropdown-trigger, .dropdown-menu a, .icon-btn, .close-profile-btn');
         hoverElements.forEach(el => {
@@ -3959,15 +3963,27 @@
                     return;
                 }
 
-                currentUser = newUser;
-                localStorage.setItem('nexify_current_user', JSON.stringify(newUser));
+                // FIX: Fetch the newly created user to get the ID from the database
+                const { data: createdUser, error: fetchError } = await window.supabaseClient
+                    .from('clients')
+                    .select('*')
+                    .eq('email', email)
+                    .single();
+
+                if (!fetchError && createdUser) {
+                    currentUser = createdUser;
+                } else {
+                    currentUser = newUser; // Fallback if fetch fails
+                }
+                localStorage.setItem('nexify_current_user', JSON.stringify(currentUser));
+
                 document.getElementById('registerSuccess').style.display = 'block';
                 this.reset();
                 updateDashboardStats();
                 updateNavbarUser();
                 setTimeout(() => {
                     closePageModal('registerPage');
-                    alert('Registration successful! Welcome, ' + newUser.name);
+                    alert('Registration successful! Welcome, ' + currentUser.name);
                     loadProfile();
                 }, 500);
             } catch (err) {
