@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -91,7 +92,8 @@
             margin: 0 auto;
             padding: 0 24px;
         }
-        /* Typography */
+
+        /* ===== TYPOGRAPHY ===== */
         .heading {
             font-weight: 800;
             letter-spacing: -0.03em;
@@ -115,7 +117,8 @@
         .text-secondary {
             color: var(--text-secondary);
         }
-        /* Buttons */
+
+        /* ===== BUTTONS ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -186,7 +189,8 @@
             color: var(--bg-primary);
             border-color: var(--accent-gold);
         }
-        /* Custom Cursor */
+
+        /* ===== CUSTOM CURSOR ===== */
         .custom-cursor {
             position: fixed;
             pointer-events: none;
@@ -250,7 +254,8 @@
                 cursor: pointer;
             }
         }
-        /* Loading Skeleton */
+
+        /* ===== LOADING SKELETON ===== */
         #loadingSkeleton {
             position: fixed;
             inset: 0;
@@ -314,7 +319,8 @@
                 width: 100%;
             }
         }
-        /* Navbar */
+
+        /* ===== NAVBAR ===== */
         .navbar {
             position: sticky;
             top: 0;
@@ -414,72 +420,113 @@
             margin-right: 4px;
             font-size: 0.75rem;
         }
-        .nav-links .register-link {
-            color: var(--accent-gold);
-            font-weight: 600;
+
+        /* ===== USER DROPDOWN ===== */
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
         }
-        .nav-links .register-link:hover {
-            color: var(--accent-gold-light);
-            background: rgba(212, 160, 43, 0.08);
-        }
-        .user-status {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            margin-left: 8px;
-            font-weight: 500;
-        }
-        .user-status i {
-            margin-right: 4px;
-        }
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border-medium);
-            border-radius: 50%;
-            width: 38px;
-            height: 38px;
+        .user-dropdown .dropdown-trigger {
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: none;
+            gap: 8px;
+            padding: 6px 14px;
+            font-size: 0.82rem;
+            font-weight: 500;
             color: var(--text-secondary);
-            font-size: 1rem;
-            transition: all var(--transition);
-            margin-left: 4px;
             background: transparent;
-        }
-        .theme-toggle:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-            transform: translateY(-3px) scale(1.05) rotate(20deg);
-            box-shadow: 0 4px 16px rgba(212, 160, 43, 0.15);
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
             border: none;
+            border-radius: 30px;
             cursor: none;
-            padding: 4px;
-        }
-        .hamburger span {
-            display: block;
-            width: 26px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 4px;
             transition: all var(--transition);
+            font-family: 'Inter', sans-serif;
+            position: relative;
         }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+        .user-dropdown .dropdown-trigger:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 6px 20px rgba(212, 160, 43, 0.08);
         }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
+        body.light-mode .user-dropdown .dropdown-trigger:hover {
+            background: rgba(0, 0, 0, 0.04);
+            box-shadow: 0 6px 20px rgba(212, 160, 43, 0.12);
         }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
+        .user-dropdown .dropdown-trigger .chevron {
+            font-size: 0.6rem;
+            margin-left: 2px;
+            transition: transform 0.3s ease;
         }
-        /* Hero */
+        .user-dropdown .dropdown-trigger.open .chevron {
+            transform: rotate(180deg);
+        }
+        .user-dropdown .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            min-width: 200px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            padding: 6px 0;
+            list-style: none;
+            z-index: 1100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: dropdownFade 0.2s ease;
+        }
+        .user-dropdown .dropdown-menu.open {
+            display: block;
+        }
+        @keyframes dropdownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-8px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .user-dropdown .dropdown-menu li {
+            display: block;
+        }
+        .user-dropdown .dropdown-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition);
+            border-radius: 0;
+            width: 100%;
+            background: transparent;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            cursor: none;
+        }
+        .user-dropdown .dropdown-menu li a:hover {
+            background: rgba(212, 160, 43, 0.08);
+            color: var(--text-primary);
+        }
+        .user-dropdown .dropdown-menu li a i {
+            width: 18px;
+            text-align: center;
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+        }
+        .user-dropdown .dropdown-menu .divider {
+            height: 1px;
+            background: var(--border-subtle);
+            margin: 4px 12px;
+        }
+
+        /* ===== HERO ===== */
         .hero {
             padding: 100px 0 80px;
             background: var(--bg-primary);
@@ -584,7 +631,8 @@
             gap: 14px;
             flex-wrap: wrap;
         }
-        /* Trust Bar */
+
+        /* ===== TRUST BAR ===== */
         .trust-bar {
             padding: 44px 0;
             background: var(--bg-secondary);
@@ -617,7 +665,8 @@
             margin-top: 2px;
             transition: color 0.4s ease;
         }
-        /* Section Titles */
+
+        /* ===== SECTION TITLES ===== */
         .section-title {
             font-size: clamp(2rem, 3.5vw, 2.8rem);
             font-weight: 800;
@@ -646,7 +695,8 @@
             margin: 10px auto 44px;
             border-radius: 4px;
         }
-        /* Services */
+
+        /* ===== SERVICES ===== */
         .services {
             padding: 80px 0;
             background: var(--bg-secondary);
@@ -699,7 +749,8 @@
                 grid-template-columns: 1fr;
             }
         }
-        /* Projects */
+
+        /* ===== PROJECTS ===== */
         .projects-section {
             padding: 80px 0;
             background: var(--bg-primary);
@@ -804,7 +855,8 @@
             color: var(--accent-gold-light);
             gap: 10px;
         }
-        /* Lightbox */
+
+        /* ===== LIGHTBOX ===== */
         .lightbox {
             display: none;
             position: fixed;
@@ -874,7 +926,8 @@
                 height: 44px;
             }
         }
-        /* Showcase */
+
+        /* ===== SHOWCASE ===== */
         .showcase {
             padding: 80px 0;
             background: var(--bg-secondary);
@@ -922,7 +975,8 @@
             line-height: 1.6;
             transition: color 0.4s ease;
         }
-        /* Testimonials */
+
+        /* ===== TESTIMONIALS ===== */
         .testimonials {
             padding: 80px 0;
             background: var(--bg-secondary);
@@ -984,7 +1038,8 @@
             color: var(--text-muted);
             transition: color 0.4s ease;
         }
-        /* Blog */
+
+        /* ===== BLOG ===== */
         .blog-section {
             padding: 80px 0;
             background: var(--bg-primary);
@@ -1091,7 +1146,8 @@
             font-size: 1.05rem;
             grid-column: 1 / -1;
         }
-        /* Contact section (main page) */
+
+        /* ===== CONTACT SECTION ===== */
         .contact-section {
             padding: 80px 0;
             background: var(--bg-secondary);
@@ -1211,7 +1267,8 @@
             line-height: 1.8;
             color: var(--text-primary);
         }
-        /* CTA */
+
+        /* ===== CTA ===== */
         .cta-section {
             padding: 60px 0;
             background: var(--bg-primary);
@@ -1258,7 +1315,8 @@
         .cta-section .contact-info a:hover {
             color: var(--accent-gold);
         }
-        /* Footer */
+
+        /* ===== FOOTER ===== */
         .footer {
             background: var(--bg-primary);
             color: var(--text-muted);
@@ -1317,7 +1375,8 @@
             opacity: 0.5;
             transition: color 0.4s ease;
         }
-        /* Full Page Modals */
+
+        /* ===== FULL PAGE MODALS ===== */
         .page-modal {
             display: none;
             position: fixed;
@@ -1473,7 +1532,8 @@
             line-height: 1.5;
             transition: color 0.4s ease;
         }
-        /* Admin Panel specific styles */
+
+        /* ===== ADMIN PANEL ===== */
         .dashboard-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -1534,6 +1594,7 @@
                 font-size: 1.4rem;
             }
         }
+
         .admin-tabs {
             display: flex;
             gap: 10px;
@@ -1563,6 +1624,7 @@
             border-color: var(--accent-gold);
             transform: translateY(-2px);
         }
+
         .admin-item {
             background: var(--bg-secondary);
             padding: 16px 20px;
@@ -1570,24 +1632,71 @@
             margin-bottom: 12px;
             border-left: 3px solid var(--accent-gold);
             transition: background 0.4s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
         }
-        .admin-item strong {
+        .admin-item .item-content {
+            flex: 1;
+            min-width: 180px;
+        }
+        .admin-item .item-content strong {
             display: block;
             color: var(--text-primary);
             transition: color 0.4s ease;
         }
-        .admin-item small {
+        .admin-item .item-content small {
             color: var(--text-muted);
             font-size: 0.82rem;
             transition: color 0.4s ease;
         }
-        .admin-item p {
+        .admin-item .item-content p {
             margin-top: 6px;
             font-size: 0.9rem;
             color: var(--text-secondary);
             transition: color 0.4s ease;
         }
-        .delete-btn {
+        .admin-item .item-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .admin-item .item-actions .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: none;
+            transition: all var(--transition);
+            background: transparent;
+            color: var(--text-muted);
+        }
+        .admin-item .item-actions .icon-btn:hover {
+            transform: translateY(-2px) scale(1.08);
+        }
+        .admin-item .item-actions .icon-btn.delete-btn {
+            color: #dc3545;
+        }
+        .admin-item .item-actions .icon-btn.delete-btn:hover {
+            background: rgba(220, 53, 69, 0.15);
+            color: #ff6b7a;
+        }
+        .admin-item .item-actions .icon-btn.profile-btn {
+            color: var(--accent-gold);
+        }
+        .admin-item .item-actions .icon-btn.profile-btn:hover {
+            background: rgba(212, 160, 43, 0.15);
+            color: var(--accent-gold-light);
+        }
+
+        .delete-btn-text {
             background: #dc3545;
             color: white;
             border: none;
@@ -1597,12 +1706,12 @@
             font-weight: 600;
             cursor: none;
             transition: all var(--transition);
-            margin-top: 8px;
         }
-        .delete-btn:hover {
+        .delete-btn-text:hover {
             background: #b02a37;
             transform: translateY(-2px) scale(1.04);
         }
+
         .logout-btn {
             background: var(--accent-gold);
             color: var(--bg-primary);
@@ -1619,6 +1728,7 @@
             transform: translateY(-2px) scale(1.04);
             box-shadow: 0 4px 16px rgba(212, 160, 43, 0.2);
         }
+
         .admin-project-form {
             background: var(--bg-secondary);
             border: 2px dashed rgba(212, 160, 43, 0.15);
@@ -1661,6 +1771,7 @@
             border-radius: var(--radius-sm);
             padding: 4px;
         }
+
         .date-filter {
             display: flex;
             gap: 12px;
@@ -1699,7 +1810,8 @@
             background: var(--accent-gold-light);
             transform: translateY(-2px);
         }
-        /* Profile */
+
+        /* ===== PROFILE ===== */
         .profile-pic {
             width: 80px;
             height: 80px;
@@ -1713,7 +1825,8 @@
             border: 2px solid var(--accent-gold);
             margin: 0 auto 16px;
         }
-        /* Scroll progress */
+
+        /* ===== SCROLL PROGRESS ===== */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -1731,7 +1844,8 @@
             border-radius: 0 2px 2px 0;
             transition: width 0.1s linear;
         }
-        /* Back to top */
+
+        /* ===== BACK TO TOP ===== */
         .back-to-top {
             position: fixed;
             bottom: 100px;
@@ -1764,7 +1878,8 @@
             transform: translateY(-4px);
             box-shadow: 0 8px 32px rgba(212, 160, 43, 0.4);
         }
-        /* WhatsApp float */
+
+        /* ===== WHATSAPP FLOAT ===== */
         .whatsapp-float {
             position: fixed;
             bottom: 28px;
@@ -1807,7 +1922,8 @@
                 opacity: 0;
             }
         }
-        /* Fade in */
+
+        /* ===== FADE IN ===== */
         .fade-in {
             opacity: 0;
             transform: translateY(40px);
@@ -1835,7 +1951,100 @@
         .fade-in:nth-child(6) {
             transition-delay: 0.30s;
         }
-        /* Responsive */
+
+        /* ===== CLIENT PROFILE MODAL ===== */
+        .client-profile-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 6000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+            padding: 40px 24px;
+            animation: lightboxFade 0.3s ease;
+        }
+        .client-profile-modal .profile-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            max-width: 520px;
+            width: 100%;
+            padding: 40px 36px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: lightboxFade 0.3s ease;
+        }
+        .client-profile-modal .profile-card .close-profile-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 1.6rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: none;
+            transition: all var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .client-profile-modal .profile-card .close-profile-btn:hover {
+            background: rgba(212, 160, 43, 0.15);
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+        .client-profile-modal .profile-card .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            margin: 0 auto 16px;
+        }
+        .client-profile-modal .profile-card h3 {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            transition: color 0.4s ease;
+        }
+        .client-profile-modal .profile-card .profile-email {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .client-profile-modal .profile-card .profile-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.9rem;
+        }
+        .client-profile-modal .profile-card .profile-detail .label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .client-profile-modal .profile-card .profile-detail .value {
+            color: var(--text-primary);
+            font-weight: 500;
+            text-align: right;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .contact-wrapper {
                 grid-template-columns: 1fr;
@@ -1854,9 +2063,33 @@
                 grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             }
         }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
+                flex-direction: column;
+                gap: 5px;
+                background: none;
+                border: none;
+                cursor: none;
+                padding: 4px;
+            }
+            .hamburger span {
+                display: block;
+                width: 26px;
+                height: 2px;
+                background: var(--text-primary);
+                border-radius: 4px;
+                transition: all var(--transition);
+            }
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
             }
             .nav-links {
                 display: none;
@@ -1881,6 +2114,11 @@
             }
             .theme-toggle {
                 margin: 0 auto;
+            }
+            .user-dropdown .dropdown-menu {
+                right: auto;
+                left: 0;
+                min-width: 180px;
             }
             .hero {
                 padding: 64px 0 48px;
@@ -1943,7 +2181,18 @@
             .date-filter label {
                 flex-wrap: wrap;
             }
+            .admin-item {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .admin-item .item-actions {
+                justify-content: flex-end;
+            }
+            .client-profile-modal .profile-card {
+                padding: 28px 20px;
+            }
         }
+
         @media (max-width: 480px) {
             .services-grid {
                 grid-template-columns: 1fr;
@@ -2007,12 +2256,28 @@
             .stat-card .stat-number {
                 font-size: 1.4rem;
             }
+            .admin-item .item-actions .icon-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+            .client-profile-modal .profile-card {
+                padding: 20px 16px;
+            }
+            .client-profile-modal .profile-card .profile-detail {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+            }
+            .client-profile-modal .profile-card .profile-detail .value {
+                text-align: left;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Loading Skeleton -->
+    <!-- ===== LOADING SKELETON ===== -->
     <div id="loadingSkeleton">
         <div class="loader-spinner"></div>
         <div class="loader-text">NEXIFY <span>NOVA</span></div>
@@ -2021,24 +2286,41 @@
         </div>
     </div>
 
-    <!-- Custom Cursor -->
+    <!-- ===== CUSTOM CURSOR ===== -->
     <div class="custom-cursor" id="customCursor">
         <div class="cursor-dot"></div>
         <div class="cursor-ring"></div>
     </div>
 
-    <!-- Scroll Progress Bar -->
+    <!-- ===== SCROLL PROGRESS ===== -->
     <div class="scroll-progress" id="scrollProgress">
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <!-- Lightbox -->
+    <!-- ===== LIGHTBOX ===== -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
         <img class="lightbox-content" id="lightboxImage" src="" alt="Project Image" />
     </div>
 
-    <!-- NAVBAR -->
+    <!-- ===== CLIENT PROFILE MODAL ===== -->
+    <div class="client-profile-modal" id="clientProfileModal" onclick="if(event.target===this) closeClientProfile()">
+        <div class="profile-card">
+            <button class="close-profile-btn" onclick="closeClientProfile()">&times;</button>
+            <div class="profile-avatar"><i class="fas fa-user-circle"></i></div>
+            <h3 id="clientProfileName">John Doe</h3>
+            <p class="profile-email" id="clientProfileEmail">john@example.com</p>
+            <div id="clientProfileDetails">
+                <div class="profile-detail"><span class="label">Phone</span><span class="value" id="cpPhone">—</span></div>
+                <div class="profile-detail"><span class="label">City</span><span class="value" id="cpCity">—</span></div>
+                <div class="profile-detail"><span class="label">Business</span><span class="value" id="cpBusiness">—</span></div>
+                <div class="profile-detail"><span class="label">Business Type</span><span class="value" id="cpBizType">—</span></div>
+                <div class="profile-detail"><span class="label">Registered</span><span class="value" id="cpDate">—</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="#" class="logo-wrapper" onclick="scrollToTop()">
@@ -2063,13 +2345,25 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#blog">Blog</a></li>
-                <li id="authNav">
-                    <span class="user-status" id="userStatusDisplay"><i class="fas fa-user"></i> Guest</span>
+
+                <!-- ===== USER DROPDOWN ===== -->
+                <li>
+                    <div class="user-dropdown" id="userDropdown">
+                        <button class="dropdown-trigger" id="userDropdownTrigger" onclick="toggleUserDropdown()">
+                            <i class="fas fa-user"></i>
+                            <span id="userDropdownLabel">Guest</span>
+                            <i class="fas fa-chevron-down chevron"></i>
+                        </button>
+                        <ul class="dropdown-menu" id="userDropdownMenu">
+                            <li><a href="#" onclick="openPageModal('loginPage'); closeUserDropdown(); return false;"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+                            <li><a href="#" onclick="openPageModal('registerPage'); closeUserDropdown(); return false;"><i class="fas fa-user-plus"></i> Register New User</a></li>
+                            <li class="divider" id="dropdownDivider" style="display:none;"></li>
+                            <li><a href="#" onclick="openPageModal('profilePage'); closeUserDropdown(); return false;" id="profileDropdownItem" style="display:none;"><i class="fas fa-id-card"></i> Profile</a></li>
+                            <li><a href="#" onclick="logoutUser(); closeUserDropdown(); return false;" id="logoutDropdownItem" style="display:none;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
                 </li>
-                <li><a href="#" onclick="openPageModal('loginPage'); return false;" class="register-link" id="loginNavBtn"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
-                <li><a href="#" onclick="openPageModal('registerPage'); return false;" class="register-link" id="registerNavBtn"><i class="fas fa-user-plus"></i> Register</a></li>
-                <li><a href="#" onclick="logoutUser(); return false;" class="register-link" id="logoutNavBtn" style="display:none;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                <li><a href="#" onclick="openPageModal('profilePage'); return false;" class="register-link" id="profileNavBtn" style="display:none;"><i class="fas fa-id-card"></i> Profile</a></li>
+
                 <li>
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                         <i class="fas fa-moon" id="themeIcon"></i>
@@ -2079,7 +2373,7 @@
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- ===== HERO ===== -->
     <section class="hero" id="home">
         <canvas id="particleCanvas"></canvas>
         <div class="container">
@@ -2098,7 +2392,7 @@
         </div>
     </section>
 
-    <!-- TRUST BAR -->
+    <!-- ===== TRUST BAR ===== -->
     <section class="trust-bar" id="trustBar">
         <div class="container">
             <div class="trust-stat">
@@ -2120,7 +2414,7 @@
         </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- ===== SERVICES ===== -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">What We <span>Offer</span></h2>
@@ -2137,7 +2431,7 @@
         </div>
     </section>
 
-    <!-- SHOWCASE -->
+    <!-- ===== SHOWCASE ===== -->
     <section class="showcase" id="showcase">
         <div class="container">
             <h2 class="section-title">Our <span>Solutions</span> in Action</h2>
@@ -2152,7 +2446,7 @@
         </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- ===== PROJECTS ===== -->
     <section class="projects-section" id="projects">
         <div class="container">
             <h2 class="section-title">🌟 Our <span>Projects</span></h2>
@@ -2166,7 +2460,7 @@
                 <button class="btn-filter" data-filter="ecommerce">E-Commerce</button>
             </div>
             <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be static from HTML, but they are also seeded in localStorage for admin -->
+                <!-- Static projects (seeded from localStorage) -->
                 <div class="project-card fade-in" data-category="erp">
                     <a href="https://abbasstore.vercel.app" target="_blank">
                         <div class="project-image" onclick="event.preventDefault(); openLightbox('https://i.ibb.co/CshqJYtp/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png')">
@@ -2255,7 +2549,7 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- ===== TESTIMONIALS ===== -->
     <section class="testimonials" id="testimonials">
         <div class="container">
             <h2 class="section-title">What Our <span>Clients</span> Say</h2>
@@ -2287,7 +2581,7 @@
         </div>
     </section>
 
-    <!-- BLOG -->
+    <!-- ===== BLOG ===== -->
     <section class="blog-section" id="blog">
         <div class="container">
             <h2 class="section-title">Latest <span>Insights</span></h2>
@@ -2297,7 +2591,7 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION (Main page) -->
+    <!-- ===== CONTACT SECTION ===== -->
     <section class="contact-section" id="contact">
         <div class="container">
             <h2 class="section-title">Get in <span>Touch</span></h2>
@@ -2348,7 +2642,7 @@
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ===== CTA ===== -->
     <section class="cta-section">
         <div class="container">
             <h2>Ready to <span>Digitalize</span> Your Business?</h2>
@@ -2362,7 +2656,7 @@
         </div>
     </section>
 
-    <!-- FOOTER (Main) -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-brand">NEXIFY <span>NOVA</span></div>
@@ -2382,7 +2676,7 @@
     FULL PAGE MODALS
     ============================================================ -->
 
-    <!-- CEO PAGE -->
+    <!-- ===== CEO PAGE ===== -->
     <div id="ceoPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('ceoPage')">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2426,7 +2720,7 @@
         </footer>
     </div>
 
-    <!-- VISION PAGE -->
+    <!-- ===== VISION PAGE ===== -->
     <div id="visionPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('visionPage')">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2470,7 +2764,7 @@
         </footer>
     </div>
 
-    <!-- HIERARCHY (TEAM) PAGE -->
+    <!-- ===== HIERARCHY (TEAM) PAGE ===== -->
     <div id="hierarchyPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('hierarchyPage')">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2517,7 +2811,7 @@
         </footer>
     </div>
 
-    <!-- ADMIN PAGE (Full page modal) -->
+    <!-- ===== ADMIN PAGE ===== -->
     <div id="adminPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('adminPage'); logoutAdmin();">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2556,6 +2850,7 @@
                 <button onclick="switchTab('messages')">✉️ Messages</button>
                 <button onclick="switchTab('clients')">👤 Clients</button>
             </div>
+
             <!-- BLOG TAB -->
             <div id="blogTab" style="display:block;">
                 <div class="admin-project-form">
@@ -2569,6 +2864,7 @@
                 </div>
                 <div id="adminBlogList"></div>
             </div>
+
             <!-- PROJECTS TAB -->
             <div id="projectsTab" style="display:none;">
                 <div class="admin-project-form">
@@ -2590,7 +2886,8 @@
                 </div>
                 <div id="adminProjectsList"></div>
             </div>
-            <!-- MESSAGES TAB with Date Filter -->
+
+            <!-- MESSAGES TAB -->
             <div id="messagesTab" style="display:none;">
                 <div class="date-filter">
                     <label>From: <input type="date" id="msgFrom" /></label>
@@ -2600,6 +2897,7 @@
                 </div>
                 <div id="inquiryList"></div>
             </div>
+
             <!-- CLIENTS TAB -->
             <div id="clientsTab" style="display:none;">
                 <div id="clientsList"></div>
@@ -2614,7 +2912,7 @@
         </footer>
     </div>
 
-    <!-- CONTACT PAGE MODAL -->
+    <!-- ===== CONTACT PAGE MODAL ===== -->
     <div id="contactPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('contactPage')">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2675,7 +2973,7 @@
         </footer>
     </div>
 
-    <!-- REGISTER PAGE MODAL -->
+    <!-- ===== REGISTER PAGE MODAL ===== -->
     <div id="registerPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('registerPage')">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2720,7 +3018,7 @@
         </footer>
     </div>
 
-    <!-- LOGIN PAGE MODAL -->
+    <!-- ===== LOGIN PAGE MODAL ===== -->
     <div id="loginPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('loginPage')">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2762,7 +3060,7 @@
         </footer>
     </div>
 
-    <!-- PROFILE PAGE MODAL -->
+    <!-- ===== PROFILE PAGE MODAL ===== -->
     <div id="profilePage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('profilePage')">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2808,11 +3106,13 @@
         </footer>
     </div>
 
-    <!-- BACK TO TOP & WHATSAPP -->
+    <!-- ===== BACK TO TOP & WHATSAPP ===== -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
     <a href="https://wa.me/923493709850" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
-    <!-- JAVASCRIPT -->
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
     <script>
         // ============================================================
         // 0. LOADING SKELETON
@@ -2840,7 +3140,7 @@
             ringY += (mouseY - ringY) * 0.08;
             ring.style.transform = 'translate(' + ringX + 'px, ' + ringY + 'px)';
         });
-        const hoverElements = document.querySelectorAll('a, button, .btn, .logo-wrapper, .project-card a, .nav-links a, .theme-toggle, .hamburger, .btn-filter, .delete-btn, .logout-btn, .modal-close-btn');
+        const hoverElements = document.querySelectorAll('a, button, .btn, .logo-wrapper, .project-card a, .nav-links a, .theme-toggle, .hamburger, .btn-filter, .delete-btn, .logout-btn, .modal-close-btn, .dropdown-trigger, .dropdown-menu a, .icon-btn, .close-profile-btn');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', function() { cursor.classList.add('hover'); });
             el.addEventListener('mouseleave', function() { cursor.classList.remove('hover'); });
@@ -2937,12 +3237,37 @@
         });
 
         // ============================================================
-        // 4. SCROLL TO TOP
+        // 4. USER DROPDOWN
+        // ============================================================
+        function toggleUserDropdown() {
+            const menu = document.getElementById('userDropdownMenu');
+            const trigger = document.getElementById('userDropdownTrigger');
+            menu.classList.toggle('open');
+            trigger.classList.toggle('open');
+        }
+
+        function closeUserDropdown() {
+            const menu = document.getElementById('userDropdownMenu');
+            const trigger = document.getElementById('userDropdownTrigger');
+            menu.classList.remove('open');
+            trigger.classList.remove('open');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('userDropdown');
+            if (!dropdown.contains(e.target)) {
+                closeUserDropdown();
+            }
+        });
+
+        // ============================================================
+        // 5. SCROLL TO TOP
         // ============================================================
         window.scrollToTop = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
         // ============================================================
-        // 5. FULL PAGE MODALS
+        // 6. FULL PAGE MODALS
         // ============================================================
         window.openPageModal = function(id) {
             const modal = document.getElementById(id);
@@ -2961,11 +3286,14 @@
                     if (m.style.display === 'block') { m.style.display = 'none';
                         document.body.style.overflow = 'auto'; }
                 });
+                if (document.getElementById('clientProfileModal').style.display === 'flex') {
+                    closeClientProfile();
+                }
             }
         });
 
         // ============================================================
-        // 6. LIGHTBOX
+        // 7. LIGHTBOX
         // ============================================================
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightboxImage');
@@ -2983,7 +3311,7 @@
         });
 
         // ============================================================
-        // 7. CONTACT FORM (Main page)
+        // 8. CONTACT FORM (Main page)
         // ============================================================
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -3003,7 +3331,7 @@
         });
 
         // ============================================================
-        // 8. CONTACT FORM (Modal)
+        // 9. CONTACT FORM (Modal)
         // ============================================================
         document.getElementById('contactFormModal').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -3023,7 +3351,7 @@
         });
 
         // ============================================================
-        // 9. REGISTER FORM
+        // 10. REGISTER FORM
         // ============================================================
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -3040,7 +3368,6 @@
                 date: new Date().toLocaleString() };
             clients.push(newUser);
             localStorage.setItem('nexify_clients', JSON.stringify(clients));
-            // Auto-login
             currentUser = newUser;
             localStorage.setItem('nexify_current_user', JSON.stringify(newUser));
             document.getElementById('registerSuccess').style.display = 'block';
@@ -3055,7 +3382,7 @@
         });
 
         // ============================================================
-        // 10. LOGIN FORM
+        // 11. LOGIN FORM
         // ============================================================
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -3077,7 +3404,7 @@
         });
 
         // ============================================================
-        // 11. USER AUTH HELPERS
+        // 12. USER AUTH HELPERS
         // ============================================================
         let currentUser = null;
 
@@ -3092,23 +3419,27 @@
         }
 
         function updateNavbarUser() {
-            const statusDisplay = document.getElementById('userStatusDisplay');
-            const loginBtn = document.getElementById('loginNavBtn');
-            const registerBtn = document.getElementById('registerNavBtn');
-            const logoutBtn = document.getElementById('logoutNavBtn');
-            const profileBtn = document.getElementById('profileNavBtn');
+            const label = document.getElementById('userDropdownLabel');
+            const loginItem = document.querySelector('#userDropdownMenu li:nth-child(1)');
+            const registerItem = document.querySelector('#userDropdownMenu li:nth-child(2)');
+            const divider = document.getElementById('dropdownDivider');
+            const profileItem = document.getElementById('profileDropdownItem');
+            const logoutItem = document.getElementById('logoutDropdownItem');
+
             if (currentUser) {
-                statusDisplay.innerHTML = `<i class="fas fa-user"></i> ${currentUser.name}`;
-                loginBtn.style.display = 'none';
-                registerBtn.style.display = 'none';
-                logoutBtn.style.display = 'inline-block';
-                profileBtn.style.display = 'inline-block';
+                label.textContent = currentUser.name;
+                loginItem.style.display = 'none';
+                registerItem.style.display = 'none';
+                divider.style.display = 'block';
+                profileItem.style.display = 'block';
+                logoutItem.style.display = 'block';
             } else {
-                statusDisplay.innerHTML = `<i class="fas fa-user"></i> Guest`;
-                loginBtn.style.display = 'inline-block';
-                registerBtn.style.display = 'inline-block';
-                logoutBtn.style.display = 'none';
-                profileBtn.style.display = 'none';
+                label.textContent = 'Guest';
+                loginItem.style.display = 'block';
+                registerItem.style.display = 'block';
+                divider.style.display = 'none';
+                profileItem.style.display = 'none';
+                logoutItem.style.display = 'none';
             }
         }
 
@@ -3116,6 +3447,7 @@
             currentUser = null;
             localStorage.removeItem('nexify_current_user');
             updateNavbarUser();
+            closeUserDropdown();
             alert('Logged out.');
             closePageModal('profilePage');
             closePageModal('loginPage');
@@ -3154,7 +3486,7 @@
         });
 
         // ============================================================
-        // 12. SEED INITIAL PROJECTS
+        // 13. SEED INITIAL PROJECTS
         // ============================================================
         function seedInitialProjects() {
             if (!localStorage.getItem('nexify_projects_seeded')) {
@@ -3185,7 +3517,7 @@
         seedInitialProjects();
 
         // ============================================================
-        // 13. ADMIN LOGIN (password prompt)
+        // 14. ADMIN LOGIN (password prompt)
         // ============================================================
         const ADMIN_PASS = "admin123";
 
@@ -3211,7 +3543,7 @@
         };
 
         // ============================================================
-        // 14. ADMIN TABS
+        // 15. ADMIN TABS
         // ============================================================
         window.switchTab = function(tab) {
             document.querySelectorAll('.admin-tabs button').forEach(btn => btn.classList.remove('active'));
@@ -3237,7 +3569,7 @@
         };
 
         // ============================================================
-        // 15. LOAD ADMIN DATA
+        // 16. LOAD ADMIN DATA
         // ============================================================
         function loadAdminData() {
             loadAdminBlogs();
@@ -3259,7 +3591,7 @@
         }
 
         // ============================================================
-        // 16. BLOG — CRUD with Edit/Delete
+        // 17. BLOG — CRUD with Edit/Delete
         // ============================================================
         window.saveBlogPost = function() {
             const editId = document.getElementById('blogEditId').value;
@@ -3267,7 +3599,8 @@
             const title = document.getElementById('blogTitle').value.trim();
             const content = document.getElementById('blogContent').value.trim();
             const category = document.getElementById('blogCategory').value.trim() || 'General';
-            const image = document.getElementById('blogImage').value.trim() || 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
+            const image = document.getElementById('blogImage').value.trim() ||
+                'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
             if (!title || !content) { alert('Please fill in Title and Content.'); return; }
             let blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
             blogs.unshift({
@@ -3304,12 +3637,14 @@
             blogs.forEach(blog => {
                 list.innerHTML += `
                             <div class="admin-item">
-                                <strong>${blog.title}</strong>
-                                <small><i class="far fa-calendar-alt"></i> ${blog.date} · ${blog.category}</small>
-                                <p>${blog.content.substring(0, 120)}${blog.content.length > 120 ? '...' : ''}</p>
-                                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
-                                    <button class="delete-btn" onclick="editBlogPost(${blog.id})" style="background:var(--accent-gold);">Edit</button>
-                                    <button class="delete-btn" onclick="deleteBlogPost(${blog.id})">Delete</button>
+                                <div class="item-content">
+                                    <strong>${blog.title}</strong>
+                                    <small><i class="far fa-calendar-alt"></i> ${blog.date} · ${blog.category}</small>
+                                    <p>${blog.content.substring(0, 120)}${blog.content.length > 120 ? '...' : ''}</p>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="icon-btn profile-btn" onclick="editBlogPost(${blog.id})" title="Edit"><i class="fas fa-edit"></i></button>
+                                    <button class="icon-btn delete-btn" onclick="deleteBlogPost(${blog.id})" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </div>
                         `;
@@ -3338,7 +3673,8 @@
             const title = document.getElementById('blogTitle').value.trim();
             const content = document.getElementById('blogContent').value.trim();
             const category = document.getElementById('blogCategory').value.trim() || 'General';
-            const image = document.getElementById('blogImage').value.trim() || 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
+            const image = document.getElementById('blogImage').value.trim() ||
+                'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
             if (!title || !content) { alert('Please fill in Title and Content.'); return; }
             let blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
             const idx = blogs.findIndex(b => b.id === id);
@@ -3374,7 +3710,6 @@
             const grid = document.getElementById('blogGrid');
             const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
             if (blogs.length === 0) {
-                // Show default sample blogs
                 grid.innerHTML = `
                             <div class="blog-card fade-in">
                                 <a href="#" onclick="alert('Blog post coming soon!')">
@@ -3411,7 +3746,7 @@
         }
 
         // ============================================================
-        // 17. PROJECTS — CRUD with Edit/Delete
+        // 18. PROJECTS — CRUD with Edit/Delete
         // ============================================================
         window.saveProject = function() {
             const editId = document.getElementById('projEditId').value;
@@ -3452,11 +3787,13 @@
             projects.forEach(proj => {
                 list.innerHTML += `
                             <div class="admin-item">
-                                <strong>${proj.name}</strong>
-                                <small>${proj.url} · ${proj.category}</small>
-                                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
-                                    <button class="delete-btn" onclick="editProject(${proj.id})" style="background:var(--accent-gold);">Edit</button>
-                                    <button class="delete-btn" onclick="deleteProject(${proj.id})">Delete</button>
+                                <div class="item-content">
+                                    <strong>${proj.name}</strong>
+                                    <small>${proj.url} · ${proj.category}</small>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="icon-btn profile-btn" onclick="editProject(${proj.id})" title="Edit"><i class="fas fa-edit"></i></button>
+                                    <button class="icon-btn delete-btn" onclick="deleteProject(${proj.id})" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </div>
                         `;
@@ -3524,7 +3861,7 @@
         };
 
         // ============================================================
-        // 18. MESSAGES with Date Filter
+        // 19. MESSAGES with Date Filter
         // ============================================================
         let allMessages = [];
 
@@ -3565,11 +3902,15 @@
             messages.forEach(msg => {
                 list.innerHTML += `
                             <div class="admin-item">
-                                <strong>${msg.name}</strong>
-                                <small><i class="fas fa-envelope"></i> ${msg.email} · ${msg.phone || 'N/A'}</small>
-                                <p>${msg.message}</p>
-                                <small style="color:#999;">${msg.date}</small>
-                                <button class="delete-btn" onclick="deleteMessage(${msg.id})">Delete</button>
+                                <div class="item-content">
+                                    <strong>${msg.name}</strong>
+                                    <small><i class="fas fa-envelope"></i> ${msg.email} · ${msg.phone || 'N/A'}</small>
+                                    <p>${msg.message}</p>
+                                    <small style="color:#999;">${msg.date}</small>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="icon-btn delete-btn" onclick="deleteMessage(${msg.id})" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                </div>
                             </div>
                         `;
             });
@@ -3585,29 +3926,75 @@
         };
 
         // ============================================================
-        // 19. CLIENTS
+        // 20. CLIENTS — with Delete & Profile icons
         // ============================================================
         function loadClients() {
             const list = document.getElementById('clientsList');
             const clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
             if (clients.length === 0) {
-                list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">No registered clients.</p>';
+                list.innerHTML =
+                    '<p style="color:var(--text-muted);text-align:center;padding:20px;">No registered clients.</p>';
                 return;
             }
             list.innerHTML = '';
             clients.forEach(client => {
                 list.innerHTML += `
                             <div class="admin-item">
-                                <strong>${client.name}</strong>
-                                <small><i class="fas fa-envelope"></i> ${client.email}</small>
-                                <small style="display:block;color:#999;">Registered: ${client.date}</small>
+                                <div class="item-content">
+                                    <strong>${client.name}</strong>
+                                    <small><i class="fas fa-envelope"></i> ${client.email}</small>
+                                    <small style="display:block;color:#999;">Registered: ${client.date}</small>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="icon-btn profile-btn" onclick="viewClientProfile(${client.id})" title="View Profile"><i class="fas fa-id-card"></i></button>
+                                    <button class="icon-btn delete-btn" onclick="deleteClient(${client.id})" title="Delete Client"><i class="fas fa-user-slash"></i></button>
+                                </div>
                             </div>
                         `;
             });
         }
 
+        // Delete a client
+        window.deleteClient = function(id) {
+            if (!confirm('Delete this client permanently? This will also delete their account data.')) return;
+            let clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
+            clients = clients.filter(c => c.id !== id);
+            localStorage.setItem('nexify_clients', JSON.stringify(clients));
+            // If the deleted client is the currently logged-in user, log them out
+            if (currentUser && currentUser.id === id) {
+                logoutUser();
+            }
+            loadClients();
+            updateDashboardStats();
+            alert('Client deleted successfully.');
+        };
+
+        // View client profile in modal
+        window.viewClientProfile = function(id) {
+            const clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
+            const client = clients.find(c => c.id === id);
+            if (!client) {
+                alert('Client not found.');
+                return;
+            }
+            document.getElementById('clientProfileName').textContent = client.name || '—';
+            document.getElementById('clientProfileEmail').textContent = client.email || '—';
+            document.getElementById('cpPhone').textContent = client.phone || '—';
+            document.getElementById('cpCity').textContent = client.city || '—';
+            document.getElementById('cpBusiness').textContent = client.business || '—';
+            document.getElementById('cpBizType').textContent = client.bizType || '—';
+            document.getElementById('cpDate').textContent = client.date || '—';
+            document.getElementById('clientProfileModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        };
+
+        function closeClientProfile() {
+            document.getElementById('clientProfileModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
         // ============================================================
-        // 20. PROJECT IMAGE PREVIEW
+        // 21. PROJECT IMAGE PREVIEW
         // ============================================================
         window.previewProjectImage = function(event) {
             const file = event.target.files[0];
@@ -3623,7 +4010,7 @@
         };
 
         // ============================================================
-        // 21. BACK TO TOP & SCROLL PROGRESS
+        // 22. BACK TO TOP & SCROLL PROGRESS
         // ============================================================
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', function() {
@@ -3641,7 +4028,7 @@
         });
 
         // ============================================================
-        // 22. COUNTER ANIMATION
+        // 23. COUNTER ANIMATION
         // ============================================================
         const counters = document.querySelectorAll('.counter-number');
         let countersAnimated = false;
@@ -3668,7 +4055,7 @@
         window.addEventListener('load', function() { setTimeout(animateCounters, 500); });
 
         // ============================================================
-        // 23. TYPING ANIMATION
+        // 24. TYPING ANIMATION
         // ============================================================
         (function typingAnimation() {
             const heading = document.getElementById('typingHeading');
@@ -3709,7 +4096,7 @@
         })();
 
         // ============================================================
-        // 24. DARK / LIGHT MODE TOGGLE
+        // 25. DARK / LIGHT MODE TOGGLE
         // ============================================================
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
@@ -3726,7 +4113,7 @@
         });
 
         // ============================================================
-        // 25. PROJECT FILTER
+        // 26. PROJECT FILTER
         // ============================================================
         const filterButtons = document.querySelectorAll('.btn-filter');
         const projectCards = document.querySelectorAll('.project-card');
@@ -3754,7 +4141,7 @@
         });
 
         // ============================================================
-        // 26. FADE-IN INTERSECTION OBSERVER
+        // 27. FADE-IN INTERSECTION OBSERVER
         // ============================================================
         const fadeElements = document.querySelectorAll('.fade-in');
         const observerOptions = {
@@ -3772,7 +4159,7 @@
         fadeElements.forEach(el => observer.observe(el));
 
         // ============================================================
-        // 27. INIT
+        // 28. INIT
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             getCurrentUser();
@@ -3780,8 +4167,9 @@
             if (localStorage.getItem('nexify_admin') === 'true') {
                 console.log('Admin session active.');
             }
-            console.log('🚀 Nexify Nova — Complete with full auth, edit, date filter, and seeded projects.');
+            console.log('🚀 Nexify Nova — Complete with user dropdown & admin client icons.');
         });
     </script>
+
 </body>
 </html>
