@@ -3111,7 +3111,7 @@
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = 'rgba(212, 160, 43, ' + this.opacity + ')';
                 ctx.fill();
-                for (let i =  0; i < particles.length; i++) {
+                for (let i = 0; i < particles.length; i++) {
                     const dx = this.x - particles[i].x;
                     const dy = this.y - particles[i].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
@@ -4303,33 +4303,62 @@
         }
 
         // ============================================================
-        // 18. PROJECT & BLOG IMAGE PREVIEW
+        // 18. PROJECT & BLOG IMAGE PREVIEW (With Compression to speed up site)
         // ============================================================
+        function compressImage(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 800;
+                    const MAX_HEIGHT = 800;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+                    } else {
+                        if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            height = MAX_HEIGHT;
+                        }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    callback(canvas.toDataURL('image/jpeg', 0.7)); // 70% quality
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
         window.previewProjectImage = function(event) {
             const file = event.target.files[0];
             if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
+            compressImage(file, function(compressedDataUrl) {
                 const preview = document.getElementById('projImagePreview');
-                preview.src = e.target.result;
+                preview.src = compressedDataUrl;
                 preview.style.display = 'block';
-                document.getElementById('projImageUrl').value = e.target.result;
-            };
-            reader.readAsDataURL(file);
+                document.getElementById('projImageUrl').value = compressedDataUrl;
+            });
         };
 
-        // Fix: Blog Image preview function
+        // Fix: Blog Image preview function (With Compression)
         window.previewBlogImage = function(event) {
             const file = event.target.files[0];
             if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
+            compressImage(file, function(compressedDataUrl) {
                 const preview = document.getElementById('blogImagePreview');
-                preview.src = e.target.result;
+                preview.src = compressedDataUrl;
                 preview.style.display = 'block';
-                document.getElementById('blogImageUrl').value = e.target.result;
-            };
-            reader.readAsDataURL(file);
+                document.getElementById('blogImageUrl').value = compressedDataUrl;
+            });
         };
 
         // ============================================================
