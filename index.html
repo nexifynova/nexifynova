@@ -9,6 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+
+
+
     <style>
         /* ===== RESET & BASE ===== */
         * {
@@ -3114,6 +3122,12 @@
     JAVASCRIPT
     ============================================================ -->
     <script>
+
+
+
+
+
+
         // ============================================================
         // 0. LOADING SKELETON
         // ============================================================
@@ -4169,6 +4183,20 @@
             }
             console.log('🚀 Nexify Nova — Complete with user dropdown & admin client icons.');
         });
+
+
+
+                       <!-- ===== SUPABASE INITIALIZATION ===== -->
+
+                const SUPABASE_URL = 'https://wsflwxtmuuauqmsfhnux.supabase.co';
+                const SUPABASE_ANON_KEY = 'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I';
+
+                // Global variable banayein
+                window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+                console.log('✅ Supabase connected!');
+
+
     </script>
 
 </body>
