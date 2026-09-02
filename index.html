@@ -488,6 +488,14 @@
             margin-right: 4px;
             font-size: 0.75rem;
         }
+        .nav-links .register-link {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+        .nav-links .register-link:hover {
+            color: var(--accent-gold-light);
+            background: rgba(212, 160, 43, 0.08);
+        }
 
         .theme-toggle {
             background: none;
@@ -732,7 +740,7 @@
         }
 
         /* ============================================================
-                   11. SERVICES — 3 COLUMNS (3 upar, 3 niche)
+                   11. SERVICES — 3 COLUMNS
                    ============================================================ */
         .services {
             padding: 80px 0;
@@ -913,7 +921,7 @@
         }
 
         /* ============================================================
-                   13. LIGHTBOX — IMAGE POPOUT (Batch 4)
+                   13. LIGHTBOX — IMAGE POPOUT
                    ============================================================ */
         .lightbox {
             display: none;
@@ -1113,7 +1121,7 @@
         }
 
         /* ============================================================
-                   16. BLOG SECTION — DYNAMIC (localStorage)
+                   16. BLOG SECTION
                    ============================================================ */
         .blog-section {
             padding: 80px 0;
@@ -1233,7 +1241,7 @@
         }
 
         /* ============================================================
-                   17. CONTACT
+                   17. CONTACT SECTION (Main page)
                    ============================================================ */
         .contact-section {
             padding: 80px 0;
@@ -1474,7 +1482,7 @@
         }
 
         /* ============================================================
-                   20. FULL PAGE MODALS
+                   20. FULL PAGE MODALS (CEO, Vision, Team, Admin, Contact, Register)
                    ============================================================ */
         .page-modal {
             display: none;
@@ -1529,14 +1537,13 @@
             transform: rotate(90deg);
         }
 
+        /* Full width hero image (cinema screen style) */
         .modal-page-hero {
             width: 100%;
-            height: 340px;
+            height: 55vh;
+            min-height: 280px;
             overflow: hidden;
             background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
             transition: background 0.4s ease;
             border-bottom: 3px solid var(--accent-gold);
@@ -1544,10 +1551,10 @@
         .modal-page-hero img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            background: var(--bg-secondary);
-            padding: 8px;
+            object-fit: cover;
+            display: block;
         }
+
         .modal-page-hero .page-title-overlay {
             position: absolute;
             inset: 0;
@@ -1557,7 +1564,7 @@
             flex-direction: column;
             text-align: center;
             padding: 24px;
-            background: linear-gradient(135deg, rgba(10, 10, 15, 0.3) 0%, rgba(10, 10, 15, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.1) 100%);
         }
         .modal-page-hero .page-title-overlay h1 {
             font-size: clamp(2.8rem, 6vw, 4.5rem);
@@ -1642,45 +1649,8 @@
         }
 
         /* ============================================================
-                   21. ADMIN PANEL — BEAUTIFUL DASHBOARD
+                   21. ADMIN PANEL — BEAUTIFUL DASHBOARD (inside page-modal)
                    ============================================================ */
-        .admin-panel {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 3000;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-            overflow-y: auto;
-        }
-
-        .admin-content {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            padding: 36px 40px;
-            max-width: 860px;
-            width: 100%;
-            max-height: 88vh;
-            overflow-y: auto;
-            border: 1px solid var(--border-subtle);
-            position: relative;
-            transition: background 0.4s ease, border-color 0.4s ease;
-        }
-
-        .admin-content h2 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            transition: color 0.4s ease;
-        }
-        .admin-content h2 i {
-            color: var(--accent-gold);
-        }
-
-        /* Dashboard Stats Cards */
         .dashboard-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -2035,7 +2005,8 @@
                 grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             }
             .modal-page-hero {
-                height: 260px;
+                height: 40vh;
+                min-height: 200px;
             }
             .testimonials-grid {
                 grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -2067,6 +2038,9 @@
             .nav-links a.nav-cta {
                 width: auto;
                 margin: 6px auto 0;
+            }
+            .nav-links .register-link {
+                text-align: center;
             }
 
             .theme-toggle {
@@ -2164,7 +2138,8 @@
                 padding: 18px 14px;
             }
             .modal-page-hero {
-                height: 180px;
+                height: 30vh;
+                min-height: 150px;
             }
             .modal-page-hero .page-title-overlay h1 {
                 font-size: 1.8rem;
@@ -2262,12 +2237,13 @@
                 <li><a href="#" onclick="openPageModal('visionPage')"><i class="fas fa-eye"></i> Vision</a></li>
                 <li><a href="#" onclick="openPageModal('hierarchyPage')"><i class="fas fa-sitemap"></i> Team</a></li>
                 <li><a href="#" onclick="promptAdmin()"><i class="fas fa-shield-alt"></i> Admin</a></li>
+                <li><a href="#" onclick="openPageModal('contactPage'); return false;"><i class="fas fa-envelope"></i> Contact</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#showcase">Solutions</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact" class="nav-cta">Contact</a></li>
+                <li><a href="#" onclick="openPageModal('registerPage'); return false;" class="register-link"><i class="fas fa-user-plus"></i> Register</a></li>
                 <li>
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
                         <i class="fas fa-moon" id="themeIcon"></i>
@@ -2292,7 +2268,7 @@
                 <p class="subtitle">From luxury retail to complex B2B supply chains, we engineer world-class platforms that drive real, measurable growth.</p>
                 <div class="btn-group">
                     <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Our Work</a>
-                    <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Us</a>
+                    <a href="#" onclick="openPageModal('contactPage'); return false;" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Us</a>
                 </div>
             </div>
         </div>
@@ -2526,7 +2502,7 @@
     </section>
 
     <!-- ============================================================
-    CONTACT
+    CONTACT SECTION (Main page — kept for reference, but nav link opens modal)
     ============================================================ -->
     <section class="contact-section" id="contact">
         <div class="container">
@@ -2616,7 +2592,7 @@
     </footer>
 
     <!-- ============================================================
-    FULL PAGE MODALS (CEO, Vision, Hierarchy)
+    FULL PAGE MODALS
     ============================================================ -->
 
     <!-- CEO PAGE (Image unchanged) -->
@@ -2663,7 +2639,7 @@
         </footer>
     </div>
 
-    <!-- VISION PAGE (NEW stylish image with border) -->
+    <!-- VISION PAGE (new stylish image, full width) -->
     <div id="visionPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('visionPage')">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2707,7 +2683,7 @@
         </footer>
     </div>
 
-    <!-- HIERARCHY (TEAM) PAGE — NEW stylish image with border -->
+    <!-- HIERARCHY (TEAM) PAGE (new stylish image, full width) -->
     <div id="hierarchyPage" class="page-modal">
         <button class="modal-close-btn" onclick="closePageModal('hierarchyPage')">&times;</button>
         <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
@@ -2755,27 +2731,41 @@
     </div>
 
     <!-- ============================================================
-    ADMIN LOGIN MODAL
+    ADMIN PAGE (Full page modal)
     ============================================================ -->
-    <div id="adminLoginModal" class="page-modal" style="background:rgba(0,0,0,0.9);backdrop-filter:blur(12px);display:none;justify-content:center;align-items:center;">
-        <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:40px 36px;max-width:420px;width:100%;border:1px solid var(--border-subtle);position:relative;">
-            <button class="modal-close-btn" style="position:absolute;top:12px;right:16px;font-size:1.6rem;background:transparent;border:none;color:var(--text-muted);cursor:none;width:auto;height:auto;" onclick="closePageModal('adminLoginModal')">&times;</button>
-            <h2 style="font-weight:800;font-size:1.4rem;margin-bottom:4px;"><i class="fas fa-lock" style="color:var(--accent-gold);"></i> Admin Login</h2>
-            <div style="width:48px;height:2px;background:var(--accent-gold);margin:8px 0 20px;border-radius:4px;"></div>
-            <input type="password" id="adminPassword" placeholder="Enter password" style="width:100%;padding:14px 16px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);font-size:1rem;font-family:'Inter',sans-serif;color:var(--text-primary);margin-bottom:16px;outline:none;" />
-            <button onclick="performAdminLogin()" class="btn btn-primary" style="width:100%;justify-content:center;">Login</button>
-            <div id="loginError" style="display:none;margin-top:16px;color:#dc3545;font-weight:600;font-size:0.9rem;">Invalid Password!</div>
-        </div>
-    </div>
+    <div id="adminPage" class="page-modal">
+        <button class="modal-close-btn" onclick="closePageModal('adminPage'); logoutAdmin();">&times;</button>
+        <!-- Navbar for admin page -->
+        <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
+            <div class="container">
+                <a href="#" class="logo-wrapper" onclick="closePageModal('adminPage'); logoutAdmin(); scrollToTop();">
+                    <img src="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Nexify Nova Logo" class="logo-img" />
+                    <div>
+                        <div class="brand-name">NEXIFY <span>NOVA</span></div>
+                        <div class="brand-tagline">Digital Business Solutions</div>
+                    </div>
+                </a>
+                <ul class="nav-links" style="display:flex;">
+                    <li><a href="#" onclick="closePageModal('adminPage'); logoutAdmin(); scrollToTop();"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="closePageModal('adminPage'); logoutAdmin();"><i class="fas fa-shield-alt"></i> Admin</a></li>
+                </ul>
+            </div>
+        </nav>
 
-    <!-- ============================================================
-    ADMIN PANEL — WITH BEAUTIFUL DASHBOARD
-    ============================================================ -->
-    <div id="adminPanel" class="admin-panel">
-        <div class="admin-content">
+        <!-- Hero image for admin -->
+        <div class="modal-page-hero">
+            <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Admin Dashboard" />
+            <div class="page-title-overlay">
+                <h1>Admin <span>Dashboard</span></h1>
+                <p>Manage your website content</p>
+            </div>
+        </div>
+
+        <!-- Admin content -->
+        <div class="modal-page-content" style="max-width: 1000px;">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:12px;">
-                <h2><i class="fas fa-shield-alt" style="color:var(--accent-gold);"></i> Admin Dashboard</h2>
-                <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
+                <h2><i class="fas fa-shield-alt" style="color:var(--accent-gold);"></i> Dashboard</h2>
+                <button class="logout-btn" onclick="closePageModal('adminPage'); logoutAdmin();">Logout</button>
             </div>
 
             <!-- DASHBOARD STATS CARDS -->
@@ -2881,6 +2871,165 @@
                 <div id="clientsList"></div>
             </div>
         </div>
+
+        <!-- Footer -->
+        <footer class="footer" style="border-top:1px solid var(--border-subtle);">
+            <div class="container">
+                <div class="footer-brand">NEXIFY <span>NOVA</span></div>
+                <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
+                <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================================
+    CONTACT PAGE (Full page modal)
+    ============================================================ -->
+    <div id="contactPage" class="page-modal">
+        <button class="modal-close-btn" onclick="closePageModal('contactPage')">&times;</button>
+        <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
+            <div class="container">
+                <a href="#" class="logo-wrapper" onclick="closePageModal('contactPage'); scrollToTop();">
+                    <img src="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Nexify Nova Logo" class="logo-img" />
+                    <div>
+                        <div class="brand-name">NEXIFY <span>NOVA</span></div>
+                        <div class="brand-tagline">Digital Business Solutions</div>
+                    </div>
+                </a>
+                <ul class="nav-links" style="display:flex;">
+                    <li><a href="#" onclick="closePageModal('contactPage'); scrollToTop();"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="closePageModal('contactPage'); openPageModal('contactPage');"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="modal-page-hero">
+            <img src="https://images.pexels.com/photos/3182823/pexels-photo-3182823.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Contact Us" />
+            <div class="page-title-overlay">
+                <h1>Get in <span>Touch</span></h1>
+                <p>We'd love to hear from you</p>
+            </div>
+        </div>
+
+        <div class="modal-page-content" style="max-width: 1000px;">
+            <div class="contact-wrapper">
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <div class="success-msg" id="successMsgModal">
+                        <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.
+                    </div>
+                    <form id="contactFormModal">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="contactNameModal" required placeholder="John Doe" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" id="contactEmailModal" required placeholder="john@example.com" />
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="contactPhoneModal" placeholder="+44 7123 456789" />
+                        </div>
+                        <div class="form-group">
+                            <label>Message *</label>
+                            <textarea id="contactMessageModal" rows="5" required placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-box">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 100 Victoria Street, London, SW1E 5JL, UK</p>
+                    <p><i class="fas fa-phone"></i> +44 7564 920084</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@nexifynova.co.uk">info@nexifynova.co.uk</a></p>
+                    <p><i class="fas fa-globe"></i> <a href="#">www.nexifynova.co.uk</a></p>
+
+                    <div class="offer-list">
+                        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">What we offer:</h3>
+                        <p>✓ Custom E-Commerce Stores</p>
+                        <p>✓ B2B Inventory & ERP Systems</p>
+                        <p>✓ Corporate Websites & Booking Systems</p>
+                        <p>✓ Real-Time Data Management</p>
+                        <p>✓ 24/7 Technical Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer" style="border-top:1px solid var(--border-subtle);">
+            <div class="container">
+                <div class="footer-brand">NEXIFY <span>NOVA</span></div>
+                <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
+                <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================================
+    REGISTER PAGE (Full page modal)
+    ============================================================ -->
+    <div id="registerPage" class="page-modal">
+        <button class="modal-close-btn" onclick="closePageModal('registerPage')">&times;</button>
+        <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
+            <div class="container">
+                <a href="#" class="logo-wrapper" onclick="closePageModal('registerPage'); scrollToTop();">
+                    <img src="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Nexify Nova Logo" class="logo-img" />
+                    <div>
+                        <div class="brand-name">NEXIFY <span>NOVA</span></div>
+                        <div class="brand-tagline">Digital Business Solutions</div>
+                    </div>
+                </a>
+                <ul class="nav-links" style="display:flex;">
+                    <li><a href="#" onclick="closePageModal('registerPage'); scrollToTop();"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="closePageModal('registerPage'); openPageModal('registerPage');"><i class="fas fa-user-plus"></i> Register</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="modal-page-hero">
+            <img src="https://images.pexels.com/photos/3182816/pexels-photo-3182816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Register" />
+            <div class="page-title-overlay">
+                <h1>Create <span>Account</span></h1>
+                <p>Join our community of digital businesses</p>
+            </div>
+        </div>
+
+        <div class="modal-page-content" style="max-width: 600px;">
+            <div class="content-text">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="regName" required placeholder="John Doe" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="regEmail" required placeholder="john@example.com" />
+                    </div>
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <input type="password" id="regPassword" required placeholder="Min 6 characters" minlength="6" />
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password *</label>
+                        <input type="password" id="regConfirm" required placeholder="Confirm password" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Register</button>
+                </form>
+                <div id="registerSuccess" style="display:none;margin-top:16px;padding:16px;background:rgba(46,125,50,0.15);border-radius:var(--radius-sm);border-left:3px solid #4caf50;color:#81c784;">
+                    <i class="fas fa-check-circle"></i> Registration successful! You can now login.
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer" style="border-top:1px solid var(--border-subtle);">
+            <div class="container">
+                <div class="footer-brand">NEXIFY <span>NOVA</span></div>
+                <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div>
+                <p>&copy; 2026 Nexify Nova. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
     <!-- ============================================================
@@ -2917,7 +3066,6 @@
         const cursor = document.getElementById('customCursor');
         const dot = cursor.querySelector('.cursor-dot');
         const ring = cursor.querySelector('.cursor-ring');
-
         let mouseX = 0,
             mouseY = 0;
         let ringX = 0,
@@ -2964,14 +3112,12 @@
                 this.speedY = (Math.random() - 0.5) * 0.4;
                 this.opacity = Math.random() * 0.3 + 0.1;
             }
-
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
                 if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
-
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -3060,32 +3206,25 @@
         });
 
         // ============================================================
-        // 6. LIGHTBOX (Image Pop-out)
+        // 6. LIGHTBOX
         // ============================================================
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightboxImage');
-
         window.openLightbox = function(src) {
             lightboxImage.src = src;
             lightbox.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         };
-
         window.closeLightbox = function() {
             lightbox.style.display = 'none';
             document.body.style.overflow = 'auto';
         };
-
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                if (lightbox.style.display === 'flex') {
-                    closeLightbox();
-                }
-            }
+            if (event.key === 'Escape' && lightbox.style.display === 'flex') { closeLightbox(); }
         });
 
         // ============================================================
-        // 7. CONTACT FORM
+        // 7. CONTACT FORM (Main page)
         // ============================================================
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -3093,61 +3232,95 @@
             const email = document.getElementById('contactEmail').value.trim();
             const phone = document.getElementById('contactPhone').value.trim();
             const message = document.getElementById('contactMessage').value.trim();
-
             if (!name || !email || !message) { alert('Please fill in all required fields.'); return; }
-
-            // Save message to localStorage
             let messages = JSON.parse(localStorage.getItem('nexify_messages') || '[]');
             messages.push({ id: Date.now(), name, email, phone, message, date: new Date().toLocaleString() });
             localStorage.setItem('nexify_messages', JSON.stringify(messages));
-
             document.getElementById('successMsg').style.display = 'block';
             this.reset();
             setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 5000);
-            console.log('Contact Form Submitted:', { name, email, phone, message });
             alert('Thank you! Your message has been received.');
             updateDashboardStats();
         });
 
         // ============================================================
-        // 8. ADMIN LOGIN
+        // 8. CONTACT FORM (Modal)
         // ============================================================
-        const ADMIN_PASS = "admin123";
+        document.getElementById('contactFormModal').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactNameModal').value.trim();
+            const email = document.getElementById('contactEmailModal').value.trim();
+            const phone = document.getElementById('contactPhoneModal').value.trim();
+            const message = document.getElementById('contactMessageModal').value.trim();
+            if (!name || !email || !message) { alert('Please fill in all required fields.'); return; }
+            let messages = JSON.parse(localStorage.getItem('nexify_messages') || '[]');
+            messages.push({ id: Date.now(), name, email, phone, message, date: new Date().toLocaleString() });
+            localStorage.setItem('nexify_messages', JSON.stringify(messages));
+            document.getElementById('successMsgModal').style.display = 'block';
+            this.reset();
+            setTimeout(() => { document.getElementById('successMsgModal').style.display = 'none'; }, 5000);
+            alert('Thank you! Your message has been received.');
+            updateDashboardStats();
+        });
 
+        // ============================================================
+        // 9. REGISTER FORM
+        // ============================================================
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+            if (!name || !email || !password) { alert('Please fill in all fields.'); return; }
+            if (password !== confirm) { alert('Passwords do not match.'); return; }
+            if (password.length < 6) { alert('Password must be at least 6 characters.'); return; }
+
+            let clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
+            if (clients.find(c => c.email === email)) { alert('Email already registered.'); return; }
+            clients.push({ id: Date.now(), name, email, password, date: new Date().toLocaleString() });
+            localStorage.setItem('nexify_clients', JSON.stringify(clients));
+            document.getElementById('registerSuccess').style.display = 'block';
+            this.reset();
+            updateDashboardStats();
+            alert('Registration successful! You can now login.');
+        });
+
+        // ============================================================
+        // 10. ADMIN LOGIN (Full page modal)
+        // ============================================================
         window.promptAdmin = function() {
             const admin = localStorage.getItem('nexify_admin');
             if (admin === 'true') {
-                document.getElementById('adminPanel').style.display = 'flex';
+                openPageModal('adminPage');
                 loadAdminData();
             } else {
-                const loginModal = document.getElementById('adminLoginModal');
-                loginModal.style.display = 'flex';
-                loginModal.style.justifyContent = 'center';
-                loginModal.style.alignItems = 'center';
-                document.body.style.overflow = 'hidden';
+                // Simple password prompt with enter key support
+                const password = prompt('Enter admin password:');
+                if (password === ADMIN_PASS) {
+                    localStorage.setItem('nexify_admin', 'true');
+                    openPageModal('adminPage');
+                    loadAdminData();
+                } else if (password !== null) {
+                    alert('Invalid password!');
+                }
             }
         };
 
+        // Use a constant for admin pass
+        const ADMIN_PASS = "admin123";
+
         window.performAdminLogin = function() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === ADMIN_PASS) {
-                localStorage.setItem('nexify_admin', 'true');
-                document.getElementById('adminLoginModal').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'flex';
-                document.body.style.overflow = 'auto';
-                loadAdminData();
-            } else {
-                document.getElementById('loginError').style.display = 'block';
-            }
+            // Not used anymore, but keep for compatibility
         };
 
         window.logoutAdmin = function() {
             localStorage.removeItem('nexify_admin');
-            document.getElementById('adminPanel').style.display = 'none';
+            // closePageModal('adminPage') is called separately
         };
 
         // ============================================================
-        // 9. ADMIN TABS
+        // 11. ADMIN TABS
         // ============================================================
         window.switchTab = function(tab) {
             document.querySelectorAll('.admin-tabs button').forEach(btn => btn.classList.remove('active'));
@@ -3174,7 +3347,7 @@
         };
 
         // ============================================================
-        // 10. LOAD ALL ADMIN DATA
+        // 12. LOAD ALL ADMIN DATA
         // ============================================================
         function loadAdminData() {
             loadAdminBlogs();
@@ -3185,14 +3358,13 @@
         }
 
         // ============================================================
-        // 11. DASHBOARD STATS
+        // 13. DASHBOARD STATS
         // ============================================================
         function updateDashboardStats() {
             const projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
             const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
             const messages = JSON.parse(localStorage.getItem('nexify_messages') || '[]');
             const clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
-
             document.getElementById('statProjects').innerHTML = '<span>' + projects.length + '</span>';
             document.getElementById('statBlogs').innerHTML = '<span>' + blogs.length + '</span>';
             document.getElementById('statMessages').innerHTML = '<span>' + messages.length + '</span>';
@@ -3200,16 +3372,14 @@
         }
 
         // ============================================================
-        // 12. BLOG — SAVE & LOAD (localStorage)
+        // 14. BLOG — SAVE & LOAD (localStorage)
         // ============================================================
         window.saveBlogPost = function() {
             const title = document.getElementById('blogTitle').value.trim();
             const content = document.getElementById('blogContent').value.trim();
             const category = document.getElementById('blogCategory').value.trim() || 'General';
             const image = document.getElementById('blogImage').value.trim() || 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
-
             if (!title || !content) { alert('Please fill in Title and Content.'); return; }
-
             let blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
             blogs.unshift({
                 id: Date.now(),
@@ -3220,12 +3390,10 @@
                 date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
             });
             localStorage.setItem('nexify_blogs', JSON.stringify(blogs));
-
             document.getElementById('blogTitle').value = '';
             document.getElementById('blogContent').value = '';
             document.getElementById('blogCategory').value = '';
             document.getElementById('blogImage').value = '';
-
             loadAdminBlogs();
             renderBlogs();
             updateDashboardStats();
@@ -3263,14 +3431,12 @@
         };
 
         // ============================================================
-        // 13. RENDER BLOG ON LIVE WEBSITE
+        // 15. RENDER BLOG ON LIVE WEBSITE
         // ============================================================
         function renderBlogs() {
             const grid = document.getElementById('blogGrid');
             const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
-
             if (blogs.length === 0) {
-                // Show default sample blogs if no blogs in localStorage
                 grid.innerHTML = `
                             <div class="blog-card fade-in">
                                 <a href="#" onclick="alert('Blog post coming soon!')">
@@ -3317,7 +3483,6 @@
                         `;
                 return;
             }
-
             grid.innerHTML = '';
             blogs.forEach(blog => {
                 grid.innerHTML += `
@@ -3340,7 +3505,7 @@
         }
 
         // ============================================================
-        // 14. PROJECTS — SAVE & LOAD (localStorage)
+        // 16. PROJECTS — SAVE & LOAD (localStorage)
         // ============================================================
         window.saveProject = function() {
             const name = document.getElementById('projName').value.trim();
@@ -3348,13 +3513,10 @@
             const url = document.getElementById('projUrl').value.trim();
             const category = document.getElementById('projCategory').value.trim() || 'general';
             const image = document.getElementById('projImageUrl').value;
-
             if (!name || !desc || !url || !image) { alert('Please fill all fields and select an image.'); return; }
-
             let projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
             projects.unshift({ id: Date.now(), name, desc, url, category, image });
             localStorage.setItem('nexify_projects', JSON.stringify(projects));
-
             document.getElementById('projName').value = '';
             document.getElementById('projDesc').value = '';
             document.getElementById('projUrl').value = '';
@@ -3362,7 +3524,6 @@
             document.getElementById('projImageFile').value = '';
             document.getElementById('projImagePreview').style.display = 'none';
             document.getElementById('projImageUrl').value = '';
-
             loadAdminProjects();
             renderProjects();
             updateDashboardStats();
@@ -3399,25 +3560,15 @@
         };
 
         // ============================================================
-        // 15. RENDER PROJECTS ON LIVE WEBSITE
+        // 17. RENDER PROJECTS (static for now)
         // ============================================================
         function renderProjects() {
-            const grid = document.getElementById('projectsGrid');
-            const projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
-
-            // If no projects in localStorage, show default ones (already in HTML)
-            // We'll keep the default HTML projects and just add dynamic ones
-            // Actually we need to clear and re-render everything for consistency
-
-            // We'll just keep the static HTML projects and add dynamic ones below
-            // Actually, let's just keep the HTML as is since it's already there
-            // But we can append dynamic ones if needed
-            // For simplicity, we'll just use the static HTML projects
-            // and the admin can add more via the panel
+            // We keep the static HTML projects as they are; admin adds to localStorage but we don't re-render grid dynamically to keep it simple.
+            // Could be extended.
         }
 
         // ============================================================
-        // 16. MESSAGES & CLIENTS (Static for now)
+        // 18. MESSAGES & CLIENTS
         // ============================================================
         function loadMessages() {
             const list = document.getElementById('inquiryList');
@@ -3469,7 +3620,7 @@
         }
 
         // ============================================================
-        // 17. PROJECT IMAGE PREVIEW
+        // 19. PROJECT IMAGE PREVIEW
         // ============================================================
         window.previewProjectImage = function(event) {
             const file = event.target.files[0];
@@ -3485,7 +3636,7 @@
         };
 
         // ============================================================
-        // 18. BACK TO TOP
+        // 20. BACK TO TOP
         // ============================================================
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', function() {
@@ -3495,7 +3646,7 @@
         backToTopBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
         // ============================================================
-        // 19. SCROLL PROGRESS BAR
+        // 21. SCROLL PROGRESS BAR
         // ============================================================
         const progressBar = document.getElementById('progressBar');
         window.addEventListener('scroll', function() {
@@ -3506,7 +3657,7 @@
         });
 
         // ============================================================
-        // 20. COUNTER ANIMATION
+        // 22. COUNTER ANIMATION
         // ============================================================
         const counters = document.querySelectorAll('.counter-number');
         let countersAnimated = false;
@@ -3533,21 +3684,17 @@
         window.addEventListener('load', function() { setTimeout(animateCounters, 500); });
 
         // ============================================================
-        // 21. TYPING ANIMATION — WITH CURSOR HIDE AFTER COMPLETE
+        // 23. TYPING ANIMATION — WITH CURSOR HIDE AFTER COMPLETE
         // ============================================================
         (function typingAnimation() {
             const heading = document.getElementById('typingHeading');
             const cursor = document.getElementById('typingCursor');
-
             const part1 = "Intelligent Digital Systems for a ";
             const part2 = "Global Economy";
-
             heading.innerHTML = '<span id="typingPart1"></span><span id="typingPart2"></span><span class="typing-cursor" id="typingCursor"></span>';
-
             const part1Span = document.getElementById('typingPart1');
             const part2Span = document.getElementById('typingPart2');
             const newCursor = document.getElementById('typingCursor');
-
             let index1 = 0,
                 index2 = 0,
                 isPart2 = false;
@@ -3570,7 +3717,6 @@
                         index2++;
                         setTimeout(typeNext, 40);
                     } else {
-                        // Typing complete — hide the cursor
                         newCursor.classList.add('hidden-cursor');
                     }
                 }
@@ -3579,17 +3725,15 @@
         })();
 
         // ============================================================
-        // 22. DARK / LIGHT MODE TOGGLE
+        // 24. DARK / LIGHT MODE TOGGLE
         // ============================================================
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
-
         const savedTheme = localStorage.getItem('nexify_theme');
         if (savedTheme === 'light') {
             document.body.classList.add('light-mode');
             themeIcon.className = 'fas fa-sun';
         }
-
         themeToggle.addEventListener('click', function() {
             document.body.classList.toggle('light-mode');
             const isLight = document.body.classList.contains('light-mode');
@@ -3598,18 +3742,15 @@
         });
 
         // ============================================================
-        // 23. PROJECT FILTER
+        // 25. PROJECT FILTER
         // ============================================================
         const filterButtons = document.querySelectorAll('.btn-filter');
         const projectCards = document.querySelectorAll('.project-card');
-
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
-
                 const filterValue = this.getAttribute('data-filter');
-
                 projectCards.forEach(card => {
                     if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
                         card.style.display = 'block';
@@ -3629,16 +3770,14 @@
         });
 
         // ============================================================
-        // 24. FADE-IN INTERSECTION OBSERVER
+        // 26. FADE-IN INTERSECTION OBSERVER
         // ============================================================
         const fadeElements = document.querySelectorAll('.fade-in');
-
         const observerOptions = {
             root: null,
             rootMargin: '0px 0px -80px 0px',
             threshold: 0.1
         };
-
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -3646,18 +3785,17 @@
                 }
             });
         }, observerOptions);
-
         fadeElements.forEach(el => observer.observe(el));
 
         // ============================================================
-        // 25. INIT
+        // 27. INIT
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('nexify_admin') === 'true') {
                 console.log('Admin session active.');
             }
             renderBlogs();
-            console.log('🚀 Nexify Nova — Complete with all features.');
+            console.log('🚀 Nexify Nova — Complete with full page modals for Admin, Contact, Register and full-width images.');
         });
     </script>
 </body>
