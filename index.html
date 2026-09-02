@@ -1,3 +1,5 @@
+[file name]: index.html
+[file content begin]
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1048,7 +1050,9 @@
         .blog-card .blog-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            background: var(--bg-secondary);
+            padding: 4px;
             transition: transform 0.5s ease;
         }
         .blog-card:hover .blog-image img {
@@ -1721,7 +1725,7 @@
             font-size: 0.9rem;
             transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
         }
-        #projImagePreview {
+        #projImagePreview, #blogImagePreview {
             max-height: 100px;
             object-fit: contain;
             background: var(--bg-secondary);
@@ -2712,7 +2716,17 @@
                     <div class="form-group"><label for="blogTitle">Post Title *</label><input type="text" id="blogTitle" placeholder="e.g. How Digital Transformation is Reshaping UK Businesses" /></div>
                     <div class="form-group"><label for="blogContent">Content / Description *</label><textarea id="blogContent" rows="4" placeholder="Write your blog post content here..."></textarea></div>
                     <div class="form-group"><label for="blogCategory">Category</label><input type="text" id="blogCategory" placeholder="e.g. Digitalization, ERP, E-Commerce" /></div>
-                    <div class="form-group"><label for="blogImage">Image URL</label><input type="text" id="blogImage" placeholder="https://images.pexels.com/..." /></div>
+                    <div class="form-group"><label for="blogImage">Image URL (Optional)</label><input type="text" id="blogImage" placeholder="https://images.pexels.com/..." /></div>
+
+                    <div class="form-group"><label for="blogImageFile">Upload Image (Device)</label>
+                        <div class="file-input-wrapper">
+                            <span class="file-label"><i class="fas fa-upload"></i> Choose Image</span>
+                            <input type="file" id="blogImageFile" accept="image/*" onchange="previewBlogImage(event)" />
+                        </div>
+                        <div style="margin-top:10px;"><img id="blogImagePreview" src="" alt="Preview" style="display:none;max-width:120px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);background:var(--bg-secondary);object-fit:contain;" /></div>
+                        <input type="hidden" id="blogImageUrl" value="" />
+                    </div>
+
                     <input type="hidden" id="blogEditId" value="" />
                     <button class="btn btn-primary" onclick="saveBlogPost()" style="width:100%;justify-content:center;"><i class="fas fa-save"></i> Publish Post</button>
                 </div>
@@ -2994,34 +3008,39 @@
         });
 
         // ============================================================
-        // 1. CUSTOM CURSOR
+        // 1. CUSTOM CURSOR (Bulletproof Fix)
         // ============================================================
-                // 1. CUSTOM CURSOR (Bulletproof Version)
         const cursor = document.getElementById('customCursor');
         const dot = cursor.querySelector('.cursor-dot');
         const ring = cursor.querySelector('.cursor-ring');
         let mouseX = 0, mouseY = 0;
         let ringX = 0, ringY = 0;
 
-        cursor.classList.add('hidden');
+        // Fix: Pehle cursor ko off-screen aur hidden rakhein
+        dot.style.transform = 'translate3d(-100px, -100px, 0)';
+        ring.style.transform = 'translate3d(-100px, -100px, 0)';
+        cursor.style.opacity = '0';
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.classList.remove('hidden');
+        const handleMouseMove = (e) => {
+            cursor.style.opacity = '1';
             mouseX = e.clientX;
             mouseY = e.clientY;
             dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
             ringX += (mouseX - ringX) * 0.08;
             ringY += (mouseY - ringY) * 0.08;
             ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
-        });
+        };
 
-        document.addEventListener('mouseleave', () => cursor.classList.add('hidden'));
-        document.addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseover', handleMouseMove); // Extra safety net
+
+        document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+        document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
 
         const hoverElements = document.querySelectorAll('a, button, .btn, .logo-wrapper, .project-card a, .nav-links a, .theme-toggle, .hamburger, .btn-filter, .delete-btn, .logout-btn, .modal-close-btn, .dropdown-trigger, .dropdown-menu a, .icon-btn, .close-profile-btn');
         hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            el.addEventListener('mouseenter', function() { cursor.classList.add('hover'); });
+            el.addEventListener('mouseleave', function() { cursor.classList.remove('hover'); });
         });
 
         // ============================================================
@@ -3208,7 +3227,7 @@
             }
         }
 
-                function renderProjects(projects) {
+        function renderProjects(projects) {
             const grid = document.getElementById('projectsGrid');
             if (!projects || projects.length === 0) {
                 grid.innerHTML = `
@@ -3416,7 +3435,7 @@
         }
 
         // ============================================================
-        // 9. BLOG — Supabase CRUD
+        // 9. BLOG — Supabase CRUD (Updated for File Upload and Edit)
         // ============================================================
 
         async function loadBlogsFromSupabase() {
@@ -3438,7 +3457,7 @@
             }
         }
 
-                function renderBlogs(blogs) {
+        function renderBlogs(blogs) {
             const grid = document.getElementById('blogGrid');
             if (!blogs || blogs.length === 0) {
                 grid.innerHTML = `
@@ -3448,11 +3467,15 @@
             }
             grid.innerHTML = '';
             blogs.forEach(blog => {
+                // Fix: Fallback image agar URL khali ho
+                const fallbackImage = 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
+                const imageSrc = (blog.image && blog.image.trim() !== '') ? blog.image : fallbackImage;
+
                 grid.innerHTML += `
-                            <div class="blog-card fade-in in-view"> <!-- FIX: in-view add kiya -->
+                            <div class="blog-card fade-in in-view">
                                 <a href="#" onclick="alert('${blog.content}')">
                                     <div class="blog-image">
-                                        <img src="${blog.image || 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600'}" alt="${blog.title}" />
+                                        <img src="${imageSrc}" alt="${blog.title}" />
                                         <span class="blog-category">${blog.category || 'General'}</span>
                                     </div>
                                     <div class="blog-content">
@@ -3482,8 +3505,8 @@
             const title = document.getElementById('blogTitle').value.trim();
             const content = document.getElementById('blogContent').value.trim();
             const category = document.getElementById('blogCategory').value.trim() || 'General';
-            const image = document.getElementById('blogImage').value.trim() ||
-                'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
+            // Fix: Image URL khali ho toh uploaded image ya default use karein
+            const image = document.getElementById('blogImageUrl').value || document.getElementById('blogImage').value.trim() || 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
 
             if (!title || !content) {
                 alert('Please fill in Title and Content.');
@@ -3512,6 +3535,9 @@
                 document.getElementById('blogContent').value = '';
                 document.getElementById('blogCategory').value = '';
                 document.getElementById('blogImage').value = '';
+                document.getElementById('blogImageFile').value = '';
+                document.getElementById('blogImageUrl').value = '';
+                document.getElementById('blogImagePreview').style.display = 'none';
                 document.getElementById('blogEditId').value = '';
                 const btn = document.querySelector('#blogTab .btn-primary');
                 btn.innerHTML = '<i class="fas fa-save"></i> Publish Post';
@@ -3533,8 +3559,7 @@
             const title = document.getElementById('blogTitle').value.trim();
             const content = document.getElementById('blogContent').value.trim();
             const category = document.getElementById('blogCategory').value.trim() || 'General';
-            const image = document.getElementById('blogImage').value.trim() ||
-                'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
+            const image = document.getElementById('blogImageUrl').value || document.getElementById('blogImage').value.trim() || 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
 
             if (!title || !content) {
                 alert('Please fill in Title and Content.');
@@ -3557,6 +3582,9 @@
                 document.getElementById('blogContent').value = '';
                 document.getElementById('blogCategory').value = '';
                 document.getElementById('blogImage').value = '';
+                document.getElementById('blogImageFile').value = '';
+                document.getElementById('blogImageUrl').value = '';
+                document.getElementById('blogImagePreview').style.display = 'none';
                 document.getElementById('blogEditId').value = '';
                 const btn = document.querySelector('#blogTab .btn-primary');
                 btn.innerHTML = '<i class="fas fa-save"></i> Publish Post';
@@ -3572,20 +3600,37 @@
             }
         }
 
+        // Fix: Edit Blog ab database se direct data fetch karega
         function editBlogPost(id) {
-            const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
-            const blog = blogs.find(b => b.id === id);
-            if (blog) {
-                document.getElementById('blogTitle').value = blog.title;
-                document.getElementById('blogContent').value = blog.content;
-                document.getElementById('blogCategory').value = blog.category;
-                document.getElementById('blogImage').value = blog.image;
-                document.getElementById('blogEditId').value = blog.id;
-                const btn = document.querySelector('#blogTab .btn-primary');
-                btn.innerHTML = '<i class="fas fa-edit"></i> Update Post';
-                btn.onclick = function() { saveBlogPost(); };
-                document.querySelector('#blogTab .admin-project-form').scrollIntoView({ behavior: 'smooth' });
-            }
+            window.supabaseClient
+                .from('blogs')
+                .select('*')
+                .eq('id', id)
+                .single()
+                .then(({ data: blog, error }) => {
+                    if (error) {
+                        console.error('Error fetching blog for edit:', error);
+                        alert('Error fetching blog: ' + error.message);
+                        return;
+                    }
+                    document.getElementById('blogTitle').value = blog.title || '';
+                    document.getElementById('blogContent').value = blog.content || '';
+                    document.getElementById('blogCategory').value = blog.category || '';
+                    document.getElementById('blogImage').value = blog.image || '';
+                    document.getElementById('blogImageUrl').value = blog.image || '';
+                    const preview = document.getElementById('blogImagePreview');
+                    if (blog.image) {
+                        preview.src = blog.image;
+                        preview.style.display = 'block';
+                    } else {
+                        preview.style.display = 'none';
+                    }
+                    document.getElementById('blogEditId').value = blog.id;
+                    const btn = document.querySelector('#blogTab .btn-primary');
+                    btn.innerHTML = '<i class="fas fa-edit"></i> Update Post';
+                    btn.onclick = function() { saveBlogPost(); };
+                    document.querySelector('#blogTab .admin-project-form').scrollIntoView({ behavior: 'smooth' });
+                });
         }
 
         window.deleteBlogPost = async function(id) {
@@ -3954,9 +3999,11 @@
                     date: new Date().toLocaleString()
                 };
 
-                const { error } = await window.supabaseClient
+                const { data: createdUser, error } = await window.supabaseClient
                     .from('clients')
-                    .insert([newUser]);
+                    .insert([newUser])
+                    .select()
+                    .single();
 
                 if (error) {
                     console.error('❌ Registration error:', error);
@@ -3964,20 +4011,8 @@
                     return;
                 }
 
-                // FIX: Fetch the newly created user to get the ID from the database
-                const { data: createdUser, error: fetchError } = await window.supabaseClient
-                    .from('clients')
-                    .select('*')
-                    .eq('email', email)
-                    .single();
-
-                if (!fetchError && createdUser) {
-                    currentUser = createdUser;
-                } else {
-                    currentUser = newUser; // Fallback if fetch fails
-                }
+                currentUser = createdUser;
                 localStorage.setItem('nexify_current_user', JSON.stringify(currentUser));
-
                 document.getElementById('registerSuccess').style.display = 'block';
                 this.reset();
                 updateDashboardStats();
@@ -4205,7 +4240,7 @@
         }
 
         // ============================================================
-        // 18. PROJECT IMAGE PREVIEW
+        // 18. PROJECT & BLOG IMAGE PREVIEW
         // ============================================================
         window.previewProjectImage = function(event) {
             const file = event.target.files[0];
@@ -4216,6 +4251,20 @@
                 preview.src = e.target.result;
                 preview.style.display = 'block';
                 document.getElementById('projImageUrl').value = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        // Fix: Blog Image preview function
+        window.previewBlogImage = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('blogImagePreview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                document.getElementById('blogImageUrl').value = e.target.result;
             };
             reader.readAsDataURL(file);
         };
