@@ -339,6 +339,11 @@
             align-items: center;
             gap: 14px;
             cursor: none;
+            animation: logoBeat 10s ease-in-out infinite;
+        }
+        @keyframes logoBeat {
+            0%, 90%, 100% { transform: scale(1); }
+            95% { transform: scale(1.08); }
         }
         .logo-img {
             width: 44px;
@@ -763,7 +768,7 @@
             background: var(--bg-card-hover);
         }
         .project-card .project-image {
-            height: 220px;
+            height: 300px;
             overflow: hidden;
             background: var(--bg-secondary);
             position: relative;
@@ -775,10 +780,8 @@
         .project-card .project-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             transition: transform 0.5s ease;
-            background: var(--bg-secondary);
-            padding: 4px;
         }
         .project-card:hover .project-image img {
             transform: scale(1.03);
@@ -1037,7 +1040,7 @@
             background: var(--bg-card-hover);
         }
         .blog-card .blog-image {
-            height: 200px;
+            height: 300px;
             overflow: hidden;
             background: var(--bg-secondary);
             position: relative;
@@ -1048,9 +1051,7 @@
         .blog-card .blog-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            background: var(--bg-secondary);
-            padding: 4px;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
         .blog-card:hover .blog-image img {
@@ -2262,6 +2263,35 @@
         </div>
     </div>
 
+    <!-- ===== BLOG ARTICLE PAGE (NEW) ===== -->
+    <div id="blogArticlePage" class="page-modal">
+        <button class="modal-close-btn" onclick="closePageModal('blogArticlePage')">&times;</button>
+        <nav class="navbar" style="position:relative;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);">
+            <div class="container">
+                <a href="#" class="logo-wrapper" onclick="closePageModal('blogArticlePage'); scrollToTop();">
+                    <img src="https://i.ibb.co/6GdkxBh/Chat-GPT-Image-Sep-1-2026-10-26-24-AM.png" alt="Nexify Nova Logo" class="logo-img" />
+                    <div>
+                        <div class="brand-name">NEXIFY <span>NOVA</span></div>
+                        <div class="brand-tagline">Digital Business Solutions</div>
+                    </div>
+                </a>
+                <ul class="nav-links" style="display:flex;">
+                    <li><a href="#" onclick="closePageModal('blogArticlePage'); scrollToTop();"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" onclick="closePageModal('blogArticlePage'); openPageModal('contactPage');"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="modal-page-hero">
+            <img id="blogArticleHeroImage" src="" alt="Article Hero" />
+            <div class="page-title-overlay"><h1 id="blogArticleTitle">Article Title</h1><p id="blogArticleDate"></p></div>
+        </div>
+        <div class="modal-page-content" style="max-width: 900px;">
+            <div class="content-text" style="font-size: 1.1rem; line-height: 1.9;">
+                 <p id="blogArticleContent" style="white-space: pre-wrap;"></p>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
         <div class="container">
@@ -2481,10 +2511,12 @@
                 </div>
                 <div class="contact-info-box">
                     <h3>Contact Information</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 100 Victoria Street, London, SW1E 5JL, UK</p>
-                    <p><i class="fas fa-phone"></i> +44 7564 920084</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Berkeley square House, London W1J 6JD</p>
+                    <p><i class="fas fa-phone"></i> +44 7564 920084 (UK & Intl)</p>
+                    <p><i class="fas fa-phone"></i> +92 349 3709850 (Pakistan)</p>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:info@nexifynova.co.uk">info@nexifynova.co.uk</a></p>
-                    <p><i class="fas fa-globe"></i> <a href="#">www.nexifynova.co.uk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:nexifynova.solutions@gmail.com">nexifynova.solutions@gmail.com</a></p>
+                    <p><i class="fas fa-globe"></i> <a href="#">www.nexifynova.uk.co</a></p>
                     <div class="offer-list">
                         <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">What we offer:</h3>
                         <p>✓ Custom E-Commerce Stores</p>
@@ -2727,6 +2759,7 @@
 
                     <input type="hidden" id="blogEditId" value="" />
                     <button class="btn btn-primary" onclick="saveBlogPost()" style="width:100%;justify-content:center;"><i class="fas fa-save"></i> Publish Post</button>
+                    <button class="btn btn-outline" onclick="resetBlogForm()" style="width:100%; margin-top:10px; justify-content:center;"><i class="fas fa-undo"></i> Reset Form</button>
                 </div>
                 <div id="adminBlogList"></div>
             </div>
@@ -2749,6 +2782,7 @@
                     </div>
                     <input type="hidden" id="projEditId" value="" />
                     <button class="btn btn-primary" onclick="saveProject()" style="width:100%;justify-content:center;"><i class="fas fa-save"></i> Save Project</button>
+                    <button class="btn btn-outline" onclick="resetProjectForm()" style="width:100%; margin-top:10px; justify-content:center;"><i class="fas fa-undo"></i> Reset Form</button>
                 </div>
                 <div id="adminProjectsList"></div>
             </div>
@@ -2815,10 +2849,12 @@
                 </div>
                 <div class="contact-info-box">
                     <h3>Contact Information</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 100 Victoria Street, London, SW1E 5JL, UK</p>
-                    <p><i class="fas fa-phone"></i> +44 7564 920084</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Berkeley square House, London W1J 6JD</p>
+                    <p><i class="fas fa-phone"></i> +44 7564 920084 (UK & Intl)</p>
+                    <p><i class="fas fa-phone"></i> +92 349 3709850 (Pakistan)</p>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:info@nexifynova.co.uk">info@nexifynova.co.uk</a></p>
-                    <p><i class="fas fa-globe"></i> <a href="#">www.nexifynova.co.uk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:nexifynova.solutions@gmail.com">nexifynova.solutions@gmail.com</a></p>
+                    <p><i class="fas fa-globe"></i> <a href="#">www.nexifynova.uk.co</a></p>
                     <div class="offer-list">
                         <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">What we offer:</h3>
                         <p>✓ Custom E-Commerce Stores</p>
@@ -3075,7 +3111,7 @@
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = 'rgba(212, 160, 43, ' + this.opacity + ')';
                 ctx.fill();
-                for (let i = 0; i < particles.length; i++) {
+                for (let i =  0; i < particles.length; i++) {
                     const dx = this.x - particles[i].x;
                     const dy = this.y - particles[i].y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
@@ -3291,7 +3327,7 @@
                     return;
                 }
 
-                clearProjectForm();
+                resetProjectForm();
                 loadAdminProjects();
                 loadProjectsFromSupabase();
                 updateDashboardStats();
@@ -3302,7 +3338,7 @@
             }
         };
 
-        function clearProjectForm() {
+        function resetProjectForm() {
             document.getElementById('projName').value = '';
             document.getElementById('projDesc').value = '';
             document.getElementById('projUrl').value = '';
@@ -3342,7 +3378,7 @@
                     return;
                 }
 
-                clearProjectForm();
+                resetProjectForm();
                 loadAdminProjects();
                 loadProjectsFromSupabase();
                 updateDashboardStats();
@@ -3353,24 +3389,36 @@
             }
         }
 
+        // FIX: Project Edit ab Supabase se fetch karega
         function editProject(id) {
-            const projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
-            const proj = projects.find(p => p.id === id);
-            if (proj) {
-                document.getElementById('projName').value = proj.name;
-                document.getElementById('projDesc').value = proj.desc;
-                document.getElementById('projUrl').value = proj.url;
-                document.getElementById('projCategory').value = proj.category;
-                document.getElementById('projImageUrl').value = proj.image;
-                const preview = document.getElementById('projImagePreview');
-                preview.src = proj.image;
-                preview.style.display = 'block';
-                document.getElementById('projEditId').value = proj.id;
-                const btn = document.querySelector('#projectsTab .btn-primary');
-                btn.innerHTML = '<i class="fas fa-edit"></i> Update Project';
-                btn.onclick = function() { saveProject(); };
-                document.querySelector('#projectsTab .admin-project-form').scrollIntoView({ behavior: 'smooth' });
-            }
+            window.supabaseClient
+                .from('projects')
+                .select('*')
+                .eq('id', id)
+                .single()
+                .then(({ data: proj, error }) => {
+                    if (error) {
+                        alert('Error fetching project: ' + error.message);
+                        return;
+                    }
+                    document.getElementById('projName').value = proj.name || '';
+                    document.getElementById('projDesc').value = proj.description || '';
+                    document.getElementById('projUrl').value = proj.url || '';
+                    document.getElementById('projCategory').value = proj.category || '';
+                    document.getElementById('projImageUrl').value = proj.image || '';
+                    const preview = document.getElementById('projImagePreview');
+                    if (proj.image) {
+                        preview.src = proj.image;
+                        preview.style.display = 'block';
+                    } else {
+                        preview.style.display = 'none';
+                    }
+                    document.getElementById('projEditId').value = proj.id;
+                    const btn = document.querySelector('#projectsTab .btn-primary');
+                    btn.innerHTML = '<i class="fas fa-edit"></i> Update Project';
+                    btn.onclick = function() { saveProject(); };
+                    document.querySelector('#projectsTab .admin-project-form').scrollIntoView({ behavior: 'smooth' });
+                });
         }
 
         window.deleteProject = async function(id) {
@@ -3433,7 +3481,7 @@
         }
 
         // ============================================================
-        // 9. BLOG — Supabase CRUD (Updated for File Upload and Edit)
+        // 9. BLOG — Supabase CRUD (Updated for File Upload, Edit and Article Page)
         // ============================================================
 
         async function loadBlogsFromSupabase() {
@@ -3471,7 +3519,7 @@
 
                 grid.innerHTML += `
                             <div class="blog-card fade-in in-view">
-                                <a href="#" onclick="alert('${blog.content}')">
+                                <a href="#" onclick="event.preventDefault(); openBlogArticle(${blog.id})">
                                     <div class="blog-image">
                                         <img src="${imageSrc}" alt="${blog.title}" />
                                         <span class="blog-category">${blog.category || 'General'}</span>
@@ -3495,6 +3543,30 @@
             const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
             renderBlogs(blogs);
         }
+
+        // FIX: Blog Article Page Open function
+        window.openBlogArticle = function(id) {
+            window.supabaseClient
+                .from('blogs')
+                .select('*')
+                .eq('id', id)
+                .single()
+                .then(({ data: blog, error }) => {
+                    if (error) {
+                        alert('Error loading blog: ' + error.message);
+                        return;
+                    }
+                    const fallbackImage = 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
+                    const imageSrc = (blog.image && blog.image.trim() !== '') ? blog.image : fallbackImage;
+
+                    document.getElementById('blogArticleHeroImage').src = imageSrc;
+                    document.getElementById('blogArticleTitle').innerHTML = blog.title;
+                    document.getElementById('blogArticleDate').innerHTML = blog.date + ' | ' + blog.category;
+                    document.getElementById('blogArticleContent').innerHTML = blog.content;
+
+                    openPageModal('blogArticlePage');
+                });
+        };
 
         window.saveBlogPost = async function() {
             const editId = document.getElementById('blogEditId').value;
@@ -3529,18 +3601,7 @@
                     return;
                 }
 
-                document.getElementById('blogTitle').value = '';
-                document.getElementById('blogContent').value = '';
-                document.getElementById('blogCategory').value = '';
-                document.getElementById('blogImage').value = '';
-                document.getElementById('blogImageFile').value = '';
-                document.getElementById('blogImageUrl').value = '';
-                document.getElementById('blogImagePreview').style.display = 'none';
-                document.getElementById('blogEditId').value = '';
-                const btn = document.querySelector('#blogTab .btn-primary');
-                btn.innerHTML = '<i class="fas fa-save"></i> Publish Post';
-                btn.onclick = function() { saveBlogPost(); };
-
+                resetBlogForm();
                 loadAdminBlogs();
                 loadBlogsFromSupabase();
                 updateDashboardStats();
@@ -3576,18 +3637,7 @@
                     return;
                 }
 
-                document.getElementById('blogTitle').value = '';
-                document.getElementById('blogContent').value = '';
-                document.getElementById('blogCategory').value = '';
-                document.getElementById('blogImage').value = '';
-                document.getElementById('blogImageFile').value = '';
-                document.getElementById('blogImageUrl').value = '';
-                document.getElementById('blogImagePreview').style.display = 'none';
-                document.getElementById('blogEditId').value = '';
-                const btn = document.querySelector('#blogTab .btn-primary');
-                btn.innerHTML = '<i class="fas fa-save"></i> Publish Post';
-                btn.onclick = function() { saveBlogPost(); };
-
+                resetBlogForm();
                 loadAdminBlogs();
                 loadBlogsFromSupabase();
                 updateDashboardStats();
@@ -3598,7 +3648,7 @@
             }
         }
 
-        // Fix: Edit Blog ab database se direct data fetch karega
+        // FIX: Edit Blog ab database se direct data fetch karega
         function editBlogPost(id) {
             window.supabaseClient
                 .from('blogs')
@@ -3629,6 +3679,21 @@
                     btn.onclick = function() { saveBlogPost(); };
                     document.querySelector('#blogTab .admin-project-form').scrollIntoView({ behavior: 'smooth' });
                 });
+        }
+
+        // FIX: Reset Blog Form function
+        function resetBlogForm() {
+            document.getElementById('blogTitle').value = '';
+            document.getElementById('blogContent').value = '';
+            document.getElementById('blogCategory').value = '';
+            document.getElementById('blogImage').value = '';
+            document.getElementById('blogImageFile').value = '';
+            document.getElementById('blogImageUrl').value = '';
+            document.getElementById('blogImagePreview').style.display = 'none';
+            document.getElementById('blogEditId').value = '';
+            const btn = document.querySelector('#blogTab .btn-primary');
+            btn.innerHTML = '<i class="fas fa-save"></i> Publish Post';
+            btn.onclick = function() { saveBlogPost(); };
         }
 
         window.deleteBlogPost = async function(id) {
