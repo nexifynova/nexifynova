@@ -9,14 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
     <!-- Supabase SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         /* ===== RESET & BASE ===== */
         * {
@@ -100,7 +94,6 @@
             margin: 0 auto;
             padding: 0 24px;
         }
-
         /* ===== TYPOGRAPHY ===== */
         .heading {
             font-weight: 800;
@@ -125,7 +118,6 @@
         .text-secondary {
             color: var(--text-secondary);
         }
-
         /* ===== BUTTONS ===== */
         .btn {
             display: inline-flex;
@@ -197,7 +189,6 @@
             color: var(--bg-primary);
             border-color: var(--accent-gold);
         }
-
         /* ===== CUSTOM CURSOR ===== */
         .custom-cursor {
             position: fixed;
@@ -262,7 +253,6 @@
                 cursor: pointer;
             }
         }
-
         /* ===== LOADING SKELETON ===== */
         #loadingSkeleton {
             position: fixed;
@@ -327,7 +317,6 @@
                 width: 100%;
             }
         }
-
         /* ===== NAVBAR ===== */
         .navbar {
             position: sticky;
@@ -2468,91 +2457,7 @@
                 <button class="btn-filter" data-filter="ecommerce">E-Commerce</button>
             </div>
             <div class="projects-grid" id="projectsGrid">
-                <!-- Static projects (seeded from localStorage) -->
-                <div class="project-card fade-in" data-category="erp">
-                    <a href="https://abbasstore.vercel.app" target="_blank">
-                        <div class="project-image" onclick="event.preventDefault(); openLightbox('https://i.ibb.co/CshqJYtp/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png')">
-                            <img src="https://i.ibb.co/CshqJYtp/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png" alt="Abbas Store" />
-                            <span class="project-badge">Live</span>
-                        </div>
-                        <div class="project-content">
-                            <div class="p-name">Abbas Store v7.3</div>
-                            <div class="p-desc">Advanced B2B ERP with Aging Report and Multi-bank.</div>
-                            <div class="p-url">abbasstore.vercel.app</div>
-                            <span class="p-link">Visit Project <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                </div>
-                <div class="project-card fade-in" data-category="erp">
-                    <a href="https://jpstoreerp.vercel.app" target="_blank">
-                        <div class="project-image" onclick="event.preventDefault(); openLightbox('https://i.ibb.co/JwCGP1BK/Chat-GPT-Image-Sep-1-2026-07-55-12-AM.png')">
-                            <img src="https://i.ibb.co/JwCGP1BK/Chat-GPT-Image-Sep-1-2026-07-55-12-AM.png" alt="JP Store ERP" />
-                            <span class="project-badge">Live</span>
-                        </div>
-                        <div class="project-content">
-                            <div class="p-name">JP Store ERP</div>
-                            <div class="p-desc">Enterprise-grade Profit/Loss and Analytics Dashboard.</div>
-                            <div class="p-url">jpstoreerp.vercel.app</div>
-                            <span class="p-link">Visit Project <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                </div>
-                <div class="project-card fade-in" data-category="retail">
-                    <a href="https://apexstore.vercel.app" target="_blank">
-                        <div class="project-image" onclick="event.preventDefault(); openLightbox('https://i.ibb.co/ZRgNtjC4/Chat-GPT-Image-Sep-1-2026-08-25-07-AM.png')">
-                            <img src="https://i.ibb.co/ZRgNtjC4/Chat-GPT-Image-Sep-1-2026-08-25-07-AM.png" alt="Apex Grocers" />
-                            <span class="project-badge">Live</span>
-                        </div>
-                        <div class="project-content">
-                            <div class="p-name">Apex Grocers</div>
-                            <div class="p-desc">Fast-moving retail with Real-Time Tracking.</div>
-                            <div class="p-url">apexstore.vercel.app</div>
-                            <span class="p-link">Visit Project <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                </div>
-                <div class="project-card fade-in" data-category="healthcare">
-                    <a href="https://nayyarms.vercel.app" target="_blank">
-                        <div class="project-image" onclick="event.preventDefault(); openLightbox('https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&w=600')">
-                            <img src="https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Nayyer Medical" />
-                            <span class="project-badge">Live</span>
-                        </div>
-                        <div class="project-content">
-                            <div class="p-name">Nayyer Medical</div>
-                            <div class="p-desc">Multi-lingual Healthcare with Cloud-based Prescriptions.</div>
-                            <div class="p-url">nayyarms.vercel.app</div>
-                            <span class="p-link">Visit Project <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                </div>
-                <div class="project-card fade-in" data-category="ecommerce">
-                    <a href="https://knoir.vercel.app" target="_blank">
-                        <div class="project-image" onclick="event.preventDefault(); openLightbox('https://i.ibb.co/0RnBKXRf/Wren-Kitchens-Ad-Website-Images-111.jpg')">
-                            <img src="https://i.ibb.co/0RnBKXRf/Wren-Kitchens-Ad-Website-Images-111.jpg" alt="Kitchen Noir" />
-                            <span class="project-badge">Live</span>
-                        </div>
-                        <div class="project-content">
-                            <div class="p-name">Kitchen Noir</div>
-                            <div class="p-desc">Luxury E-Commerce with premium UI and user authentication.</div>
-                            <div class="p-url">knoir.vercel.app</div>
-                            <span class="p-link">Visit Project <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                </div>
-                <div class="project-card fade-in" data-category="retail">
-                    <a href="https://saminastore.vercel.app" target="_blank">
-                        <div class="project-image" onclick="event.preventDefault(); openLightbox('https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=600')">
-                            <img src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Samina Store" />
-                            <span class="project-badge">Live</span>
-                        </div>
-                        <div class="project-content">
-                            <div class="p-name">Samina Store & Accounting</div>
-                            <div class="p-desc">Digitalized Retail & Smart Double-Entry Accounting.</div>
-                            <div class="p-url">saminastore.vercel.app</div>
-                            <span class="p-link">Visit Project <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                </div>
+                <!-- Projects will be rendered dynamically from Supabase -->
             </div>
         </div>
     </section>
@@ -3121,19 +3026,30 @@
     <!-- ============================================================
     JAVASCRIPT
     ============================================================ -->
+
+    <!-- ===== SUPABASE INITIALIZATION ===== -->
     <script>
+        // IMPORTANT: Copy URL and Key EXACTLY from Supabase Dashboard (Settings -> API)
+        const SUPABASE_URL = 'https://wsflwxtmuuauqmsfhnux.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I';
 
+        // Global variable (case sensitive - note the capital 'C')
+        window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+        console.log('✅ Supabase connected!');
+    </script>
 
-
-
-
+    <!-- ===== MAIN APPLICATION ===== -->
+    <script>
         // ============================================================
         // 0. LOADING SKELETON
         // ============================================================
         window.addEventListener('load', function() {
             const skeleton = document.getElementById('loadingSkeleton');
             setTimeout(function() { skeleton.classList.add('hidden'); }, 600);
+            loadProjectsFromSupabase();
+            loadBlogsFromSupabase();
+            updateDashboardStats();
         });
 
         // ============================================================
@@ -3267,7 +3183,6 @@
             trigger.classList.remove('open');
         }
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function(e) {
             const dropdown = document.getElementById('userDropdown');
             if (!dropdown.contains(e.target)) {
@@ -3325,100 +3240,857 @@
         });
 
         // ============================================================
-        // 8. CONTACT FORM (Main page)
+        // 8. PROJECTS — Supabase CRUD
         // ============================================================
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+
+        // Load projects from Supabase
+        async function loadProjectsFromSupabase() {
+            try {
+                const { data, error } = await window.supabaseClient
+                    .from('projects')
+                    .select('*')
+                    .order('id', { ascending: false });
+
+                if (error) {
+                    console.error('❌ Error loading projects:', error);
+                    renderProjectsFallback();
+                    return;
+                }
+
+                renderProjects(data);
+            } catch (err) {
+                console.error('❌ Exception loading projects:', err);
+                renderProjectsFallback();
+            }
+        }
+
+        function renderProjects(projects) {
+            const grid = document.getElementById('projectsGrid');
+            if (!projects || projects.length === 0) {
+                grid.innerHTML = `
+                            <div class="no-blog-msg" style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">
+                                <i class="fas fa-folder-open" style="font-size:2rem;display:block;margin-bottom:12px;"></i>
+                                No projects yet. Add one from the Admin panel.
+                            </div>
+                        `;
+                return;
+            }
+
+            grid.innerHTML = '';
+            projects.forEach(proj => {
+                const card = document.createElement('div');
+                card.className = 'project-card fade-in';
+                card.setAttribute('data-category', proj.category || 'general');
+                card.innerHTML = `
+                            <a href="${proj.url || '#'}" target="_blank">
+                                <div class="project-image" onclick="event.preventDefault(); openLightbox('${proj.image || 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600'}')">
+                                    <img src="${proj.image || 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600'}" alt="${proj.name}" />
+                                    <span class="project-badge">Live</span>
+                                </div>
+                                <div class="project-content">
+                                    <div class="p-name">${proj.name}</div>
+                                    <div class="p-desc">${proj.description || ''}</div>
+                                    <div class="p-url">${proj.url ? proj.url.replace('https://','') : ''}</div>
+                                    <span class="p-link">Visit Project <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </a>
+                        `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Fallback: use localStorage if Supabase fails
+        function renderProjectsFallback() {
+            const projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
+            if (projects.length === 0) {
+                document.getElementById('projectsGrid').innerHTML = `
+                            <div class="no-blog-msg" style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">
+                                <i class="fas fa-folder-open" style="font-size:2rem;display:block;margin-bottom:12px;"></i>
+                                No projects yet.
+                            </div>
+                        `;
+                return;
+            }
+            renderProjects(projects);
+        }
+
+        // Save project to Supabase
+        window.saveProject = async function() {
+            const editId = document.getElementById('projEditId').value;
+            if (editId) { updateProjectInSupabase(); return; }
+
+            const name = document.getElementById('projName').value.trim();
+            const desc = document.getElementById('projDesc').value.trim();
+            const url = document.getElementById('projUrl').value.trim();
+            const category = document.getElementById('projCategory').value.trim() || 'general';
+            const image = document.getElementById('projImageUrl').value || 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600';
+
+            if (!name || !desc || !url) {
+                alert('Please fill in Name, Description and URL.');
+                return;
+            }
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('projects')
+                    .insert([{ name, description: desc, url, category, image }]);
+
+                if (error) {
+                    console.error('❌ Error saving project:', error);
+                    alert('Error saving project: ' + error.message);
+                    return;
+                }
+
+                clearProjectForm();
+                loadAdminProjects();
+                loadProjectsFromSupabase();
+                updateDashboardStats();
+                alert('✅ Project added successfully!');
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error saving project.');
+            }
+        };
+
+        function clearProjectForm() {
+            document.getElementById('projName').value = '';
+            document.getElementById('projDesc').value = '';
+            document.getElementById('projUrl').value = '';
+            document.getElementById('projCategory').value = '';
+            document.getElementById('projImageFile').value = '';
+            document.getElementById('projImagePreview').style.display = 'none';
+            document.getElementById('projImageUrl').value = '';
+            document.getElementById('projEditId').value = '';
+            const btn = document.querySelector('#projectsTab .btn-primary');
+            btn.innerHTML = '<i class="fas fa-save"></i> Save Project';
+            btn.onclick = function() { saveProject(); };
+        }
+
+        async function updateProjectInSupabase() {
+            const id = parseInt(document.getElementById('projEditId').value);
+            if (!id) return;
+            const name = document.getElementById('projName').value.trim();
+            const desc = document.getElementById('projDesc').value.trim();
+            const url = document.getElementById('projUrl').value.trim();
+            const category = document.getElementById('projCategory').value.trim() || 'general';
+            const image = document.getElementById('projImageUrl').value || 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600';
+
+            if (!name || !desc || !url) {
+                alert('Please fill in Name, Description and URL.');
+                return;
+            }
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('projects')
+                    .update({ name, description: desc, url, category, image })
+                    .eq('id', id);
+
+                if (error) {
+                    console.error('❌ Error updating project:', error);
+                    alert('Error updating project: ' + error.message);
+                    return;
+                }
+
+                clearProjectForm();
+                loadAdminProjects();
+                loadProjectsFromSupabase();
+                updateDashboardStats();
+                alert('✅ Project updated successfully!');
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error updating project.');
+            }
+        }
+
+        function editProject(id) {
+            const projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
+            const proj = projects.find(p => p.id === id);
+            if (proj) {
+                document.getElementById('projName').value = proj.name;
+                document.getElementById('projDesc').value = proj.desc;
+                document.getElementById('projUrl').value = proj.url;
+                document.getElementById('projCategory').value = proj.category;
+                document.getElementById('projImageUrl').value = proj.image;
+                const preview = document.getElementById('projImagePreview');
+                preview.src = proj.image;
+                preview.style.display = 'block';
+                document.getElementById('projEditId').value = proj.id;
+                const btn = document.querySelector('#projectsTab .btn-primary');
+                btn.innerHTML = '<i class="fas fa-edit"></i> Update Project';
+                btn.onclick = function() { saveProject(); };
+                document.querySelector('#projectsTab .admin-project-form').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        window.deleteProject = async function(id) {
+            if (!confirm('Delete this project?')) return;
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('projects')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) {
+                    console.error('❌ Error deleting project:', error);
+                    alert('Error deleting project: ' + error.message);
+                    return;
+                }
+
+                loadAdminProjects();
+                loadProjectsFromSupabase();
+                updateDashboardStats();
+                alert('✅ Project deleted!');
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error deleting project.');
+            }
+        };
+
+        function loadAdminProjects() {
+            const list = document.getElementById('adminProjectsList');
+            // Load from Supabase
+            window.supabaseClient
+                .from('projects')
+                .select('*')
+                .order('id', { ascending: false })
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error loading projects for admin:', error);
+                        list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">Error loading projects.</p>';
+                        return;
+                    }
+                    if (!data || data.length === 0) {
+                        list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">No projects yet.</p>';
+                        return;
+                    }
+                    list.innerHTML = '';
+                    data.forEach(proj => {
+                        list.innerHTML += `
+                                    <div class="admin-item">
+                                        <div class="item-content">
+                                            <strong>${proj.name}</strong>
+                                            <small>${proj.url || ''} · ${proj.category || 'general'}</small>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="icon-btn profile-btn" onclick="editProject(${proj.id})" title="Edit"><i class="fas fa-edit"></i></button>
+                                            <button class="icon-btn delete-btn" onclick="deleteProject(${proj.id})" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                `;
+                    });
+                });
+        }
+
+        // ============================================================
+        // 9. BLOG — Supabase CRUD
+        // ============================================================
+
+        async function loadBlogsFromSupabase() {
+            try {
+                const { data, error } = await window.supabaseClient
+                    .from('blogs')
+                    .select('*')
+                    .order('id', { ascending: false });
+
+                if (error) {
+                    console.error('❌ Error loading blogs:', error);
+                    renderBlogsFallback();
+                    return;
+                }
+                renderBlogs(data);
+            } catch (err) {
+                console.error('❌ Exception loading blogs:', err);
+                renderBlogsFallback();
+            }
+        }
+
+        function renderBlogs(blogs) {
+            const grid = document.getElementById('blogGrid');
+            if (!blogs || blogs.length === 0) {
+                grid.innerHTML = `
+                            <div class="no-blog-msg">No blog posts yet. Check back soon!</div>
+                        `;
+                return;
+            }
+            grid.innerHTML = '';
+            blogs.forEach(blog => {
+                grid.innerHTML += `
+                            <div class="blog-card fade-in">
+                                <a href="#" onclick="alert('${blog.content}')">
+                                    <div class="blog-image">
+                                        <img src="${blog.image || 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600'}" alt="${blog.title}" />
+                                        <span class="blog-category">${blog.category || 'General'}</span>
+                                    </div>
+                                    <div class="blog-content">
+                                        <div class="blog-meta">
+                                            <span><i class="far fa-calendar-alt"></i> ${blog.date || 'Recent'}</span>
+                                            <span><i class="far fa-clock"></i> 4 min read</span>
+                                        </div>
+                                        <h3 class="blog-title">${blog.title}</h3>
+                                        <p class="blog-excerpt">${blog.content.substring(0, 120)}${blog.content.length > 120 ? '...' : ''}</p>
+                                        <span class="blog-link">Read More <i class="fas fa-arrow-right"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+            });
+        }
+
+        function renderBlogsFallback() {
+            const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
+            renderBlogs(blogs);
+        }
+
+        // Save blog post to Supabase
+        window.saveBlogPost = async function() {
+            const editId = document.getElementById('blogEditId').value;
+            if (editId) { updateBlogPostInSupabase(); return; }
+
+            const title = document.getElementById('blogTitle').value.trim();
+            const content = document.getElementById('blogContent').value.trim();
+            const category = document.getElementById('blogCategory').value.trim() || 'General';
+            const image = document.getElementById('blogImage').value.trim() ||
+                'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
+
+            if (!title || !content) {
+                alert('Please fill in Title and Content.');
+                return;
+            }
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('blogs')
+                    .insert([{
+                        title,
+                        content,
+                        category,
+                        image,
+                        date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short',
+                            year: 'numeric' })
+                    }]);
+
+                if (error) {
+                    console.error('❌ Error saving blog:', error);
+                    alert('Error saving blog: ' + error.message);
+                    return;
+                }
+
+                document.getElementById('blogTitle').value = '';
+                document.getElementById('blogContent').value = '';
+                document.getElementById('blogCategory').value = '';
+                document.getElementById('blogImage').value = '';
+                document.getElementById('blogEditId').value = '';
+                const btn = document.querySelector('#blogTab .btn-primary');
+                btn.innerHTML = '<i class="fas fa-save"></i> Publish Post';
+                btn.onclick = function() { saveBlogPost(); };
+
+                loadAdminBlogs();
+                loadBlogsFromSupabase();
+                updateDashboardStats();
+                alert('✅ Blog post published!');
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error saving blog post.');
+            }
+        };
+
+        async function updateBlogPostInSupabase() {
+            const id = parseInt(document.getElementById('blogEditId').value);
+            if (!id) return;
+            const title = document.getElementById('blogTitle').value.trim();
+            const content = document.getElementById('blogContent').value.trim();
+            const category = document.getElementById('blogCategory').value.trim() || 'General';
+            const image = document.getElementById('blogImage').value.trim() ||
+                'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
+
+            if (!title || !content) {
+                alert('Please fill in Title and Content.');
+                return;
+            }
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('blogs')
+                    .update({ title, content, category, image })
+                    .eq('id', id);
+
+                if (error) {
+                    console.error('❌ Error updating blog:', error);
+                    alert('Error updating blog: ' + error.message);
+                    return;
+                }
+
+                document.getElementById('blogTitle').value = '';
+                document.getElementById('blogContent').value = '';
+                document.getElementById('blogCategory').value = '';
+                document.getElementById('blogImage').value = '';
+                document.getElementById('blogEditId').value = '';
+                const btn = document.querySelector('#blogTab .btn-primary');
+                btn.innerHTML = '<i class="fas fa-save"></i> Publish Post';
+                btn.onclick = function() { saveBlogPost(); };
+
+                loadAdminBlogs();
+                loadBlogsFromSupabase();
+                updateDashboardStats();
+                alert('✅ Blog post updated!');
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error updating blog post.');
+            }
+        }
+
+        function editBlogPost(id) {
+            const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
+            const blog = blogs.find(b => b.id === id);
+            if (blog) {
+                document.getElementById('blogTitle').value = blog.title;
+                document.getElementById('blogContent').value = blog.content;
+                document.getElementById('blogCategory').value = blog.category;
+                document.getElementById('blogImage').value = blog.image;
+                document.getElementById('blogEditId').value = blog.id;
+                const btn = document.querySelector('#blogTab .btn-primary');
+                btn.innerHTML = '<i class="fas fa-edit"></i> Update Post';
+                btn.onclick = function() { saveBlogPost(); };
+                document.querySelector('#blogTab .admin-project-form').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        window.deleteBlogPost = async function(id) {
+            if (!confirm('Delete this blog post?')) return;
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('blogs')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) {
+                    console.error('❌ Error deleting blog:', error);
+                    alert('Error deleting blog: ' + error.message);
+                    return;
+                }
+
+                loadAdminBlogs();
+                loadBlogsFromSupabase();
+                updateDashboardStats();
+                alert('✅ Blog post deleted!');
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error deleting blog post.');
+            }
+        };
+
+        function loadAdminBlogs() {
+            const list = document.getElementById('adminBlogList');
+            window.supabaseClient
+                .from('blogs')
+                .select('*')
+                .order('id', { ascending: false })
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error loading blogs for admin:', error);
+                        list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">Error loading blogs.</p>';
+                        return;
+                    }
+                    if (!data || data.length === 0) {
+                        list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">No blog posts yet.</p>';
+                        return;
+                    }
+                    list.innerHTML = '';
+                    data.forEach(blog => {
+                        list.innerHTML += `
+                                    <div class="admin-item">
+                                        <div class="item-content">
+                                            <strong>${blog.title}</strong>
+                                            <small><i class="far fa-calendar-alt"></i> ${blog.date || 'Recent'} · ${blog.category || 'General'}</small>
+                                            <p>${blog.content.substring(0, 120)}${blog.content.length > 120 ? '...' : ''}</p>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="icon-btn profile-btn" onclick="editBlogPost(${blog.id})" title="Edit"><i class="fas fa-edit"></i></button>
+                                            <button class="icon-btn delete-btn" onclick="deleteBlogPost(${blog.id})" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                `;
+                    });
+                });
+        }
+
+        // ============================================================
+        // 10. MESSAGES — Supabase CRUD
+        // ============================================================
+
+        // Contact form (main page)
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('contactName').value.trim();
             const email = document.getElementById('contactEmail').value.trim();
             const phone = document.getElementById('contactPhone').value.trim();
             const message = document.getElementById('contactMessage').value.trim();
-            if (!name || !email || !message) { alert('Please fill in all required fields.'); return; }
-            let messages = JSON.parse(localStorage.getItem('nexify_messages') || '[]');
-            messages.push({ id: Date.now(), name, email, phone, message, date: new Date().toLocaleString() });
-            localStorage.setItem('nexify_messages', JSON.stringify(messages));
-            document.getElementById('successMsg').style.display = 'block';
-            this.reset();
-            setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 5000);
-            alert('Thank you! Your message has been received.');
-            updateDashboardStats();
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('messages')
+                    .insert([{
+                        name,
+                        email,
+                        phone: phone || '',
+                        message,
+                        date: new Date().toLocaleString()
+                    }]);
+
+                if (error) {
+                    console.error('❌ Error sending message:', error);
+                    alert('Error sending message: ' + error.message);
+                    return;
+                }
+
+                document.getElementById('successMsg').style.display = 'block';
+                this.reset();
+                setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 5000);
+                alert('✅ Thank you! Your message has been received.');
+                updateDashboardStats();
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error sending message.');
+            }
         });
 
-        // ============================================================
-        // 9. CONTACT FORM (Modal)
-        // ============================================================
-        document.getElementById('contactFormModal').addEventListener('submit', function(e) {
+        // Contact form (modal)
+        document.getElementById('contactFormModal').addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('contactNameModal').value.trim();
             const email = document.getElementById('contactEmailModal').value.trim();
             const phone = document.getElementById('contactPhoneModal').value.trim();
             const message = document.getElementById('contactMessageModal').value.trim();
-            if (!name || !email || !message) { alert('Please fill in all required fields.'); return; }
-            let messages = JSON.parse(localStorage.getItem('nexify_messages') || '[]');
-            messages.push({ id: Date.now(), name, email, phone, message, date: new Date().toLocaleString() });
-            localStorage.setItem('nexify_messages', JSON.stringify(messages));
-            document.getElementById('successMsgModal').style.display = 'block';
-            this.reset();
-            setTimeout(() => { document.getElementById('successMsgModal').style.display = 'none'; }, 5000);
-            alert('Thank you! Your message has been received.');
-            updateDashboardStats();
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('messages')
+                    .insert([{
+                        name,
+                        email,
+                        phone: phone || '',
+                        message,
+                        date: new Date().toLocaleString()
+                    }]);
+
+                if (error) {
+                    console.error('❌ Error sending message:', error);
+                    alert('Error sending message: ' + error.message);
+                    return;
+                }
+
+                document.getElementById('successMsgModal').style.display = 'block';
+                this.reset();
+                setTimeout(() => { document.getElementById('successMsgModal').style.display = 'none'; }, 5000);
+                alert('✅ Thank you! Your message has been received.');
+                updateDashboardStats();
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error sending message.');
+            }
         });
 
+        // Messages — Admin
+        let allMessages = [];
+
+        function loadMessages() {
+            window.supabaseClient
+                .from('messages')
+                .select('*')
+                .order('id', { ascending: false })
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error loading messages:', error);
+                        document.getElementById('inquiryList').innerHTML =
+                            '<p style="color:var(--text-muted);text-align:center;padding:20px;">Error loading messages.</p>';
+                        return;
+                    }
+                    allMessages = data || [];
+                    filterMessages();
+                });
+        }
+
+        function filterMessages() {
+            const from = document.getElementById('msgFrom').value;
+            const to = document.getElementById('msgTo').value;
+            let filtered = allMessages;
+            if (from) {
+                const fromDate = new Date(from);
+                filtered = filtered.filter(m => new Date(m.date) >= fromDate);
+            }
+            if (to) {
+                const toDate = new Date(to);
+                toDate.setHours(23, 59, 59);
+                filtered = filtered.filter(m => new Date(m.date) <= toDate);
+            }
+            renderFilteredMessages(filtered);
+        }
+
+        function resetMessageFilter() {
+            document.getElementById('msgFrom').value = '';
+            document.getElementById('msgTo').value = '';
+            renderFilteredMessages(allMessages);
+        }
+
+        function renderFilteredMessages(messages) {
+            const list = document.getElementById('inquiryList');
+            if (!messages || messages.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">No messages.</p>';
+                return;
+            }
+            list.innerHTML = '';
+            messages.forEach(msg => {
+                list.innerHTML += `
+                            <div class="admin-item">
+                                <div class="item-content">
+                                    <strong>${msg.name}</strong>
+                                    <small><i class="fas fa-envelope"></i> ${msg.email} · ${msg.phone || 'N/A'}</small>
+                                    <p>${msg.message}</p>
+                                    <small style="color:#999;">${msg.date}</small>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="icon-btn delete-btn" onclick="deleteMessage(${msg.id})" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                        `;
+            });
+        }
+
+        window.deleteMessage = async function(id) {
+            if (!confirm('Delete this message?')) return;
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('messages')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) {
+                    console.error('❌ Error deleting message:', error);
+                    alert('Error deleting message: ' + error.message);
+                    return;
+                }
+
+                loadMessages();
+                updateDashboardStats();
+                alert('✅ Message deleted!');
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error deleting message.');
+            }
+        };
+
         // ============================================================
-        // 10. REGISTER FORM
+        // 11. CLIENTS — Supabase CRUD
         // ============================================================
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
+
+        function loadClients() {
+            const list = document.getElementById('clientsList');
+            window.supabaseClient
+                .from('clients')
+                .select('*')
+                .order('id', { ascending: false })
+                .then(({ data, error }) => {
+                    if (error) {
+                        console.error('Error loading clients:', error);
+                        list.innerHTML =
+                            '<p style="color:var(--text-muted);text-align:center;padding:20px;">Error loading clients.</p>';
+                        return;
+                    }
+                    if (!data || data.length === 0) {
+                        list.innerHTML =
+                            '<p style="color:var(--text-muted);text-align:center;padding:20px;">No registered clients.</p>';
+                        return;
+                    }
+                    list.innerHTML = '';
+                    data.forEach(client => {
+                        list.innerHTML += `
+                                    <div class="admin-item">
+                                        <div class="item-content">
+                                            <strong>${client.name}</strong>
+                                            <small><i class="fas fa-envelope"></i> ${client.email}</small>
+                                            <small style="display:block;color:#999;">Registered: ${client.date || 'N/A'}</small>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="icon-btn profile-btn" onclick="viewClientProfile(${client.id})" title="View Profile"><i class="fas fa-id-card"></i></button>
+                                            <button class="icon-btn delete-btn" onclick="deleteClient(${client.id})" title="Delete Client"><i class="fas fa-user-slash"></i></button>
+                                        </div>
+                                    </div>
+                                `;
+                    });
+                });
+        }
+
+        window.deleteClient = async function(id) {
+            if (!confirm('Delete this client permanently?')) return;
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('clients')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) {
+                    console.error('❌ Error deleting client:', error);
+                    alert('Error deleting client: ' + error.message);
+                    return;
+                }
+
+                if (currentUser && currentUser.id === id) {
+                    logoutUser();
+                }
+                loadClients();
+                updateDashboardStats();
+                alert('✅ Client deleted successfully.');
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error deleting client.');
+            }
+        };
+
+        window.viewClientProfile = function(id) {
+            window.supabaseClient
+                .from('clients')
+                .select('*')
+                .eq('id', id)
+                .single()
+                .then(({ data: client, error }) => {
+                    if (error || !client) {
+                        alert('Client not found.');
+                        return;
+                    }
+                    document.getElementById('clientProfileName').textContent = client.name || '—';
+                    document.getElementById('clientProfileEmail').textContent = client.email || '—';
+                    document.getElementById('cpPhone').textContent = client.phone || '—';
+                    document.getElementById('cpCity').textContent = client.city || '—';
+                    document.getElementById('cpBusiness').textContent = client.business || '—';
+                    document.getElementById('cpBizType').textContent = client.biz_type || '—';
+                    document.getElementById('cpDate').textContent = client.date || '—';
+                    document.getElementById('clientProfileModal').style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+        };
+
+        function closeClientProfile() {
+            document.getElementById('clientProfileModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ============================================================
+        // 12. REGISTER — Supabase
+        // ============================================================
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('regName').value.trim();
             const email = document.getElementById('regEmail').value.trim();
             const password = document.getElementById('regPassword').value;
             const confirm = document.getElementById('regConfirm').value;
+
             if (!name || !email || !password) { alert('Please fill in all fields.'); return; }
             if (password !== confirm) { alert('Passwords do not match.'); return; }
             if (password.length < 6) { alert('Password must be at least 6 characters.'); return; }
-            let clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
-            if (clients.find(c => c.email === email)) { alert('Email already registered.'); return; }
-            const newUser = { id: Date.now(), name, email, password, phone: '', city: '', business: '', bizType: '',
-                date: new Date().toLocaleString() };
-            clients.push(newUser);
-            localStorage.setItem('nexify_clients', JSON.stringify(clients));
-            currentUser = newUser;
-            localStorage.setItem('nexify_current_user', JSON.stringify(newUser));
-            document.getElementById('registerSuccess').style.display = 'block';
-            this.reset();
-            updateDashboardStats();
-            updateNavbarUser();
-            setTimeout(() => {
-                closePageModal('registerPage');
-                alert('Registration successful! Welcome, ' + newUser.name);
-                loadProfile();
-            }, 500);
+
+            try {
+                // Check if email exists
+                const { data: existing, error: checkError } = await window.supabaseClient
+                    .from('clients')
+                    .select('email')
+                    .eq('email', email)
+                    .single();
+
+                if (existing) {
+                    alert('Email already registered.');
+                    return;
+                }
+
+                const newUser = {
+                    name,
+                    email,
+                    password,
+                    phone: '',
+                    city: '',
+                    business: '',
+                    biz_type: '',
+                    date: new Date().toLocaleString()
+                };
+
+                const { error } = await window.supabaseClient
+                    .from('clients')
+                    .insert([newUser]);
+
+                if (error) {
+                    console.error('❌ Registration error:', error);
+                    alert('Registration error: ' + error.message);
+                    return;
+                }
+
+                currentUser = newUser;
+                localStorage.setItem('nexify_current_user', JSON.stringify(newUser));
+                document.getElementById('registerSuccess').style.display = 'block';
+                this.reset();
+                updateDashboardStats();
+                updateNavbarUser();
+                setTimeout(() => {
+                    closePageModal('registerPage');
+                    alert('Registration successful! Welcome, ' + newUser.name);
+                    loadProfile();
+                }, 500);
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error registering user.');
+            }
         });
 
         // ============================================================
-        // 11. LOGIN FORM
+        // 13. LOGIN — Supabase
         // ============================================================
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value.trim();
-            const clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
-            const user = clients.find(c => c.email === email && c.password === password);
-            if (user) {
-                currentUser = user;
-                localStorage.setItem('nexify_current_user', JSON.stringify(user));
+
+            try {
+                const { data, error } = await window.supabaseClient
+                    .from('clients')
+                    .select('*')
+                    .eq('email', email)
+                    .eq('password', password)
+                    .single();
+
+                if (error || !data) {
+                    document.getElementById('loginError').style.display = 'block';
+                    setTimeout(() => { document.getElementById('loginError').style.display = 'none'; }, 3000);
+                    return;
+                }
+
+                currentUser = data;
+                localStorage.setItem('nexify_current_user', JSON.stringify(data));
                 closePageModal('loginPage');
                 updateNavbarUser();
                 loadProfile();
-                alert('Welcome back, ' + user.name + '!');
-            } else {
+                alert('Welcome back, ' + data.name + '!');
+            } catch (err) {
+                console.error('❌ Login error:', err);
                 document.getElementById('loginError').style.display = 'block';
                 setTimeout(() => { document.getElementById('loginError').style.display = 'none'; }, 3000);
             }
         });
 
         // ============================================================
-        // 12. USER AUTH HELPERS
+        // 14. USER AUTH HELPERS
         // ============================================================
         let currentUser = null;
 
@@ -3474,64 +4146,48 @@
             document.getElementById('profilePhone').value = currentUser.phone || '';
             document.getElementById('profileCity').value = currentUser.city || '';
             document.getElementById('profileBusiness').value = currentUser.business || '';
-            document.getElementById('profileBizType').value = currentUser.bizType || '';
+            document.getElementById('profileBizType').value = currentUser.biz_type || '';
         }
 
-        document.getElementById('profileForm').addEventListener('submit', function(e) {
+        document.getElementById('profileForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             if (!currentUser) { alert('Please sign in first.'); return; }
-            currentUser.name = document.getElementById('profileName').value.trim();
-            currentUser.email = document.getElementById('profileEmail').value.trim();
-            currentUser.phone = document.getElementById('profilePhone').value.trim();
-            currentUser.city = document.getElementById('profileCity').value.trim();
-            currentUser.business = document.getElementById('profileBusiness').value.trim();
-            currentUser.bizType = document.getElementById('profileBizType').value.trim();
-            let clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
-            const idx = clients.findIndex(c => c.id === currentUser.id);
-            if (idx > -1) {
-                clients[idx] = currentUser;
-                localStorage.setItem('nexify_clients', JSON.stringify(clients));
+
+            const updatedData = {
+                name: document.getElementById('profileName').value.trim(),
+                email: document.getElementById('profileEmail').value.trim(),
+                phone: document.getElementById('profilePhone').value.trim(),
+                city: document.getElementById('profileCity').value.trim(),
+                business: document.getElementById('profileBusiness').value.trim(),
+                biz_type: document.getElementById('profileBizType').value.trim()
+            };
+
+            try {
+                const { error } = await window.supabaseClient
+                    .from('clients')
+                    .update(updatedData)
+                    .eq('id', currentUser.id);
+
+                if (error) {
+                    console.error('❌ Profile update error:', error);
+                    alert('Error updating profile: ' + error.message);
+                    return;
+                }
+
+                currentUser = { ...currentUser, ...updatedData };
                 localStorage.setItem('nexify_current_user', JSON.stringify(currentUser));
                 updateNavbarUser();
                 document.getElementById('profileSuccess').style.display = 'block';
                 setTimeout(() => { document.getElementById('profileSuccess').style.display = 'none'; }, 3000);
-                alert('Profile updated successfully!');
+                alert('✅ Profile updated successfully!');
+            } catch (err) {
+                console.error('❌ Exception:', err);
+                alert('Error updating profile.');
             }
         });
 
         // ============================================================
-        // 13. SEED INITIAL PROJECTS
-        // ============================================================
-        function seedInitialProjects() {
-            if (!localStorage.getItem('nexify_projects_seeded')) {
-                const defaultProjects = [
-                    { id: 1, name: 'Abbas Store v7.3', desc: 'Advanced B2B ERP with Aging Report and Multi-bank.',
-                        url: 'https://abbasstore.vercel.app', category: 'erp',
-                        image: 'https://i.ibb.co/CshqJYtp/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png' },
-                    { id: 2, name: 'JP Store ERP', desc: 'Enterprise-grade Profit/Loss and Analytics Dashboard.',
-                        url: 'https://jpstoreerp.vercel.app', category: 'erp',
-                        image: 'https://i.ibb.co/JwCGP1BK/Chat-GPT-Image-Sep-1-2026-07-55-12-AM.png' },
-                    { id: 3, name: 'Apex Grocers', desc: 'Fast-moving retail with Real-Time Tracking.',
-                        url: 'https://apexstore.vercel.app', category: 'retail',
-                        image: 'https://i.ibb.co/ZRgNtjC4/Chat-GPT-Image-Sep-1-2026-08-25-07-AM.png' },
-                    { id: 4, name: 'Nayyer Medical', desc: 'Multi-lingual Healthcare with Cloud-based Prescriptions.',
-                        url: 'https://nayyarms.vercel.app', category: 'healthcare',
-                        image: 'https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&w=600' },
-                    { id: 5, name: 'Kitchen Noir', desc: 'Luxury E-Commerce with premium UI and user authentication.',
-                        url: 'https://knoir.vercel.app', category: 'ecommerce',
-                        image: 'https://i.ibb.co/0RnBKXRf/Wren-Kitchens-Ad-Website-Images-111.jpg' },
-                    { id: 6, name: 'Samina Store & Accounting', desc: 'Digitalized Retail & Smart Double-Entry Accounting.',
-                        url: 'https://saminastore.vercel.app', category: 'retail',
-                        image: 'https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=600' }
-                ];
-                localStorage.setItem('nexify_projects', JSON.stringify(defaultProjects));
-                localStorage.setItem('nexify_projects_seeded', 'true');
-            }
-        }
-        seedInitialProjects();
-
-        // ============================================================
-        // 14. ADMIN LOGIN (password prompt)
+        // 15. ADMIN LOGIN
         // ============================================================
         const ADMIN_PASS = "admin123";
 
@@ -3557,7 +4213,7 @@
         };
 
         // ============================================================
-        // 15. ADMIN TABS
+        // 16. ADMIN TABS
         // ============================================================
         window.switchTab = function(tab) {
             document.querySelectorAll('.admin-tabs button').forEach(btn => btn.classList.remove('active'));
@@ -3583,7 +4239,7 @@
         };
 
         // ============================================================
-        // 16. LOAD ADMIN DATA
+        // 17. LOAD ADMIN DATA
         // ============================================================
         function loadAdminData() {
             loadAdminBlogs();
@@ -3594,421 +4250,24 @@
         }
 
         function updateDashboardStats() {
-            const projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
-            const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
-            const messages = JSON.parse(localStorage.getItem('nexify_messages') || '[]');
-            const clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
-            document.getElementById('statProjects').innerHTML = '<span>' + projects.length + '</span>';
-            document.getElementById('statBlogs').innerHTML = '<span>' + blogs.length + '</span>';
-            document.getElementById('statMessages').innerHTML = '<span>' + messages.length + '</span>';
-            document.getElementById('statClients').innerHTML = '<span>' + clients.length + '</span>';
-        }
-
-        // ============================================================
-        // 17. BLOG — CRUD with Edit/Delete
-        // ============================================================
-        window.saveBlogPost = function() {
-            const editId = document.getElementById('blogEditId').value;
-            if (editId) { updateBlogPost(); return; }
-            const title = document.getElementById('blogTitle').value.trim();
-            const content = document.getElementById('blogContent').value.trim();
-            const category = document.getElementById('blogCategory').value.trim() || 'General';
-            const image = document.getElementById('blogImage').value.trim() ||
-                'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
-            if (!title || !content) { alert('Please fill in Title and Content.'); return; }
-            let blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
-            blogs.unshift({
-                id: Date.now(),
-                title,
-                content,
-                category,
-                image,
-                date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
-            });
-            localStorage.setItem('nexify_blogs', JSON.stringify(blogs));
-            document.getElementById('blogTitle').value = '';
-            document.getElementById('blogContent').value = '';
-            document.getElementById('blogCategory').value = '';
-            document.getElementById('blogImage').value = '';
-            document.getElementById('blogEditId').value = '';
-            const btn = document.querySelector('#blogTab .btn-primary');
-            btn.innerHTML = '<i class="fas fa-save"></i> Publish Post';
-            btn.onclick = function() { saveBlogPost(); };
-            loadAdminBlogs();
-            renderBlogs();
-            updateDashboardStats();
-            alert('✅ Blog post published!');
-        };
-
-        function loadAdminBlogs() {
-            const list = document.getElementById('adminBlogList');
-            const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
-            if (blogs.length === 0) {
-                list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">No blog posts yet.</p>';
-                return;
-            }
-            list.innerHTML = '';
-            blogs.forEach(blog => {
-                list.innerHTML += `
-                            <div class="admin-item">
-                                <div class="item-content">
-                                    <strong>${blog.title}</strong>
-                                    <small><i class="far fa-calendar-alt"></i> ${blog.date} · ${blog.category}</small>
-                                    <p>${blog.content.substring(0, 120)}${blog.content.length > 120 ? '...' : ''}</p>
-                                </div>
-                                <div class="item-actions">
-                                    <button class="icon-btn profile-btn" onclick="editBlogPost(${blog.id})" title="Edit"><i class="fas fa-edit"></i></button>
-                                    <button class="icon-btn delete-btn" onclick="deleteBlogPost(${blog.id})" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                        `;
-            });
-        }
-
-        function editBlogPost(id) {
-            const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
-            const blog = blogs.find(b => b.id === id);
-            if (blog) {
-                document.getElementById('blogTitle').value = blog.title;
-                document.getElementById('blogContent').value = blog.content;
-                document.getElementById('blogCategory').value = blog.category;
-                document.getElementById('blogImage').value = blog.image;
-                document.getElementById('blogEditId').value = blog.id;
-                const btn = document.querySelector('#blogTab .btn-primary');
-                btn.innerHTML = '<i class="fas fa-edit"></i> Update Post';
-                btn.onclick = function() { updateBlogPost(); };
-                document.querySelector('#blogTab .admin-project-form').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        function updateBlogPost() {
-            const id = parseInt(document.getElementById('blogEditId').value);
-            if (!id) return;
-            const title = document.getElementById('blogTitle').value.trim();
-            const content = document.getElementById('blogContent').value.trim();
-            const category = document.getElementById('blogCategory').value.trim() || 'General';
-            const image = document.getElementById('blogImage').value.trim() ||
-                'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600';
-            if (!title || !content) { alert('Please fill in Title and Content.'); return; }
-            let blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
-            const idx = blogs.findIndex(b => b.id === id);
-            if (idx > -1) {
-                blogs[idx] = { ...blogs[idx], title, content, category, image };
-                localStorage.setItem('nexify_blogs', JSON.stringify(blogs));
-                document.getElementById('blogTitle').value = '';
-                document.getElementById('blogContent').value = '';
-                document.getElementById('blogCategory').value = '';
-                document.getElementById('blogImage').value = '';
-                document.getElementById('blogEditId').value = '';
-                const btn = document.querySelector('#blogTab .btn-primary');
-                btn.innerHTML = '<i class="fas fa-save"></i> Publish Post';
-                btn.onclick = function() { saveBlogPost(); };
-                loadAdminBlogs();
-                renderBlogs();
-                updateDashboardStats();
-                alert('✅ Blog post updated!');
-            }
-        }
-
-        window.deleteBlogPost = function(id) {
-            if (!confirm('Delete this blog post?')) return;
-            let blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
-            blogs = blogs.filter(b => b.id !== id);
-            localStorage.setItem('nexify_blogs', JSON.stringify(blogs));
-            loadAdminBlogs();
-            renderBlogs();
-            updateDashboardStats();
-        };
-
-        function renderBlogs() {
-            const grid = document.getElementById('blogGrid');
-            const blogs = JSON.parse(localStorage.getItem('nexify_blogs') || '[]');
-            if (blogs.length === 0) {
-                grid.innerHTML = `
-                            <div class="blog-card fade-in">
-                                <a href="#" onclick="alert('Blog post coming soon!')">
-                                    <div class="blog-image"><img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Digital Transformation" /><span class="blog-category">Digitalization</span></div>
-                                    <div class="blog-content"><div class="blog-meta"><span><i class="far fa-calendar-alt"></i> 1 Sep 2026</span><span><i class="far fa-clock"></i> 5 min read</span></div><h3 class="blog-title">How Digital Transformation is Reshaping UK Businesses</h3><p class="blog-excerpt">Discover how UK businesses are leveraging digital tools to streamline operations...</p><span class="blog-link">Read More <i class="fas fa-arrow-right"></i></span></div>
-                                </a>
-                            </div>
-                            <div class="blog-card fade-in">
-                                <a href="#" onclick="alert('Blog post coming soon!')">
-                                    <div class="blog-image"><img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600" alt="ERP Systems" /><span class="blog-category">ERP</span></div>
-                                    <div class="blog-content"><div class="blog-meta"><span><i class="far fa-calendar-alt"></i> 28 Aug 2026</span><span><i class="far fa-clock"></i> 4 min read</span></div><h3 class="blog-title">Why Modern ERP Systems Are the Backbone of Business Growth</h3><p class="blog-excerpt">From inventory management to financial reporting, learn how a modern ERP system can unify your operations...</p><span class="blog-link">Read More <i class="fas fa-arrow-right"></i></span></div>
-                                </a>
-                            </div>
-                            <div class="blog-card fade-in">
-                                <a href="#" onclick="alert('Blog post coming soon!')">
-                                    <div class="blog-image"><img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600" alt="E-Commerce" /><span class="blog-category">E-Commerce</span></div>
-                                    <div class="blog-content"><div class="blog-meta"><span><i class="far fa-calendar-alt"></i> 20 Aug 2026</span><span><i class="far fa-clock"></i> 6 min read</span></div><h3 class="blog-title">Building a Luxury E-Commerce Brand: Lessons from Kitchen Noir</h3><p class="blog-excerpt">How Kitchen Noir built a premium online presence with stunning design, seamless UX, and a powerful backend...</p><span class="blog-link">Read More <i class="fas fa-arrow-right"></i></span></div>
-                                </a>
-                            </div>
-                        `;
-                return;
-            }
-            grid.innerHTML = '';
-            blogs.forEach(blog => {
-                grid.innerHTML += `
-                            <div class="blog-card fade-in">
-                                <a href="#" onclick="alert('${blog.content}')">
-                                    <div class="blog-image"><img src="${blog.image}" alt="${blog.title}" /><span class="blog-category">${blog.category}</span></div>
-                                    <div class="blog-content"><div class="blog-meta"><span><i class="far fa-calendar-alt"></i> ${blog.date}</span><span><i class="far fa-clock"></i> 4 min read</span></div><h3 class="blog-title">${blog.title}</h3><p class="blog-excerpt">${blog.content.substring(0, 120)}${blog.content.length > 120 ? '...' : ''}</p><span class="blog-link">Read More <i class="fas fa-arrow-right"></i></span></div>
-                                </a>
-                            </div>
-                        `;
+            // Fetch counts from Supabase
+            Promise.all([
+                window.supabaseClient.from('projects').select('*', { count: 'exact', head: true }),
+                window.supabaseClient.from('blogs').select('*', { count: 'exact', head: true }),
+                window.supabaseClient.from('messages').select('*', { count: 'exact', head: true }),
+                window.supabaseClient.from('clients').select('*', { count: 'exact', head: true })
+            ]).then(([projects, blogs, messages, clients]) => {
+                document.getElementById('statProjects').innerHTML = '<span>' + (projects.count || 0) + '</span>';
+                document.getElementById('statBlogs').innerHTML = '<span>' + (blogs.count || 0) + '</span>';
+                document.getElementById('statMessages').innerHTML = '<span>' + (messages.count || 0) + '</span>';
+                document.getElementById('statClients').innerHTML = '<span>' + (clients.count || 0) + '</span>';
+            }).catch(err => {
+                console.error('Error fetching stats:', err);
             });
         }
 
         // ============================================================
-        // 18. PROJECTS — CRUD with Edit/Delete
-        // ============================================================
-        window.saveProject = function() {
-            const editId = document.getElementById('projEditId').value;
-            if (editId) { updateProject(); return; }
-            const name = document.getElementById('projName').value.trim();
-            const desc = document.getElementById('projDesc').value.trim();
-            const url = document.getElementById('projUrl').value.trim();
-            const category = document.getElementById('projCategory').value.trim() || 'general';
-            const image = document.getElementById('projImageUrl').value;
-            if (!name || !desc || !url || !image) { alert('Please fill all fields and select an image.'); return; }
-            let projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
-            projects.unshift({ id: Date.now(), name, desc, url, category, image });
-            localStorage.setItem('nexify_projects', JSON.stringify(projects));
-            document.getElementById('projName').value = '';
-            document.getElementById('projDesc').value = '';
-            document.getElementById('projUrl').value = '';
-            document.getElementById('projCategory').value = '';
-            document.getElementById('projImageFile').value = '';
-            document.getElementById('projImagePreview').style.display = 'none';
-            document.getElementById('projImageUrl').value = '';
-            document.getElementById('projEditId').value = '';
-            const btn = document.querySelector('#projectsTab .btn-primary');
-            btn.innerHTML = '<i class="fas fa-save"></i> Save Project';
-            btn.onclick = function() { saveProject(); };
-            loadAdminProjects();
-            updateDashboardStats();
-            alert('✅ Project added!');
-        };
-
-        function loadAdminProjects() {
-            const list = document.getElementById('adminProjectsList');
-            const projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
-            if (projects.length === 0) {
-                list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">No projects yet.</p>';
-                return;
-            }
-            list.innerHTML = '';
-            projects.forEach(proj => {
-                list.innerHTML += `
-                            <div class="admin-item">
-                                <div class="item-content">
-                                    <strong>${proj.name}</strong>
-                                    <small>${proj.url} · ${proj.category}</small>
-                                </div>
-                                <div class="item-actions">
-                                    <button class="icon-btn profile-btn" onclick="editProject(${proj.id})" title="Edit"><i class="fas fa-edit"></i></button>
-                                    <button class="icon-btn delete-btn" onclick="deleteProject(${proj.id})" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                        `;
-            });
-        }
-
-        function editProject(id) {
-            const projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
-            const proj = projects.find(p => p.id === id);
-            if (proj) {
-                document.getElementById('projName').value = proj.name;
-                document.getElementById('projDesc').value = proj.desc;
-                document.getElementById('projUrl').value = proj.url;
-                document.getElementById('projCategory').value = proj.category;
-                document.getElementById('projImageUrl').value = proj.image;
-                const preview = document.getElementById('projImagePreview');
-                preview.src = proj.image;
-                preview.style.display = 'block';
-                document.getElementById('projEditId').value = proj.id;
-                const btn = document.querySelector('#projectsTab .btn-primary');
-                btn.innerHTML = '<i class="fas fa-edit"></i> Update Project';
-                btn.onclick = function() { updateProject(); };
-                document.querySelector('#projectsTab .admin-project-form').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        function updateProject() {
-            const id = parseInt(document.getElementById('projEditId').value);
-            if (!id) return;
-            const name = document.getElementById('projName').value.trim();
-            const desc = document.getElementById('projDesc').value.trim();
-            const url = document.getElementById('projUrl').value.trim();
-            const category = document.getElementById('projCategory').value.trim() || 'general';
-            const image = document.getElementById('projImageUrl').value;
-            if (!name || !desc || !url || !image) { alert('Please fill all fields and select an image.'); return; }
-            let projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
-            const idx = projects.findIndex(p => p.id === id);
-            if (idx > -1) {
-                projects[idx] = { ...projects[idx], name, desc, url, category, image };
-                localStorage.setItem('nexify_projects', JSON.stringify(projects));
-                document.getElementById('projName').value = '';
-                document.getElementById('projDesc').value = '';
-                document.getElementById('projUrl').value = '';
-                document.getElementById('projCategory').value = '';
-                document.getElementById('projImageFile').value = '';
-                document.getElementById('projImagePreview').style.display = 'none';
-                document.getElementById('projImageUrl').value = '';
-                document.getElementById('projEditId').value = '';
-                const btn = document.querySelector('#projectsTab .btn-primary');
-                btn.innerHTML = '<i class="fas fa-save"></i> Save Project';
-                btn.onclick = function() { saveProject(); };
-                loadAdminProjects();
-                updateDashboardStats();
-                alert('✅ Project updated!');
-            }
-        }
-
-        window.deleteProject = function(id) {
-            if (!confirm('Delete this project?')) return;
-            let projects = JSON.parse(localStorage.getItem('nexify_projects') || '[]');
-            projects = projects.filter(p => p.id !== id);
-            localStorage.setItem('nexify_projects', JSON.stringify(projects));
-            loadAdminProjects();
-            updateDashboardStats();
-        };
-
-        // ============================================================
-        // 19. MESSAGES with Date Filter
-        // ============================================================
-        let allMessages = [];
-
-        function loadMessages() {
-            allMessages = JSON.parse(localStorage.getItem('nexify_messages') || '[]');
-            filterMessages();
-        }
-
-        function filterMessages() {
-            const from = document.getElementById('msgFrom').value;
-            const to = document.getElementById('msgTo').value;
-            let filtered = allMessages;
-            if (from) {
-                const fromDate = new Date(from);
-                filtered = filtered.filter(m => new Date(m.date) >= fromDate);
-            }
-            if (to) {
-                const toDate = new Date(to);
-                toDate.setHours(23, 59, 59);
-                filtered = filtered.filter(m => new Date(m.date) <= toDate);
-            }
-            renderFilteredMessages(filtered);
-        }
-
-        function resetMessageFilter() {
-            document.getElementById('msgFrom').value = '';
-            document.getElementById('msgTo').value = '';
-            renderFilteredMessages(allMessages);
-        }
-
-        function renderFilteredMessages(messages) {
-            const list = document.getElementById('inquiryList');
-            if (messages.length === 0) {
-                list.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">No messages.</p>';
-                return;
-            }
-            list.innerHTML = '';
-            messages.forEach(msg => {
-                list.innerHTML += `
-                            <div class="admin-item">
-                                <div class="item-content">
-                                    <strong>${msg.name}</strong>
-                                    <small><i class="fas fa-envelope"></i> ${msg.email} · ${msg.phone || 'N/A'}</small>
-                                    <p>${msg.message}</p>
-                                    <small style="color:#999;">${msg.date}</small>
-                                </div>
-                                <div class="item-actions">
-                                    <button class="icon-btn delete-btn" onclick="deleteMessage(${msg.id})" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                        `;
-            });
-        }
-
-        window.deleteMessage = function(id) {
-            if (!confirm('Delete this message?')) return;
-            let messages = JSON.parse(localStorage.getItem('nexify_messages') || '[]');
-            messages = messages.filter(m => m.id !== id);
-            localStorage.setItem('nexify_messages', JSON.stringify(messages));
-            loadMessages();
-            updateDashboardStats();
-        };
-
-        // ============================================================
-        // 20. CLIENTS — with Delete & Profile icons
-        // ============================================================
-        function loadClients() {
-            const list = document.getElementById('clientsList');
-            const clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
-            if (clients.length === 0) {
-                list.innerHTML =
-                    '<p style="color:var(--text-muted);text-align:center;padding:20px;">No registered clients.</p>';
-                return;
-            }
-            list.innerHTML = '';
-            clients.forEach(client => {
-                list.innerHTML += `
-                            <div class="admin-item">
-                                <div class="item-content">
-                                    <strong>${client.name}</strong>
-                                    <small><i class="fas fa-envelope"></i> ${client.email}</small>
-                                    <small style="display:block;color:#999;">Registered: ${client.date}</small>
-                                </div>
-                                <div class="item-actions">
-                                    <button class="icon-btn profile-btn" onclick="viewClientProfile(${client.id})" title="View Profile"><i class="fas fa-id-card"></i></button>
-                                    <button class="icon-btn delete-btn" onclick="deleteClient(${client.id})" title="Delete Client"><i class="fas fa-user-slash"></i></button>
-                                </div>
-                            </div>
-                        `;
-            });
-        }
-
-        // Delete a client
-        window.deleteClient = function(id) {
-            if (!confirm('Delete this client permanently? This will also delete their account data.')) return;
-            let clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
-            clients = clients.filter(c => c.id !== id);
-            localStorage.setItem('nexify_clients', JSON.stringify(clients));
-            // If the deleted client is the currently logged-in user, log them out
-            if (currentUser && currentUser.id === id) {
-                logoutUser();
-            }
-            loadClients();
-            updateDashboardStats();
-            alert('Client deleted successfully.');
-        };
-
-        // View client profile in modal
-        window.viewClientProfile = function(id) {
-            const clients = JSON.parse(localStorage.getItem('nexify_clients') || '[]');
-            const client = clients.find(c => c.id === id);
-            if (!client) {
-                alert('Client not found.');
-                return;
-            }
-            document.getElementById('clientProfileName').textContent = client.name || '—';
-            document.getElementById('clientProfileEmail').textContent = client.email || '—';
-            document.getElementById('cpPhone').textContent = client.phone || '—';
-            document.getElementById('cpCity').textContent = client.city || '—';
-            document.getElementById('cpBusiness').textContent = client.business || '—';
-            document.getElementById('cpBizType').textContent = client.bizType || '—';
-            document.getElementById('cpDate').textContent = client.date || '—';
-            document.getElementById('clientProfileModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        };
-
-        function closeClientProfile() {
-            document.getElementById('clientProfileModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // ============================================================
-        // 21. PROJECT IMAGE PREVIEW
+        // 18. PROJECT IMAGE PREVIEW
         // ============================================================
         window.previewProjectImage = function(event) {
             const file = event.target.files[0];
@@ -4024,7 +4283,7 @@
         };
 
         // ============================================================
-        // 22. BACK TO TOP & SCROLL PROGRESS
+        // 19. BACK TO TOP & SCROLL PROGRESS
         // ============================================================
         const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', function() {
@@ -4042,7 +4301,7 @@
         });
 
         // ============================================================
-        // 23. COUNTER ANIMATION
+        // 20. COUNTER ANIMATION
         // ============================================================
         const counters = document.querySelectorAll('.counter-number');
         let countersAnimated = false;
@@ -4069,7 +4328,7 @@
         window.addEventListener('load', function() { setTimeout(animateCounters, 500); });
 
         // ============================================================
-        // 24. TYPING ANIMATION
+        // 21. TYPING ANIMATION
         // ============================================================
         (function typingAnimation() {
             const heading = document.getElementById('typingHeading');
@@ -4110,7 +4369,7 @@
         })();
 
         // ============================================================
-        // 25. DARK / LIGHT MODE TOGGLE
+        // 22. DARK / LIGHT MODE TOGGLE
         // ============================================================
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
@@ -4127,7 +4386,7 @@
         });
 
         // ============================================================
-        // 26. PROJECT FILTER
+        // 23. PROJECT FILTER
         // ============================================================
         const filterButtons = document.querySelectorAll('.btn-filter');
         const projectCards = document.querySelectorAll('.project-card');
@@ -4136,7 +4395,7 @@
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
                 const filterValue = this.getAttribute('data-filter');
-                projectCards.forEach(card => {
+                document.querySelectorAll('.project-card').forEach(card => {
                     if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
                         card.style.display = 'block';
                         setTimeout(() => {
@@ -4155,7 +4414,7 @@
         });
 
         // ============================================================
-        // 27. FADE-IN INTERSECTION OBSERVER
+        // 24. FADE-IN INTERSECTION OBSERVER
         // ============================================================
         const fadeElements = document.querySelectorAll('.fade-in');
         const observerOptions = {
@@ -4173,30 +4432,60 @@
         fadeElements.forEach(el => observer.observe(el));
 
         // ============================================================
-        // 28. INIT
+        // 25. SEED INITIAL DATA (if empty)
+        // ============================================================
+        async function seedInitialData() {
+            // Check if projects table is empty
+            const { data: existingProjects, error } = await window.supabaseClient
+                .from('projects')
+                .select('*', { count: 'exact', head: true });
+
+            if (!error && existingProjects?.count === 0) {
+                const defaultProjects = [
+                    { name: 'Abbas Store v7.3', description: 'Advanced B2B ERP with Aging Report and Multi-bank.',
+                        url: 'https://abbasstore.vercel.app', category: 'erp',
+                        image: 'https://i.ibb.co/CshqJYtp/Chat-GPT-Image-Sep-1-2026-07-52-49-AM.png' },
+                    { name: 'JP Store ERP', description: 'Enterprise-grade Profit/Loss and Analytics Dashboard.',
+                        url: 'https://jpstoreerp.vercel.app', category: 'erp',
+                        image: 'https://i.ibb.co/JwCGP1BK/Chat-GPT-Image-Sep-1-2026-07-55-12-AM.png' },
+                    { name: 'Apex Grocers', description: 'Fast-moving retail with Real-Time Tracking.',
+                        url: 'https://apexstore.vercel.app', category: 'retail',
+                        image: 'https://i.ibb.co/ZRgNtjC4/Chat-GPT-Image-Sep-1-2026-08-25-07-AM.png' },
+                    { name: 'Nayyer Medical', description: 'Multi-lingual Healthcare with Cloud-based Prescriptions.',
+                        url: 'https://nayyarms.vercel.app', category: 'healthcare',
+                        image: 'https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&w=600' },
+                    { name: 'Kitchen Noir', description: 'Luxury E-Commerce with premium UI and user authentication.',
+                        url: 'https://knoir.vercel.app', category: 'ecommerce',
+                        image: 'https://i.ibb.co/0RnBKXRf/Wren-Kitchens-Ad-Website-Images-111.jpg' },
+                    { name: 'Samina Store & Accounting',
+                        description: 'Digitalized Retail & Smart Double-Entry Accounting.',
+                        url: 'https://saminastore.vercel.app', category: 'retail',
+                        image: 'https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=600' }
+                ];
+
+                for (const proj of defaultProjects) {
+                    await window.supabaseClient.from('projects').insert([proj]);
+                }
+                console.log('✅ Seeded initial projects.');
+            }
+        }
+
+        // ============================================================
+        // 26. INIT
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
             getCurrentUser();
-            renderBlogs();
+            setTimeout(() => {
+                seedInitialData();
+                loadProjectsFromSupabase();
+                loadBlogsFromSupabase();
+                updateDashboardStats();
+            }, 1000);
             if (localStorage.getItem('nexify_admin') === 'true') {
                 console.log('Admin session active.');
             }
-            console.log('🚀 Nexify Nova — Complete with user dropdown & admin client icons.');
+            console.log('🚀 Nexify Nova — Complete with Supabase integration!');
         });
-
-
-
-                       <!-- ===== SUPABASE INITIALIZATION ===== -->
-
-                const SUPABASE_URL = 'https://wsflwxtmuuauqmsfhnux.supabase.co';
-                const SUPABASE_ANON_KEY = 'sb_publishable_Y7IodREs-0HHi2BIevgLBQ_WqO63O5I';
-
-                // Global variable banayein
-                window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-                console.log('✅ Supabase connected!');
-
-
     </script>
 
 </body>
